@@ -1,0 +1,34 @@
+:root {
+    --blue-500: #0d6efd;
+    --yellow-500: #ffc107;
+    --yellow-100: #fff3cd;
+}
+
+.nav-logo {
+    width: 35px;
+}
+
+.bg-yellow-100 {
+    background-color: var(--yellow-100);
+    height: 100vh;
+}
+
+.color-yellow {
+    color: var(--yellow-500);
+}
+
+.temp-circle {
+    background-color: var(--blue-500);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.row h5 {
+    color: var(--blue-500);
+    font-weight: bold;
+}
+
+.profile-card {
+    height: 90%;
+}

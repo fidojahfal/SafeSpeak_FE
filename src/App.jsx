@@ -1,12 +1,16 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
     <div>
-      <header></header>
+      <header>
+        <Navigation />
+      </header>
       <main>
-        <p>Hello World</p>
+        <ProfilePage />
       </main>
     </div>
   );
