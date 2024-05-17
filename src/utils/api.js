@@ -81,3 +81,19 @@ export async function getUser(id) {
     return { error: true, data: null };
   }
 }
+
+export async function getOwnProfile() {
+  const response = await fetchWithToken(`${BASE_URL}/users/me`);
+  const responseJson = await response.json();
+
+  if (responseJson.message !== 'Success') {
+    alert(responseJson.message);
+    return { error: true, data: null };
+  }
+
+  const {
+    data: { user },
+  } = responseJson;
+
+  return user;
+}
