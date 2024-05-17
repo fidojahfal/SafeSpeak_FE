@@ -97,3 +97,21 @@ export async function getOwnProfile() {
 
   return user;
 }
+
+export async function updateUser({ name, jurusan, telepon, email, id }) {
+  const response = await fetchWithToken(`${BASE_URL}/users/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({ name, jurusan, telepon, email }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const responseJson = await response.json();
+
+  if (responseJson.message !== 'Success') {
+    alert(responseJson.message);
+    return { error: true, data: null };
+  }
+
+  return 'Your account successfully updated!';
+}
