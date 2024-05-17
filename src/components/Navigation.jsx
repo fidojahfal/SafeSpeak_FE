@@ -5,8 +5,8 @@ import { IconContext } from "react-icons";
 
 function Navigation() {
   return (
-    <nav class="navbar navbar-expand-lg shadow-sm">
-      <div class="container-fluid">
+    <nav className="navbar navbar-expand-lg shadow-sm">
+      <div className="container-fluid">
         <Link style={{ textDecoration: "none" }}>
           <div className="d-flex align-items-center pe-2">
             <img
@@ -18,7 +18,7 @@ function Navigation() {
           </div>
         </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavAltMarkup"
@@ -26,10 +26,10 @@ function Navigation() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav d-flex w-100 align-items-center">
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav d-flex w-100 align-items-center">
             <Link className="nav-link">Beranda</Link>
             <Link className="nav-link">Laporan</Link>
             <Link className="nav-link">Artikel</Link>

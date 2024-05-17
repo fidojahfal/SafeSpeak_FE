@@ -32,3 +32,9 @@
 .profile-card {
     height: 90%;
 }
+
+.form-profile-label {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--blue-500);
+}
