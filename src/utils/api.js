@@ -15,6 +15,28 @@ async function fetchWithToken(url, options = {}) {
   });
 }
 
+export async function login({ username, password }) {
+  const response = await fetch(`${BASE_URL}/users/login`, {
+    method: 'POST',
+    body: JSON.stringify({ username, password }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const responseJson = await response.json();
+
+  if (responseJson.message !== 'Success') {
+    alert(responseJson.message);
+    return { error: true, data: null };
+  }
+
+  const {
+    data: { token },
+  } = responseJson;
+
+  return token;
+}
+
 // get user by id
 export async function getUser(id) {
   const response = await fetchWithToken(`${BASE_URL}/users/${id}`);
