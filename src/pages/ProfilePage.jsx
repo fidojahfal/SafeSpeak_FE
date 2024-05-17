@@ -1,6 +1,19 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getUser } from "../utils/api";
 
 function ProfilePage() {
+  // state
+  const [user, setUser] = React.useState(null);
+
+  // get path param
+  const { id } = useParams();
+
+  React.useEffect(() => {
+    getUser(id).then(setUser);
+  }, [id]);
+
+  // get
   return (
     <section className="bg-yellow-100 p-3">
       <div className="card profile-card">
@@ -12,7 +25,7 @@ function ProfilePage() {
           <div className="row gy-3">
             <div className="col-5">
               <h5>Nama Lengkap</h5>
-              <p>Lorem Ipsum</p>
+              <p>{user.name}</p>
             </div>
             <div className="col-5">
               <h5>Jurusan</h5>

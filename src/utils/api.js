@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/api/v1/users";
+const BASE_URL = "http://localhost:3000/api/v1";
 
 // hardcode get token
 const token =
@@ -17,11 +17,13 @@ async function fetchWithToken(url, options = {}) {
 
 // get user by id
 export async function getUser(id) {
-  const response = await fetchWithToken(`${BASE_URL}/${id}`);
+  const response = await fetchWithToken(`${BASE_URL}/users/${id}`);
   const responseJson = await response.json();
 
   if (responseJson.data.user === null) {
     alert(responseJson.message);
     return { error: true, data: null };
   }
+
+  return { error: false, data: responseJson.data.user };
 }
