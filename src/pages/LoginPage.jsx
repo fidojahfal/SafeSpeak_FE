@@ -44,6 +44,7 @@ function LoginPage() {
             <p className="m-0">Belum memiliki akun?</p>
             <Link to="/register">Register</Link>
           </div>
+          ///
         </article>
       </div>
     </section>
