@@ -34,6 +34,14 @@ function LoginPage() {
         </header>
       </div>
       <div className="login-page__right">
+        <div className="d-flex align-items-center pe-2 ms-auto me-3">
+          <img
+            src="/logo/SafeSpeak-Logo.svg"
+            alt="SafeSpeak Logo"
+            className="nav-logo pe-2"
+          />
+          <p className="fs-5 fw-bold m-0 text-primary">SafeSpeak</p>
+        </div>
         <article className="login-page__main">
           <h2>
             <strong> Log In</strong>
