@@ -1,9 +1,5 @@
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-// hardcode get token
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDY0Mjc1M2M5ODcyZGU5MDI4ZDczMCIsImlhdCI6MTcxNjExMTU2MSwiZXhwIjoxNzE2MTE1MTYxfQ.gFGiq2lTvxXAP_h0rfW-xOebL5vLGWLBO3bkOMshhNE';
-
 // fetchWithToken
 async function fetchWithToken(url, options = {}) {
   return fetch(url, {
@@ -13,6 +9,14 @@ async function fetchWithToken(url, options = {}) {
       Authorization: `Bearer ${token}`,
     },
   });
+}
+
+export function putAccessToken(token) {
+  localStorage.setItem('accessToken', token);
+}
+
+export function getAccessToken() {
+  return localStorage.getItem('accessToken');
 }
 
 export async function login({ username, password }) {
@@ -81,9 +85,11 @@ export async function getUser(id) {
     return { error: true, data: null };
   }
 
-  console.log(responseJson.data.user);
+  const {
+    data: { user },
+  } = responseJson;
 
-  return { error: true, data: responseJson.data.user };
+  return user;
 }
 
 export async function getOwnProfile() {
