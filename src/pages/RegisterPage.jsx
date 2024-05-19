@@ -1,9 +1,9 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import RegisterInput from "../components/Register Components/RegisterInput";
-import { useDispatch } from "react-redux";
-import { asyncRegisterUser } from "../states/user/action.js";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import RegisterInput from '../components/Register Components/RegisterInput';
+import { useDispatch } from 'react-redux';
+import { asyncRegisterUser } from '../states/user/action.js';
+import { Link } from 'react-router-dom';
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function RegisterPage() {
         telepon,
       })
     );
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -60,11 +60,7 @@ function RegisterPage() {
       <div className="register-page__right">
         <header className="register-page__hero">
           <h1>
-            <img
-              src="../../../public/img/SignIn.png"
-              width="415"
-              height="380"
-            ></img>
+            <img src="/img/SignIn.png" width="415" height="380"></img>
           </h1>
         </header>
       </div>
