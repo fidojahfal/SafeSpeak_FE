@@ -1,18 +1,22 @@
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-// hardcode get token
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDY0Mjc1M2M5ODcyZGU5MDI4ZDczMCIsImlhdCI6MTcxNjExMTU2MSwiZXhwIjoxNzE2MTE1MTYxfQ.gFGiq2lTvxXAP_h0rfW-xOebL5vLGWLBO3bkOMshhNE';
-
 // fetchWithToken
 async function fetchWithToken(url, options = {}) {
   return fetch(url, {
     ...options,
     headers: {
       ...options.headers,
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${getAccessToken()}`,
     },
   });
+}
+
+export function putAccessToken(token) {
+  localStorage.setItem('accessToken', token);
+}
+
+export function getAccessToken() {
+  return localStorage.getItem('accessToken');
 }
 
 export async function login({ username, password }) {
@@ -25,9 +29,10 @@ export async function login({ username, password }) {
   });
   const responseJson = await response.json();
 
-  if (responseJson.message !== 'Success') {
-    alert(responseJson.message);
-    return { error: true, data: null };
+  const { message } = responseJson;
+
+  if (message !== 'Success') {
+    throw new Error(message);
   }
 
   const {
@@ -63,9 +68,10 @@ export async function register({
   });
   const responseJson = await response.json();
 
-  if (responseJson.message !== 'Success') {
-    alert(responseJson.message);
-    return { error: true, data: null };
+  const { message } = responseJson;
+
+  if (message !== 'Success') {
+    throw new Error(message);
   }
 
   return 'Your account successfully registered';
@@ -76,23 +82,27 @@ export async function getUser(id) {
   const response = await fetchWithToken(`${BASE_URL}/users/${id}`);
   const responseJson = await response.json();
 
-  if (responseJson.message !== 'Success') {
-    alert(responseJson.message);
-    return { error: true, data: null };
+  const { message } = responseJson;
+
+  if (message !== 'Success') {
+    throw new Error(message);
   }
 
-  console.log(responseJson.data.user);
+  const {
+    data: { user },
+  } = responseJson;
 
-  return { error: true, data: responseJson.data.user };
+  return user;
 }
 
 export async function getOwnProfile() {
   const response = await fetchWithToken(`${BASE_URL}/users/me`);
   const responseJson = await response.json();
 
-  if (responseJson.message !== 'Success') {
-    alert(responseJson.message);
-    return { error: true, data: null };
+  const { message } = responseJson;
+
+  if (message !== 'Success') {
+    throw new Error(message);
   }
 
   const {
@@ -112,9 +122,10 @@ export async function updateUser({ name, jurusan, telepon, email, id }) {
   });
   const responseJson = await response.json();
 
-  if (responseJson.message !== 'Success') {
-    alert(responseJson.message);
-    return { error: true, data: null };
+  const { message } = responseJson;
+
+  if (message !== 'Success') {
+    throw new Error(message);
   }
 
   return responseJson.message;

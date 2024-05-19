@@ -2,6 +2,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useInput from "../hooks/useInput";
+import Input from "../form/Input";
+import Button from "../form/Button";
 
 function LoginInput({ login }) {
   const [username, onUsernameChange] = useInput("");
@@ -9,29 +11,31 @@ function LoginInput({ login }) {
 
   return (
     <form className="login-input">
-      <p>
-        <b>Username</b>
-      </p>
-      <input
-        id="username"
+      <Input
+        labelAndId="username"
         type="text"
-        value={username}
-        onChange={onUsernameChange}
+        val={username}
+        onChangeHandler={onUsernameChange}
         placeholder="Username"
-      />
-      <p>
-        <b>Password</b>
-      </p>
-      <input
-        id="password"
+      >
+        Username
+      </Input>
+
+      <Input
+        labelAndId="password"
         type="password"
-        value={password}
-        onChange={onPasswordChange}
+        val={password}
+        onChangeHandler={onPasswordChange}
         placeholder="Password"
-      />
-      <button className="btn" type="button" onClick={() => login({ username, password })}>
+      >
+        Password
+      </Input>
+      <Button
+        marginClass="mt-3 w-100"
+        onClickHandler={() => login({ username, password })}
+      >
         Login
-      </button>
+      </Button>
     </form>
   );
 }

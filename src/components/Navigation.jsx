@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { IconContext } from "react-icons";
 
-function Navigation() {
+function Navigation({ onLogout, profile_id }) {
   return (
     <nav className="navbar navbar-expand-lg shadow-sm">
       <div className="container-fluid">
@@ -34,13 +34,26 @@ function Navigation() {
             <Link className="nav-link">Laporan</Link>
             <Link className="nav-link">Artikel</Link>
             <Link className="nav-link">Tentang</Link>
-            <Link className="nav-link ms-auto">
+            <a
+              className="nav-link ms-auto"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+            >
               <IconContext.Provider value={{ color: "#ffc107", size: "35px" }}>
                 <div>
                   <BsPersonCircle />
                 </div>
               </IconContext.Provider>
-            </Link>
+            </a>
+            <ul className="dropdown-menu dropdown-menu-end">
+              <li className="dropdown-item">
+                <Link onClick={() => onLogout()}>Log out</Link>
+              </li>
+              <li className="dropdown-item">
+                <Link to={`/profile/${profile_id}`}>Detail</Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

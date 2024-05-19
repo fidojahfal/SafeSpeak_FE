@@ -2,6 +2,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useInput from "../hooks/useInput";
+import Input from "../form/Input";
+import Button from "../form/Button";
 
 function RegisterInput({ register }) {
   const [username, onUsernameChange] = useInput("");
@@ -14,67 +16,88 @@ function RegisterInput({ register }) {
 
   return (
     <form className="register-input">
-      <p>
-        <b>Username</b>
-      </p>
-      <input
+      <Input
+        labelAndId="username"
         type="text"
-        value={username}
-        onChange={onUsernameChange}
+        val={username}
+        onChangeHandler={onUsernameChange}
         placeholder="Username"
-      />
-      <p>
-        <b>Password</b>
-      </p>
-      <input
+      >
+        Username
+      </Input>
+      <Input
+        labelAndId="password"
         type="password"
         value={password}
         onChange={onPasswordChange}
         placeholder="Password"
-      />
-      <p>
-        <b>Name</b>
-      </p>
-      <input
+      >
+        Password
+      </Input>
+      <Input
+        labelAndId="name"
         type="text"
-        value={name}
-        onChange={onNameChange}
+        val={name}
+        onChangeHandler={onNameChange}
         placeholder="Name"
-      />
-      <p>
-        <b>NIM</b>
-      </p>
-      <input type="text" value={nim} onChange={onNimChange} placeholder="nim" />
-      <p>
-        <b>Email</b>
-      </p>
-      <input
-        type="text"
-        value={email}
-        onChange={onEmailChange}
+      >
+        Name
+      </Input>
+      <Input
+        labelAndId="nim"
+        type="number"
+        val={nim}
+        onChangeHandler={onNimChange}
+        placeholder="nim"
+      >
+        NIM
+      </Input>
+
+      <Input
+        labelAndId="email"
+        type="email"
+        val={email}
+        onChangeHandler={onEmailChange}
         placeholder="Email"
-      />
-      <p>
-        <b>Jurusan</b>
-      </p>
-      <input
+      >
+        Email
+      </Input>
+
+      <Input
+        labelAndId="jurusan"
         type="text"
-        value={jurusan}
-        onChange={onJurusanChange}
+        val={jurusan}
+        onChangeHandler={onJurusanChange}
         placeholder="Jurusan"
-      />
-      <p>
-        <b>Telepon</b>
-      </p>
-      <input
+      >
+        Jurusan
+      </Input>
+
+      <Input
+        labelAndId="telepon"
         type="text"
-        value={telepon}
-        onChange={onTeleponChange}
+        val={telepon}
+        onChangeHandler={onTeleponChange}
         placeholder="Telepon"
-      />
-      <button type="button" onClick={() => register({ name, email, password })}>
+      >
+        Telepon
+      </Input>
+      <Button
+        marginClass="mt-3 w-100"
+        onClickHandler={() =>
+          register({
+            username,
+            password,
+            name,
+            nim,
+            email,
+            jurusan,
+            telepon,
+          })
+        }
+      >
         Register
-      </button>
+      </Button>
     </form>
   );
 }
