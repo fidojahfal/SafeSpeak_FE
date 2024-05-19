@@ -43,7 +43,7 @@ function LoginPage() {
           <div className="d-flex align-items-center mt-4 link-login-register-group">
             <p className="m-0 text-secondary">Belum memiliki akun?</p>
             <Link to="/register" className="ms-1">
-              <p className="m-0 text-secondary">Register</p>
+              <p className="m-0 text-secondary fw-bold">Daftar disini.</p>
             </Link>
           </div>
         </article>
