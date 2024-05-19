@@ -1,8 +1,8 @@
-const BASE_URL = "http://localhost:3000/api/v1";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 // hardcode get token
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDY0Mjc1M2M5ODcyZGU5MDI4ZDczMCIsImlhdCI6MTcxNjEwODA3OCwiZXhwIjoxNzE2MTExNjc4fQ.gaN2j8eseNkGog1-XVRbGz_5CUJhgDi9cUhjGVPPAAY";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDY0Mjc1M2M5ODcyZGU5MDI4ZDczMCIsImlhdCI6MTcxNjExMTU2MSwiZXhwIjoxNzE2MTE1MTYxfQ.gFGiq2lTvxXAP_h0rfW-xOebL5vLGWLBO3bkOMshhNE";
 
 // fetchWithToken
 async function fetchWithToken(url, options = {}) {
