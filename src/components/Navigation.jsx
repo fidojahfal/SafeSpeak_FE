@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { IconContext } from "react-icons";
 
-function Navigation({ onLogout }) {
+function Navigation({ onLogout, profile_id }) {
   return (
     <nav className="navbar navbar-expand-lg shadow-sm">
       <div className="container-fluid">
@@ -51,7 +51,7 @@ function Navigation({ onLogout }) {
                 <Link onClick={() => onLogout()}>Log out</Link>
               </li>
               <li className="dropdown-item">
-                <Link>Detail</Link>
+                <Link to={`/profile/${profile_id}`}>Detail</Link>
               </li>
             </ul>
           </div>

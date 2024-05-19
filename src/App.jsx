@@ -39,7 +39,7 @@ function App() {
       {authUser && (
         <>
           <header>
-            <Navigation onLogout={onLogoutHandler} />
+            <Navigation onLogout={onLogoutHandler} profile_id={authUser._id} />
           </header>
           <main>
             <Routes>
