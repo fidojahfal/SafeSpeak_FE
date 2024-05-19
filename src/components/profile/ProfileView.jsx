@@ -1,5 +1,5 @@
-import React from "react";
-import Button from "../form/Button";
+import React from 'react';
+import Button from '../form/Button';
 
 function ProfileView({ name, jurusan, user_id, telepon, nim, toEdit }) {
   return (

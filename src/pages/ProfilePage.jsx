@@ -1,11 +1,11 @@
-import React from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { getUser, updateUser } from "../utils/api";
-import ProfileView from "../components/profile/ProfileView";
-import ProfileInput from "../components/profile/ProfileInput";
+import React from 'react';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { getUser, updateUser } from '../utils/api';
+import ProfileView from '../components/profile/ProfileView';
+import ProfileInput from '../components/profile/ProfileInput';
 
 // Profile Styling
-import "../styles/profile-style.css";
+import '../styles/profile-style.css';
 
 function ProfilePage() {
   // state
@@ -24,7 +24,7 @@ function ProfilePage() {
     async function fetchUserById(id) {
       const { data } = await getUser(id);
       if (!data) {
-        alert("Temporary Alert: User is null");
+        alert('Temporary Alert: User is null');
       }
       setUser(data);
       setLoading(false);
@@ -55,7 +55,7 @@ function ProfilePage() {
   }
 
   // conditional to show ProfileView or ProfileInput based on URL path
-  const isEditing = location.pathname.includes("/edit");
+  const isEditing = location.pathname.includes('/edit');
 
   return (
     <section className="bg-yellow-100 p-3">
