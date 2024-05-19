@@ -130,7 +130,6 @@
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   border-radius: 4px;
-  border: 1px solid var(--gray-dark-color);
 }
 
 .login-input button,
