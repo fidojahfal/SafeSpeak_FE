@@ -2,7 +2,7 @@ const BASE_URL = "http://localhost:3000/api/v1";
 
 // hardcode get token
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDY0Mjc1M2M5ODcyZGU5MDI4ZDczMCIsImlhdCI6MTcxNTk0ODQwMCwiZXhwIjoxNzE1OTUyMDAwfQ.HGT8moP0Tj7KDUcetzmNgYDGV8XU3-nZLmpIRCmzueE";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDY0Mjc1M2M5ODcyZGU5MDI4ZDczMCIsImlhdCI6MTcxNjA5ODUxMiwiZXhwIjoxNzE2MTAyMTEyfQ.-bhKm7epvTycy-jNj4mL79GHnKIHRnohAIlIJKW8GnE";
 
 // fetchWithToken
 async function fetchWithToken(url, options = {}) {
@@ -71,6 +71,21 @@ export async function register({
   return "Your account successfully registered";
 }
 
+// get user by id
+export async function getUser(id) {
+  const response = await fetchWithToken(`${BASE_URL}/users/${id}`);
+  const responseJson = await response.json();
+
+  if (responseJson.message !== "Success") {
+    alert(responseJson.message);
+    return { error: true, data: null };
+  }
+
+  console.log(responseJson.data.user);
+
+  return { error: true, data: responseJson.data.user };
+}
+
 export async function getOwnProfile() {
   const response = await fetchWithToken(`${BASE_URL}/users/me`);
   const responseJson = await response.json();
@@ -102,5 +117,5 @@ export async function updateUser({ name, jurusan, telepon, email, id }) {
     return { error: true, data: null };
   }
 
-  return "Your account successfully updated!";
+  return responseJson.message;
 }

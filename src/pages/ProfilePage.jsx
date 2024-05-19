@@ -1,19 +1,58 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { getUser } from "../utils/api";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { getUser, updateUser } from "../utils/api";
+import ProfileView from "../components/profile/ProfileView";
+import ProfileInput from "../components/profile/ProfileInput";
 
 function ProfilePage() {
   // state
   const [user, setUser] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
 
   // get path param
   const { id } = useParams();
+  // get current url
+  const location = useLocation();
+  // to navigate programatically
+  const navigate = useNavigate();
 
+  // get user by id
   React.useEffect(() => {
-    getUser(id).then(setUser);
+    async function fetchUserById(id) {
+      const { data } = await getUser(id);
+      if (data === null) {
+        alert("Temporary Alert: User is null");
+      } else {
+        setUser(data);
+        setLoading(false);
+      }
+    }
+    fetchUserById(id);
   }, [id]);
 
-  // get
+  // handle navigate to edit page
+  function toEditHandler() {
+    navigate(`/profile/${id}/edit`);
+  }
+
+  // handle navigate to view page
+  function toViewHandler() {
+    navigate(`/profile/${id}`);
+  }
+
+  // handle submit at edit page
+  async function onUpdateHandler({ name, jurusan, telepon, email, id }) {
+    console.log({ name, jurusan, telepon, email });
+    const { error } = await updateUser({ name, jurusan, telepon, email });
+
+    if (!error) {
+      navigate(`/profile/${id}`);
+    }
+  }
+
+  // conditional to show ProfileView or ProfileInput based on URL path
+  const isEditing = location.pathname.includes("/edit");
+
   return (
     <section className="bg-yellow-100 p-3">
       <div className="card profile-card">
@@ -22,37 +61,16 @@ function ProfilePage() {
             <h3 className="fw-bold color-yellow">Profil</h3>
             <div className="temp-circle"></div>
           </div>
-          <div className="row gy-3">
-            <div className="col-5">
-              <h5>Nama Lengkap</h5>
-              <p>{user.name}</p>
-            </div>
-            <div className="col-5">
-              <h5>Jurusan</h5>
-              <p>Seni Rupa</p>
-            </div>
-            <div className="col-5">
-              <h5>Username</h5>
-              <p>loremipsum77@gmail.com</p>
-            </div>
-            <div className="col-5">
-              <h5>Nomor Telepon</h5>
-              <p>085892121758</p>
-            </div>
-            <div className="col-5">
-              <h5>Email</h5>
-              <p>loremipsum@gmail.com</p>
-            </div>
-            <div className="col-5">
-              <h5>NIM</h5>
-              <p>2006596705</p>
-            </div>
-          </div>
-          <div className="d-flex justify-content-center mt-5">
-            <button type="button" className="btn btn-primary">
-              Edit Profil
-            </button>
-          </div>
+          {!loading && !isEditing && (
+            <ProfileView {...user} toEdit={toEditHandler} />
+          )}
+          {!loading && isEditing && (
+            <ProfileInput
+              {...user}
+              updateHandler={onUpdateHandler}
+              toView={toViewHandler}
+            />
+          )}
         </div>
       </div>
     </section>
