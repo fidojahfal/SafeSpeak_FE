@@ -4,6 +4,7 @@ import LoginInput from "../components/Login Components/LoginInput";
 import Button from "../components/form/Button";
 import { useDispatch } from "react-redux";
 import { asyncSetAuthUser } from "../states/authUser/action";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -41,10 +42,9 @@ function LoginPage() {
           <LoginInput login={onLogin} />
           <div className="d-flex align-items-center mt-4">
             <p className="m-0">Belum memiliki akun?</p>
-            <Button onClickHandler={goToRegister} marginClass="ms-3">
-              Register
-            </Button>
+            <Link to="/register">Register</Link>
           </div>
+          ///
         </article>
       </div>
     </section>

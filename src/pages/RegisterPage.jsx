@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import RegisterInput from "../components/Register Components/RegisterInput";
 import { useDispatch } from "react-redux";
 import { asyncRegisterUser } from "../states/user/action.js";
+import { Link } from "react-router-dom";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function RegisterPage() {
         username,
         password,
         name,
-        nim: parseInt(),
+        nim,
         email,
         jurusan,
         telepon,
@@ -41,8 +42,7 @@ function RegisterPage() {
           <h3>Silahkan daftar untuk bisa mengakses fitur Lapor</h3>
           <RegisterInput register={onRegister} />
           <p>
-            Sudah memiliki akun ?
-            <button onClick={() => navigate("/")}>Login</button>
+            Sudah memiliki akun ?<Link to="/">Login</Link>
           </p>
         </article>
       </div>
