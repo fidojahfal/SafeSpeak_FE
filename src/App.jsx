@@ -20,19 +20,31 @@ function App() {
   }
 
   return (
-    <div>
-      <header>
-        <Navigation />
-      </header>
-      <main>
-        <Routes>
-          <Route path="/profile/:id" element={<ProfilePage />} />
-          <Route path="/*" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/profile/:id/edit" element={<ProfilePage />} />
-        </Routes>
-      </main>
-    </div>
+    <>
+      {!authUser && (
+        <>
+          <main>
+            <Routes>
+              <Route path="/*" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+            </Routes>
+          </main>
+        </>
+      )}
+      {authUser && (
+        <>
+          <header>
+            <Navigation />
+          </header>
+          <main>
+            <Routes>
+              <Route path="/profile/:id/edit" element={<ProfilePage />} />
+              <Route path="/profile/:id" element={<ProfilePage />} />
+            </Routes>
+          </main>
+        </>
+      )}
+    </>
   );
 }
 
