@@ -60,7 +60,11 @@ function ProfilePage() {
         <div className="card-body p-5">
           <div className="d-flex align-items-center justify-content-between mb-3">
             <h3 className="fw-bold color-yellow">Profil</h3>
-            <div className="temp-circle"></div>
+            <img
+              src={user.user_id.avatar}
+              alt="User Avatar"
+              className="avatar"
+            />
           </div>
           {!loading && !isEditing && (
             <ProfileView {...user} toEdit={toEditHandler} />

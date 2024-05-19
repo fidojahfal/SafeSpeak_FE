@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../form/Button";
 
 function ProfileView({ name, jurusan, user_id, telepon, nim, toEdit }) {
   return (
@@ -30,9 +31,7 @@ function ProfileView({ name, jurusan, user_id, telepon, nim, toEdit }) {
         </div>
       </div>
       <div className="d-flex justify-content-center mt-5">
-        <button type="button" className="btn btn-primary" onClick={toEdit}>
-          Edit Profil
-        </button>
+        <Button onClickHandler={toEdit}>Edit Profil</Button>
       </div>
     </>
   );

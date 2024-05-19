@@ -1,6 +1,7 @@
 import React from "react";
 import { useInput } from "../../hooks/useInput";
 import Input from "../form/Input";
+import Button from "../form/Button";
 
 function ProfileInput({
   name,
@@ -79,16 +80,15 @@ function ProfileInput({
         </Input>
       </div>
       <div className="d-flex justify-content-center mt-5">
-        <button
+        <Button
           type="button"
-          className="btn btn-outline-warning mx-3"
-          onClick={toView}
+          primaryOrOutline="outline-warning"
+          marginClass="mx-3"
+          onClickHandler={toView}
         >
           Kembali
-        </button>
-        <button type="submit" className="btn btn-primary">
-          Simpan
-        </button>
+        </Button>
+        <Button type="submit">Simpan</Button>
       </div>
     </form>
   );

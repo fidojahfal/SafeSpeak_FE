@@ -17,8 +17,7 @@
     color: var(--yellow-500);
 }
 
-.temp-circle {
-    background-color: var(--blue-500);
+.avatar {
     width: 70px;
     height: 70px;
     border-radius: 50%;
