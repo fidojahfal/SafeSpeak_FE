@@ -2,13 +2,17 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import LoginInput from "../components/Login Components/LoginInput";
 import Button from "../components/form/Button";
+import { useDispatch } from "react-redux";
+import { asyncSetAuthUser } from "../states/authUser/action";
 
 function LoginPage() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onLogin = ({ email, password }) => {
-    console.log("Login attempt with:", email, password);
-    // Place your login logic here
+  const onLogin = ({ username, password }) => {
+    // @TODO: dispatch async action to login
+    dispatch(asyncSetAuthUser({ username, password }));
+    navigate("/");
   };
 
   const goToRegister = () => {

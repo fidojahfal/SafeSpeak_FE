@@ -1,13 +1,33 @@
 import React from "react";
-import { IoEarthOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import RegisterInput from "../components/Register Components/RegisterInput";
+import { useDispatch } from "react-redux";
+import { asyncRegisterUser } from "../states/user/action.js";
 
 function RegisterPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const onRegister = ({ name, email, password }) => {
-    console.log("Register attempt with:", name, email, password);
+  const onRegister = ({
+    username,
+    password,
+    name,
+    nim,
+    email,
+    jurusan,
+    telepon,
+  }) => {
+    dispatch(
+      asyncRegisterUser({
+        username,
+        password,
+        name,
+        nim: parseInt(),
+        email,
+        jurusan,
+        telepon,
+      })
+    );
     navigate("/");
   };
 
