@@ -75,6 +75,9 @@
   align-items: center;
   justify-content: center;
   background-color: #bbdefb;
+  height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 .login-page__right,
@@ -136,6 +139,7 @@
 .login-input button:hover,
 .register-input button:hover {
   background-color: var(--yellow-500);
+  border-color: var(--yellow-500);
 }
 
 .dropdown-item a {

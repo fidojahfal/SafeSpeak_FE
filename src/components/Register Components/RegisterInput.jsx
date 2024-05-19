@@ -23,7 +23,6 @@ function RegisterInput({ register }) {
         onChangeHandler={onUsernameChange}
         placeholder="Username"
       >
-        {" "}
         Username
       </Input>
       <Input
@@ -84,9 +83,8 @@ function RegisterInput({ register }) {
         Telepon
       </Input>
       <Button
-        className="btn"
-        type="button"
-        onClick={() =>
+        marginClass="mt-3 w-100"
+        onClickHandler={() =>
           register({
             username,
             password,

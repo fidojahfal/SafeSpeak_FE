@@ -41,9 +41,12 @@ function RegisterPage() {
           </h2>
           <h3>Silahkan daftar untuk bisa mengakses fitur Lapor</h3>
           <RegisterInput register={onRegister} />
-          <p>
-            Sudah memiliki akun ?<Link to="/">Login</Link>
-          </p>
+          <div className="d-flex align-items-center mt-4 link-login-register-group">
+            <p className="m-0 text-secondary">Sudah memiliki akun?</p>
+            <Link to="/" className="ms-1">
+              <p className="m-0 text-secondary fw-bold">Login</p>
+            </Link>
+          </div>
         </article>
       </div>
       <div className="register-page__right">
@@ -51,8 +54,8 @@ function RegisterPage() {
           <h1>
             <img
               src="../../../public/img/SignIn.png"
-              width="400"
-              height="387"
+              width="415"
+              height="380"
             ></img>
           </h1>
         </header>
