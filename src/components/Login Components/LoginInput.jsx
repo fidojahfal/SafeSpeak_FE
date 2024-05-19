@@ -31,7 +31,7 @@ function LoginInput({ login }) {
         Password
       </Input>
       <Button
-        marginClass="mt-3"
+        marginClass="mt-3 w-100"
         onClickHandler={() => login({ username, password })}
       >
         Login

@@ -40,11 +40,12 @@ function LoginPage() {
           </h2>
           <h3>Silahkan masuk untuk mengakses fitur Lapor</h3>
           <LoginInput login={onLogin} />
-          <div className="d-flex align-items-center mt-4">
-            <p className="m-0">Belum memiliki akun?</p>
-            <Link to="/register">Register</Link>
+          <div className="d-flex align-items-center mt-4 link-login-register-group">
+            <p className="m-0 text-secondary">Belum memiliki akun?</p>
+            <Link to="/register" className="ms-1">
+              <p className="m-0 text-secondary">Register</p>
+            </Link>
           </div>
-          ///
         </article>
       </div>
     </section>
