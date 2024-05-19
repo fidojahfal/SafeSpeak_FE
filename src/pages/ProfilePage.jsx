@@ -4,6 +4,9 @@ import { getUser, updateUser } from "../utils/api";
 import ProfileView from "../components/profile/ProfileView";
 import ProfileInput from "../components/profile/ProfileInput";
 
+// Profile Styling
+import "../styles/profile-style.css";
+
 function ProfilePage() {
   // state
   const [user, setUser] = React.useState(null);
@@ -60,11 +63,13 @@ function ProfilePage() {
         <div className="card-body p-5">
           <div className="d-flex align-items-center justify-content-between mb-3">
             <h3 className="fw-bold color-yellow">Profil</h3>
-            <img
-              src={user.user_id.avatar}
-              alt="User Avatar"
-              className="avatar"
-            />
+            {!loading && (
+              <img
+                src={user.user_id.avatar}
+                alt="User Avatar"
+                className="avatar"
+              />
+            )}
           </div>
           {!loading && !isEditing && (
             <ProfileView {...user} toEdit={toEditHandler} />
