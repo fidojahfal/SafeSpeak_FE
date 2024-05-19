@@ -97,12 +97,19 @@
   color: var(--blue-500);
 }
 
-.login-page__main,
-.register-page__main {
+.login-page__main {
   text-align: left;
   margin-top: 20vh;
   padding-left: 64px;
   padding-right: 64px;
+}
+
+.register-page__main {
+    text-align: left;
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-bottom: 64px;
+    margin-top: 5vh;
 }
 
 .login-page__main h2,
