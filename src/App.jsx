@@ -1,9 +1,9 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import ProfilePage from "./pages/ProfilePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import ProfilePage from './pages/ProfilePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   return (

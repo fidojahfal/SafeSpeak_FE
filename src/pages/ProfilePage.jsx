@@ -1,8 +1,11 @@
-import React from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { getUser, updateUser } from "../utils/api";
-import ProfileView from "../components/profile/ProfileView";
-import ProfileInput from "../components/profile/ProfileInput";
+import React from 'react';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { getUser, updateUser } from '../utils/api';
+import ProfileView from '../components/profile/ProfileView';
+import ProfileInput from '../components/profile/ProfileInput';
+
+// Profile Styling
+import '../styles/profile-style.css';
 
 function ProfilePage() {
   // state
@@ -21,7 +24,7 @@ function ProfilePage() {
     async function fetchUserById(id) {
       const { data } = await getUser(id);
       if (!data) {
-        alert("Temporary Alert: User is null");
+        alert('Temporary Alert: User is null');
       }
       setUser(data);
       setLoading(false);
@@ -52,7 +55,7 @@ function ProfilePage() {
   }
 
   // conditional to show ProfileView or ProfileInput based on URL path
-  const isEditing = location.pathname.includes("/edit");
+  const isEditing = location.pathname.includes('/edit');
 
   return (
     <section className="bg-yellow-100 p-3">
@@ -60,7 +63,13 @@ function ProfilePage() {
         <div className="card-body p-5">
           <div className="d-flex align-items-center justify-content-between mb-3">
             <h3 className="fw-bold color-yellow">Profil</h3>
-            <div className="temp-circle"></div>
+            {!loading && (
+              <img
+                src={user.user_id.avatar}
+                alt="User Avatar"
+                className="avatar"
+              />
+            )}
           </div>
           {!loading && !isEditing && (
             <ProfileView {...user} toEdit={toEditHandler} />
