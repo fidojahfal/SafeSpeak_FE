@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import LoginInput from "../components/Login Components/LoginInput";
+import Button from "../components/form/Button";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -34,10 +35,12 @@ function LoginPage() {
           </h2>
           <h3>Silahkan masuk untuk mengakses fitur Lapor</h3>
           <LoginInput login={onLogin} />
-          <p>
-            Belum memiliki akun ?
-            <button onClick={goToRegister}>Register</button>
-          </p>
+          <div className="d-flex align-items-center mt-4">
+            <p className="m-0">Belum memiliki akun?</p>
+            <Button onClickHandler={goToRegister} marginClass="ms-3">
+              Register
+            </Button>
+          </div>
         </article>
       </div>
     </section>

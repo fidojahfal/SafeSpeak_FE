@@ -94,11 +94,12 @@
 
 .login-page__main,
 .register-page__main {
-  text-align: center;
+  text-align: left;
 }
 
 .login-page__main h2,
 .register-page__main h2 {
+    text-align: center;
   font-weight: 500;
   font-size: 30px;
   color: #0d6efd;
