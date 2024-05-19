@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import useInput from "../hooks/useInput";
 import Input from "../form/Input";
+import Button from "../form/Button";
 
 function LoginInput({ login }) {
   const [username, onUsernameChange] = useInput("");
@@ -29,13 +30,13 @@ function LoginInput({ login }) {
       >
         Password
       </Input>
-      <button
+      <Button
         className="btn"
         type="button"
-        onClick={() => login({ username, password })}
+        onClickHandler={() => login({ username, password })}
       >
         Login
-      </button>
+      </Button>
     </form>
   );
 }
