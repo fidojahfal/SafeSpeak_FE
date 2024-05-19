@@ -20,12 +20,11 @@ function ProfilePage() {
   React.useEffect(() => {
     async function fetchUserById(id) {
       const { data } = await getUser(id);
-      if (data === null) {
+      if (!data) {
         alert("Temporary Alert: User is null");
-      } else {
-        setUser(data);
-        setLoading(false);
       }
+      setUser(data);
+      setLoading(false);
     }
     fetchUserById(id);
   }, [id]);
@@ -41,12 +40,14 @@ function ProfilePage() {
   }
 
   // handle submit at edit page
-  async function onUpdateHandler({ name, jurusan, telepon, email, id }) {
+  async function onUpdateHandler({ name, jurusan, telepon, email }) {
     console.log({ name, jurusan, telepon, email });
-    const { error } = await updateUser({ name, jurusan, telepon, email });
+    const { error } = await updateUser({ name, jurusan, telepon, email, id });
+    console.log(id);
 
     if (!error) {
       navigate(`/profile/${id}`);
+      navigate(0);
     }
   }
 

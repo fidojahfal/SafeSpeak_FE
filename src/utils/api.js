@@ -2,7 +2,7 @@ const BASE_URL = "http://localhost:3000/api/v1";
 
 // hardcode get token
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDY0Mjc1M2M5ODcyZGU5MDI4ZDczMCIsImlhdCI6MTcxNjA5ODUxMiwiZXhwIjoxNzE2MTAyMTEyfQ.-bhKm7epvTycy-jNj4mL79GHnKIHRnohAIlIJKW8GnE";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDY0Mjc1M2M5ODcyZGU5MDI4ZDczMCIsImlhdCI6MTcxNjEwMjk3MCwiZXhwIjoxNzE2MTA2NTcwfQ.YFR9oTlXcefJeApvZMQUvNru3yGzN7LvPCbMwT3RykM";
 
 // fetchWithToken
 async function fetchWithToken(url, options = {}) {
