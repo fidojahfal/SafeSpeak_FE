@@ -48,10 +48,10 @@ function Navigation({ onLogout, profile_id }) {
             </a>
             <ul className="dropdown-menu dropdown-menu-end">
               <li className="dropdown-item">
-                <Link onClick={() => onLogout()}>Log out</Link>
+                <Link to={`/profile/${profile_id}`}>Detail</Link>
               </li>
               <li className="dropdown-item">
-                <Link to={`/profile/${profile_id}`}>Detail</Link>
+                <Link onClick={() => onLogout()}>Log out</Link>
               </li>
             </ul>
           </div>
