@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Button({
-  type = "button",
-  primaryOrOutline = "primary",
-  marginClass = "",
+  type = 'button',
+  primaryOrOutline = 'primary',
+  marginClass = '',
   children,
   onClickHandler = () => {},
 }) {
@@ -20,11 +20,11 @@ function Button({
 }
 
 Button.propTypes = {
-  type: PropTypes.string.isRequired,
-  primaryOrOutline: PropTypes.string.isRequired,
-  marginClass: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  primaryOrOutline: PropTypes.string,
+  marginClass: PropTypes.string,
   children: PropTypes.string.isRequired,
-  onClickHandler: PropTypes.func.isRequired,
+  onClickHandler: PropTypes.func,
 };
 
 export default Button;

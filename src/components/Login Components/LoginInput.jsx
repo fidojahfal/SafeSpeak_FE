@@ -1,23 +1,24 @@
 // LoginInput.jsx
-import React from "react";
-import PropTypes from "prop-types";
-import useInput from "../hooks/useInput";
-import Input from "../form/Input";
-import Button from "../form/Button";
+import React from 'react';
+import PropTypes from 'prop-types';
+import useInput from '../hooks/useInput';
+import Input from '../form/Input';
+import Button from '../form/Button';
 
 function LoginInput({ login }) {
-  const [username, onUsernameChange] = useInput("");
-  const [password, onPasswordChange] = useInput("");
+  const [username, onUsernameChange] = useInput('');
+  const [password, onPasswordChange] = useInput('');
 
   return (
     <form
       className="login-input"
-      onSubmit={() =>
+      onSubmit={(event) => {
+        event.preventDefault();
         login({
           username,
           password,
-        })
-      }
+        });
+      }}
     >
       <Input
         labelAndId="username"
