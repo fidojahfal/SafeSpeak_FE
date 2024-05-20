@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function Button({
   type = "button",
@@ -17,5 +18,13 @@ function Button({
     </button>
   );
 }
+
+Button.propTypes = {
+  type: PropTypes.string.isRequired,
+  primaryOrOutline: PropTypes.string.isRequired,
+  marginClass: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
+  onClickHandler: PropTypes.func.isRequired,
+};
 
 export default Button;

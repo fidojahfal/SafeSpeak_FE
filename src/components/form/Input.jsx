@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function Input({
   colsize,
@@ -9,6 +10,9 @@ function Input({
   onChangeHandler = () => {},
   children,
   disabled,
+  required,
+  min,
+  max,
 }) {
   return (
     <div className={`col-${colsize}`}>
@@ -23,9 +27,26 @@ function Input({
         value={val}
         onChange={onChangeHandler}
         disabled={disabled}
+        min={min}
+        required
+        max={max}
       />
     </div>
   );
 }
+
+Input.propTypes = {
+  colsize: PropTypes.string.isRequired,
+  labelAndId: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  val: PropTypes.string.isRequired,
+  onChangeHandler: PropTypes.func.isRequired,
+  children: PropTypes.string.isRequired,
+  disabled: PropTypes.boolean.isRequired,
+  required: PropTypes.boolean.isRequired,
+  min: PropTypes.string.isRequired,
+  max: PropTypes.string.isRequired,
+};
 
 export default Input;

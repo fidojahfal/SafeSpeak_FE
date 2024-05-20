@@ -10,13 +10,23 @@ function LoginInput({ login }) {
   const [password, onPasswordChange] = useInput("");
 
   return (
-    <form className="login-input">
+    <form
+      className="login-input"
+      onSubmit={() =>
+        login({
+          username,
+          password,
+        })
+      }
+    >
       <Input
         labelAndId="username"
         type="text"
         val={username}
         onChangeHandler={onUsernameChange}
         placeholder="Username"
+        required
+        min="5"
       >
         Username
       </Input>
@@ -27,13 +37,12 @@ function LoginInput({ login }) {
         val={password}
         onChangeHandler={onPasswordChange}
         placeholder="Password"
+        required
+        min="8"
       >
         Password
       </Input>
-      <Button
-        marginClass="mt-3 w-100"
-        onClickHandler={() => login({ username, password })}
-      >
+      <Button type="submit" marginClass="mt-3 w-100">
         Login
       </Button>
     </form>

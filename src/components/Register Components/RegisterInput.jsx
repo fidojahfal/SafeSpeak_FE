@@ -15,22 +15,39 @@ function RegisterInput({ register }) {
   const [telepon, onTeleponChange] = useInput("");
 
   return (
-    <form className="register-input">
+    <form
+      className="register-input"
+      onSubmit={() =>
+        register({
+          username,
+          password,
+          name,
+          nim,
+          email,
+          jurusan,
+          telepon,
+        })
+      }
+    >
       <Input
         labelAndId="username"
         type="text"
         val={username}
         onChangeHandler={onUsernameChange}
         placeholder="Username"
+        required
+        min="5"
       >
         Username
       </Input>
       <Input
         labelAndId="password"
         type="password"
-        value={password}
-        onChange={onPasswordChange}
+        val={password}
+        onChangeHandler={onPasswordChange}
         placeholder="Password"
+        required
+        min="8"
       >
         Password
       </Input>
@@ -40,6 +57,8 @@ function RegisterInput({ register }) {
         val={name}
         onChangeHandler={onNameChange}
         placeholder="Name"
+        required
+        min="5"
       >
         Name
       </Input>
@@ -49,6 +68,8 @@ function RegisterInput({ register }) {
         val={nim}
         onChangeHandler={onNimChange}
         placeholder="nim"
+        required
+        min="0"
       >
         NIM
       </Input>
@@ -59,6 +80,7 @@ function RegisterInput({ register }) {
         val={email}
         onChangeHandler={onEmailChange}
         placeholder="Email"
+        required
       >
         Email
       </Input>
@@ -69,6 +91,8 @@ function RegisterInput({ register }) {
         val={jurusan}
         onChangeHandler={onJurusanChange}
         placeholder="Jurusan"
+        required
+        min="5"
       >
         Jurusan
       </Input>
@@ -79,23 +103,13 @@ function RegisterInput({ register }) {
         val={telepon}
         onChangeHandler={onTeleponChange}
         placeholder="Telepon"
+        required
+        min="10"
+        max="13"
       >
         Telepon
       </Input>
-      <Button
-        marginClass="mt-3 w-100"
-        onClickHandler={() =>
-          register({
-            username,
-            password,
-            name,
-            nim,
-            email,
-            jurusan,
-            telepon,
-          })
-        }
-      >
+      <Button type="submit" marginClass="mt-3 w-100">
         Register
       </Button>
     </form>
