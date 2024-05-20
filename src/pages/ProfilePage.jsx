@@ -1,16 +1,17 @@
-import React from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { getUser, updateUser } from "../utils/api";
-import ProfileView from "../components/profile/ProfileView";
-import ProfileInput from "../components/profile/ProfileInput";
-import Alert from "../components/form/Alert";
+import React from 'react';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import ProfileView from '../components/profile/ProfileView';
+import ProfileInput from '../components/profile/ProfileInput';
 
 // Profile Styling
-import "../styles/profile-style.css";
+import '../styles/profile-style.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncReceiveUser, asyncUpdateUser } from '../states/user/action';
 
 function ProfilePage() {
+  const { user = null } = useSelector((states) => states);
+  const dispatch = useDispatch();
   // state
-  const [user, setUser] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
 
   // get path param
@@ -22,16 +23,9 @@ function ProfilePage() {
 
   // get user by id
   React.useEffect(() => {
-    async function fetchUserById(id) {
-      const user = await getUser(id);
-      if (!user) {
-        alert("Temporary Alert: User is null");
-      }
-      setUser(user);
-      setLoading(false);
-    }
-    fetchUserById(id);
-  }, [id]);
+    dispatch(asyncReceiveUser(id));
+    setLoading(false);
+  }, [dispatch, id]);
 
   // handle navigate to edit page
   function toEditHandler() {
@@ -45,14 +39,12 @@ function ProfilePage() {
 
   // handle submit at edit page
   async function onUpdateHandler({ name, jurusan, telepon, email }) {
-    console.log({ name, jurusan, telepon, email });
-    const { error } = await updateUser({ name, jurusan, telepon, email, id });
-    console.log(id);
+    dispatch(asyncUpdateUser({ name, jurusan, telepon, email, id }));
+    navigate(`/profile/${id}`);
+  }
 
-    if (!error) {
-      navigate(`/profile/${id}`);
-      navigate(0);
-    }
+  if (!user) {
+    return null;
   }
 
   // test handle on close
@@ -61,7 +53,7 @@ function ProfilePage() {
   // };
 
   // conditional to show ProfileView or ProfileInput based on URL path
-  const isEditing = location.pathname.includes("/edit");
+  const isEditing = location.pathname.includes('/edit');
 
   return (
     <section className="bg-yellow-100 p-3">
