@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../form/Button";
+import { PropTypes } from "prop-types";
 
 function ProfileView({ name, jurusan, user_id, telepon, nim, toEdit, src }) {
   return (
@@ -43,5 +44,15 @@ function ProfileView({ name, jurusan, user_id, telepon, nim, toEdit, src }) {
     </>
   );
 }
+
+ProfileView.propTypes = {
+  name: PropTypes.string.isRequired,
+  jurusan: PropTypes.string.isRequired,
+  user_id: PropTypes.object.isRequired,
+  telepon: PropTypes.string.isRequired,
+  nim: PropTypes.number.isRequired,
+  toEdit: PropTypes.func.isRequired,
+  src: PropTypes.string.isRequired,
+};
 
 export default ProfileView;

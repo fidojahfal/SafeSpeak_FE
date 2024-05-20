@@ -3,6 +3,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { getUser, updateUser } from "../utils/api";
 import ProfileView from "../components/profile/ProfileView";
 import ProfileInput from "../components/profile/ProfileInput";
+import Alert from "../components/form/Alert";
 
 // Profile Styling
 import "../styles/profile-style.css";
@@ -54,11 +55,17 @@ function ProfilePage() {
     }
   }
 
+  // test handle on close
+  // const handleCloseAlert = () => {
+  //   setShowAlert(false);
+  // };
+
   // conditional to show ProfileView or ProfileInput based on URL path
   const isEditing = location.pathname.includes("/edit");
 
   return (
     <section className="bg-yellow-100 p-3">
+      {/* <Alert onClose={handleCloseAlert} /> */}
       <div className="card profile-card">
         <div className="card-body p-5">
           <div className="d-flex align-items-center justify-content-between mb-3">

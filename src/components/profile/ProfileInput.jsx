@@ -2,6 +2,7 @@ import React from "react";
 import { useInput } from "../../hooks/useInput";
 import Input from "../form/Input";
 import Button from "../form/Button";
+import { PropTypes } from "prop-types";
 
 function ProfileInput({
   name,
@@ -93,5 +94,15 @@ function ProfileInput({
     </form>
   );
 }
+
+ProfileInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  jurusan: PropTypes.string.isRequired,
+  nim: PropTypes.number.isRequired,
+  user_id: PropTypes.object.isRequired,
+  telepon: PropTypes.string.isRequired,
+  updateHandler: PropTypes.func.isRequired,
+  toView: PropTypes.func.isRequired,
+};
 
 export default ProfileInput;
