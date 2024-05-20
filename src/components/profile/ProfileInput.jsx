@@ -1,7 +1,7 @@
-import React from 'react';
-import { useInput } from '../../hooks/useInput';
-import Input from '../form/Input';
-import Button from '../form/Button';
+import React from "react";
+import { useInput } from "../../hooks/useInput";
+import Input from "../form/Input";
+import Button from "../form/Button";
 
 function ProfileInput({
   name,

@@ -63,7 +63,7 @@ function ProfilePage() {
         <div className="card-body p-5">
           <div className="d-flex align-items-center justify-content-between mb-3">
             <h3 className="fw-bold color-yellow">Profil</h3>
-            {!loading && (
+            {!loading && isEditing && (
               <img
                 src={user.user_id.avatar}
                 alt="User Avatar"
@@ -72,7 +72,11 @@ function ProfilePage() {
             )}
           </div>
           {!loading && !isEditing && (
-            <ProfileView {...user} toEdit={toEditHandler} />
+            <ProfileView
+              {...user}
+              toEdit={toEditHandler}
+              src={user.user_id.avatar}
+            />
           )}
           {!loading && isEditing && (
             <ProfileInput
