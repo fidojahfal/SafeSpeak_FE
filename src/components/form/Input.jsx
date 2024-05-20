@@ -9,7 +9,7 @@ function Input({
   val = "",
   onChangeHandler = () => {},
   children,
-  disabled,
+  disabletelad,
   required,
   min,
   max,
