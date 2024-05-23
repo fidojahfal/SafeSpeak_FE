@@ -20,11 +20,11 @@ function Button({
 }
 
 Button.propTypes = {
-  type: PropTypes.string.isRequired,
-  primaryOrOutline: PropTypes.string.isRequired,
-  marginClass: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  primaryOrOutline: PropTypes.string,
+  marginClass: PropTypes.string,
   children: PropTypes.string.isRequired,
-  onClickHandler: PropTypes.func.isRequired,
+  onClickHandler: PropTypes.func,
 };
 
 export default Button;

@@ -12,12 +12,13 @@ function LoginInput({ login }) {
   return (
     <form
       className="login-input"
-      onSubmit={() =>
+      onSubmit={(event) => {
+        event.preventDefault();
         login({
           username,
           password,
-        })
-      }
+        });
+      }}
     >
       <Input
         labelAndId="username"

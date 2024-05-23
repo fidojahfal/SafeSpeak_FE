@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/Navigation";
@@ -8,6 +9,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncIsPreloadProcess } from "./states/isPreload/action";
 import { asyncUnsetAuthUser } from "./states/authUser/action";
 import Loading from "./components/Loading";
+=======
+import React, { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import ProfilePage from './pages/ProfilePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncIsPreloadProcess } from './states/isPreload/action';
+import { asyncUnsetAuthUser } from './states/authUser/action';
+import Loading from './components/Loading';
+>>>>>>> 8cd1cf2a084c391b94fdac3843b05c1ed3e2520b
 
 function App() {
   const { authUser, isPreload } = useSelector((states) => states);
@@ -42,6 +55,7 @@ function App() {
           <header>
             <Navigation onLogout={onLogoutHandler} profile_id={authUser._id} />
           </header>
+          <Loading />
           <main>
             <Routes>
               <Route path="/profile/:id/edit" element={<ProfilePage />} />

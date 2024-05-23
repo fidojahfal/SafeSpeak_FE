@@ -1,7 +1,7 @@
 import { ActionType } from './action';
 
 function userReducer(user = null, action = {}) {
-  switch (action.ActionType) {
+  switch (action.type) {
     case ActionType.RECEIVE_USER:
       return action.payload.user;
     case ActionType.UPDATE_USER:
