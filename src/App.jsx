@@ -9,6 +9,8 @@ import { asyncIsPreloadProcess } from "./states/isPreload/action";
 import { asyncUnsetAuthUser } from "./states/authUser/action";
 import Loading from "./components/Loading";
 import Beranda from "./pages/Beranda/Mahasiswa";
+import Dosen from "./pages/Beranda/Dosen";
+
 function App() {
   const { authUser, isPreload } = useSelector((states) => states);
   const dispatch = useDispatch();
@@ -48,7 +50,7 @@ function App() {
               <Route path="/profile/:id/edit" element={<ProfilePage />} />
               <Route path="/profile/:id" element={<ProfilePage />} />
               <Route path="/beranda" element={<Beranda />} />
-              <Route path="/beranda/:id/create" element={<Beranda />} />
+              <Route path="/dosen" element={<Dosen />} />
             </Routes>
           </main>
         </>
