@@ -9,6 +9,7 @@ import { asyncIsPreloadProcess } from "./states/isPreload/action";
 import { asyncUnsetAuthUser } from "./states/authUser/action";
 import Loading from "./components/Loading";
 import CreateReportPage from "./pages/CreateReportPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const { authUser, isPreload } = useSelector((states) => states);
@@ -52,6 +53,8 @@ function App() {
                 path="/reports/create"
                 element={<CreateReportPage />}
               ></Route>
+              {/* Temporary */}
+              <Route path="/" element={<HomePage />}></Route>
             </Routes>
           </main>
         </>

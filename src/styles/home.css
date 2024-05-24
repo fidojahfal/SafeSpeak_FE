@@ -1,0 +1,22 @@
+.home-article-image {
+    width: 50%;
+}
+
+@media (max-width: 768px) {
+    .home-article-image {
+        width: 75%;
+    }
+}
+
+.home-article-card {
+    width: 18rem;
+}
+
+.home-article-card .content {
+    height: 6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
