@@ -1,10 +1,10 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import LoginInput from '../components/Login Components/LoginInput';
-import Button from '../components/form/Button';
-import { useDispatch } from 'react-redux';
-import { asyncSetAuthUser } from '../states/authUser/action';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import LoginInput from "../components/Login Components/LoginInput";
+import Button from "../components/form/Button";
+import { useDispatch } from "react-redux";
+import { asyncSetAuthUser } from "../states/authUser/action";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -13,11 +13,11 @@ function LoginPage() {
   const onLogin = ({ username, password }) => {
     // @TODO: dispatch async action to login
     dispatch(asyncSetAuthUser({ username, password }));
-    navigate('/');
+    navigate("/");
   };
 
   const goToRegister = () => {
-    navigate('/register');
+    navigate("/register");
   };
 
   return (
