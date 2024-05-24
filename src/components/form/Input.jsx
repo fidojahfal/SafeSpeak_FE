@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 function Input({
   colsize,
   labelAndId,
   type,
-  placeholder = '',
-  val = '',
+  placeholder = "",
+  val = "",
   onChangeHandler = () => {},
   children,
   disabled,
@@ -39,13 +39,13 @@ Input.propTypes = {
   colsize: PropTypes.string,
   labelAndId: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  val: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  onChangeHandler: PropTypes.func,
+  placeholder: PropTypes.string.isRequired,
+  val: PropTypes.string.isRequired,
+  onChangeinHandler: PropTypes.func,
   children: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
-  required: PropTypes.bool,
-  min: PropTypes.string,
+  required: PropTypes.bool.isRequired,
+  min: PropTypes.string.isRequired,
   max: PropTypes.string,
 };
 
