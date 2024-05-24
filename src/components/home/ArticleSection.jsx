@@ -28,7 +28,7 @@ function ArticleSection() {
       </div>
       <p className="text-secondary text-center">Beberapa artikel terkini</p>
       <div
-        className="d-flex justify-content-center align-items-stretch flex-sm-column flex-md-row flex-wrap"
+        className="d-flex justify-content-center align-items-center flex-sm-column flex-md-row flex-wrap"
         style={{ gap: "3rem" }}
       >
         <ArticleMiniCard />
