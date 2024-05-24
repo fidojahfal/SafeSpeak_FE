@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import ProfilePage from './pages/ProfilePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import { useDispatch, useSelector } from 'react-redux';
-import { asyncIsPreloadProcess } from './states/isPreload/action';
-import { asyncUnsetAuthUser } from './states/authUser/action';
-import Loading from './components/Loading';
+import React, { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import ProfilePage from "./pages/ProfilePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncIsPreloadProcess } from "./states/isPreload/action";
+import { asyncUnsetAuthUser } from "./states/authUser/action";
+import Loading from "./components/Loading";
+import CreateReportPage from "./pages/CreateReportPage";
 
 function App() {
   const { authUser, isPreload } = useSelector((states) => states);
@@ -47,6 +48,10 @@ function App() {
             <Routes>
               <Route path="/profile/:id/edit" element={<ProfilePage />} />
               <Route path="/profile/:id" element={<ProfilePage />} />
+              <Route
+                path="/reports/create"
+                element={<CreateReportPage />}
+              ></Route>
             </Routes>
           </main>
         </>

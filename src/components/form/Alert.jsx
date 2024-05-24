@@ -8,7 +8,7 @@ function Alert({
   onClose = () => {},
 }) {
   return (
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <div className="alert alert-danger d-flex align-items-center" role="alert">
       <IconContext.Provider value={{ color: "#58151C", size: "25px" }}>
         <div className="me-2">
           <IoWarning />
