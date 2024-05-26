@@ -3,6 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Button from "../../components/form/Button";
 
+// temporary, erase when moved to homepage
+// Home Styling
+import "../../styles/home.css";
+
 function toCreateHandler() {
   navigate("/laporan/$(id)/create");
 }
@@ -16,58 +20,60 @@ function Mahasiswa() {
   const navigate = useNavigate();
 
   return (
-    <section className="Mahasiswa-page container-fluid">
-      <div className="row align-items-center gx-0">
-        <div className="col-md-6 col-12 text-md-start text-center mb-4 mb-md-0">
+    <section>
+      <div className="row" style={{ "--bs-gutter-x": "0" }}>
+        <div className="col-xl-6 d-flex flex-column justify-content-center ps-5">
           <div>
-            <h1>Memiliki masalah?</h1>
-            <h1>Jangan takut bersuara.</h1>
-            <p>Dosen dan pihak penanganan kekerasan seksual dan bullying </p>
-            <p>kampus siap mendengarkan dan menindaklanjuti laporanmu.</p>
+            <h1 className="text-primary fw-bold mb-3">
+              Memiliki masalah?
+              <br />
+              Jangan takut{" "}
+              <u style={{ textDecorationColor: "#ffda6a" }}>bersuara.</u>
+            </h1>
+            <p className="fs-5 mb-3">
+              Dosen dan pihak penanganan kekerasan seksual dan bullying <br />{" "}
+              kampus siap mendengarkan dan menindaklanjuti laporanmu.
+            </p>
             <Button
               type="submit"
-              marginClass="mt-3 btn-sm"
+              marginClass="fw-semibold"
               onClick={() => toCreateHandler(navigate, id)}
             >
               Buat Laporan
             </Button>
           </div>
         </div>
-        <div className="col-md-6 col-12 d-flex justify-content-md-end">
-          <div className="image-container">
-            <header className="beranda-page__hero">
-              <h1>
-                <img
-                  src="../../public/img/Beranda-Siswa-1.png"
-                  className="img-fluid"
-                  alt="Beranda Siswa"
-                />
-              </h1>
-            </header>
-          </div>
+        <div className="col-xl-6 d-flex justify-content-end">
+          <img
+            src="../../public/img/Beranda-Siswa-1.png"
+            className="img-fluid"
+            alt="Beranda Siswa"
+          />
         </div>
-        <div className="d-flex align-items-center justify-content-center laporan-section">
-          <div className="laporan text-center">
-            <p>Kamu tidak sendiri, laporan di SafeSpeak sudah mencapai</p>
-            <h1>53</h1>
-            <p>Laporan</p>
-          </div>
+        <div className="d-flex flex-column align-items-center justify-content-center p-3 laporan-section text-center">
+          <h4>Kamu tidak sendiri, laporan di SafeSpeak sudah mencapai</h4>
+          <p>
+            <span className="laporan-sum-text">53</span>
+            <br />
+            <span className="fs-4 fw-semibold">Laporan</span>
+          </p>
         </div>
-        <div className="d-flex align-items-center justify-content-center laporan-jumlah-section">
-          <div className="row">
-            <div className="col-md-4 col-12 text-md-start text-center mb-4 mb-md-0">
-              <h1>3</h1>
-              <p>Baru Diterima</p>
-            </div>
-            <div className="col-md-4 col-12 text-md-start text-center mb-4 mb-md-0">
-              <h1>20</h1>
-              <p>Sedang Ditindaklanjuti</p>
-            </div>
-            <div className="col-md-4 col-12 text-md-start text-center mb-4 mb-md-0">
-              <h1>30</h1>
-              <p>Selesai Ditindak</p>
-            </div>
-          </div>
+        <div className="d-flex align-items-center justify-content-center p-3 laporan-jumlah-section text-center">
+          <p>
+            <span className="laporan-sum-text">3</span>
+            <br />
+            <span className="fs-4 fw-semibold">Baru diterima</span>
+          </p>
+          <p>
+            <span className="laporan-sum-text">20</span>
+            <br />
+            <span className="fs-4 fw-semibold">Sedang Ditindaklanjuti</span>
+          </p>
+          <p>
+            <span className="laporan-sum-text">30</span>
+            <br />
+            <span className="fs-4 fw-semibold">Selesai Ditindak</span>
+          </p>
         </div>
       </div>
     </section>

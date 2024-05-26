@@ -194,31 +194,6 @@
   justify-content: flex-start; /* Align the image to the left */
 }
 
-.laporan-section {
-  background-color: #007bff; /* Primary color */
-  color: aliceblue;
-  padding: 0;
-  width: 100%;
-}
-
-.laporan p,
-.laporan h1 {
-  margin: 0;
-  color: aliceblue;
-  font-weight: 700;
-}
-
-.laporan p {
-  font-size: 1.125rem;
-  margin-bottom: 0.5rem;
-}
-
-.laporan h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  color: aliceblue;
-}
-
 .laporan-jumlah-section {
   background-color: #ddebff; /* Primary color */
   color: aliceblue;

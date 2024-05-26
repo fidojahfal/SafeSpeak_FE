@@ -20,3 +20,20 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
 }
+
+.laporan-section {
+    background-color: var(--blue-500);
+    color: aliceblue;
+    width: 100%;
+}
+
+.laporan-sum-text {
+    font-size: 65px;
+    font-weight: bold;
+}
+
+.laporan-jumlah-section {
+    background-color: #ddebff; /* Primary color */
+    color: aliceblue;
+    gap: 6rem;
+}
