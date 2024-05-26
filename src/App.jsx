@@ -13,6 +13,7 @@ import HomePage from "./pages/HomePage";
 import Beranda from "./pages/Beranda/Mahasiswa";
 import Dosen from "./pages/Beranda/Dosen";
 import Footer from "./components/footer/Footer";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   const { authUser, isPreload } = useSelector((states) => states);
@@ -60,6 +61,7 @@ function App() {
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/beranda" element={<Beranda />} />
               <Route path="/dosen" element={<Dosen />} />
+              <Route path="/about" element={<AboutPage />} />
             </Routes>
           </main>
           <Footer />
