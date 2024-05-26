@@ -1,0 +1,19 @@
+.img-about-bottom {
+  position: absolute;
+  display: flex;
+  justify-content: end;
+  align-self: end;
+  z-index: '-1';
+}
+
+@media (max-width: 768px) {
+  .about-article-image {
+    height: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .about-article-image {
+    height: 100%;
+  }
+}

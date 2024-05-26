@@ -7,17 +7,18 @@ import { MdOutlineSwipeDown } from 'react-icons/md';
 function AboutMiddleList() {
   return (
     <div className="row" style={{ '--bs-gutter-x': '0' }}>
-      <div className="col-xl-4 d-flex justify-content-start">
+      <div className="col-xl-6 d-flex justify-content-start">
         <img
+          className="about-article-image"
           src="/img/About-2.png"
           alt="Image about middle"
-          width="80%"
-          height="80%"
+          width="50%"
+          height="50%"
         />
       </div>
-      <div className="col-xl-8" style={{ padding: '50px 50px' }}>
-        <div className="d-flex align-items-end flex-column">
-          <div className="d-flex flex-column text-end">
+      <div className="col-xl-6" style={{ padding: '50px 50px' }}>
+        <div className="d-flex flex-column">
+          <div className="d-flex flex-column text-sm-center text-xl-end align-self-sm-center align-self-xl-end">
             <h1 className="fw-bold" style={{ color: '#0d6efd' }}>
               Layanan Kami
             </h1>
@@ -26,7 +27,7 @@ function AboutMiddleList() {
             </p>
           </div>
           <div
-            className="d-flex flex-row gap-5"
+            className="d-flex flex-sm-column align-self-sm-center align-self-xl-end flex-xl-row gap-5"
             style={{ margin: '100px 0px' }}
           >
             <AboutMiddleItem

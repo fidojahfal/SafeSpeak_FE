@@ -8,12 +8,12 @@ function AboutMiddleItem({ children, title, body }) {
       </div>
       <div className="card-body d-flex flex-column">
         <h5
-          className="card-title text-center pt-3 pb-2"
+          className="card-title fw-semibold text-center pt-3 pb-2"
           style={{ color: 'black' }}
         >
           {title}
         </h5>
-        <p className="card-text fs-5 fw-semibold mb-5 ps-4">{body}</p>
+        <p className="card-text fs-5 mb-5 text-center">{body}</p>
       </div>
     </div>
   );
