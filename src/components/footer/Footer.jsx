@@ -20,7 +20,7 @@ function Footer() {
 
   return (
     <footer
-      className="row p-5 my-5 footer-box-shadow"
+      className="row p-5 footer-box-shadow"
       style={{ "--bs-gutter-x": "0" }}
     >
       <div className="col-lg-7 mb-3">

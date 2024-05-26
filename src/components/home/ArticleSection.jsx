@@ -3,7 +3,7 @@ import ArticleMiniCard from "./ArticleMiniCard";
 
 function ArticleSection() {
   return (
-    <section>
+    <section className="mb-5">
       <div className="row" style={{ "--bs-gutter-x": "0" }}>
         <div className="col-lg-6">
           <img
