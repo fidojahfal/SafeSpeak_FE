@@ -1,9 +1,10 @@
 // RegisterInput.jsx
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import useInput from "../hooks/useInput";
+import { useInput } from "../../hooks/useInput";
 import Input from "../form/Input";
 import Button from "../form/Button";
+import { useInputStringNumberValidation } from "../../hooks/useInputStringNumber";
 
 function RegisterInput({ register }) {
   const [username, onUsernameChange] = useInput("");
@@ -12,7 +13,7 @@ function RegisterInput({ register }) {
   const [nim, onNimChange] = useInput("");
   const [email, onEmailChange] = useInput("");
   const [jurusan, onJurusanChange] = useInput("");
-  const [telepon, onTeleponChange] = useInput("");
+  const [telepon, onTeleponChange] = useInputStringNumberValidation("");
 
   return (
     <form
@@ -32,44 +33,45 @@ function RegisterInput({ register }) {
       <Input
         labelAndId="username"
         type="text"
-        val={username}
+        value={username}
         onChangeHandler={onUsernameChange}
         placeholder="Username"
         required
-        min="5"
+        minLength="5"
       >
         Username
       </Input>
       <Input
         labelAndId="password"
         type="password"
-        val={password}
+        value={password}
         onChangeHandler={onPasswordChange}
         placeholder="Password"
         required
-        min="8"
+        minLength="8"
       >
         Password
       </Input>
       <Input
         labelAndId="name"
         type="text"
-        val={name}
+        value={name}
         onChangeHandler={onNameChange}
         placeholder="Name"
         required
-        min="5"
+        minLength="5"
       >
         Name
       </Input>
       <Input
         labelAndId="nim"
         type="number"
-        val={nim}
+        value={nim}
         onChangeHandler={onNimChange}
         placeholder="nim"
-        required
         min="0"
+        max="999999999999"
+        required
       >
         NIM
       </Input>
@@ -77,7 +79,7 @@ function RegisterInput({ register }) {
       <Input
         labelAndId="email"
         type="email"
-        val={email}
+        value={email}
         onChangeHandler={onEmailChange}
         placeholder="Email"
         required
@@ -88,11 +90,11 @@ function RegisterInput({ register }) {
       <Input
         labelAndId="jurusan"
         type="text"
-        val={jurusan}
+        value={jurusan}
         onChangeHandler={onJurusanChange}
         placeholder="Jurusan"
         required
-        min="5"
+        minLength="5"
       >
         Jurusan
       </Input>
@@ -100,12 +102,12 @@ function RegisterInput({ register }) {
       <Input
         labelAndId="telepon"
         type="text"
-        val={telepon}
+        value={telepon}
         onChangeHandler={onTeleponChange}
         placeholder="Telepon"
         required
-        min="10"
-        max="13"
+        minLength="10"
+        maxLength="13"
       >
         Telepon
       </Input>

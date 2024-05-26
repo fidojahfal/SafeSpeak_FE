@@ -32,51 +32,57 @@ function ProfileInput({
     <form onSubmit={onSubmitHandler}>
       <div className="row gy-3 gx-5">
         <Input
-          colsize="5"
+          divClassName="col-5"
           labelAndId="name"
           type="text"
-          val={nameInput}
+          value={nameInput}
           onChangeHandler={onNameInputChange}
         >
           Nama
         </Input>
         <Input
-          colsize="5"
+          divClassName="col-5"
           labelAndId="jurusan"
           type="text"
-          val={jurusanInput}
+          value={jurusanInput}
           onChangeHandler={onJurusanInputChange}
         >
           Jurusan
         </Input>
         <Input
-          colsize="5"
+          divClassName="col-5"
           labelAndId="username"
           type="text"
-          val={user_id.username}
+          value={user_id.username}
           disabled
         >
           Username
         </Input>
         <Input
-          colsize="5"
+          divClassName="col-5"
           labelAndId="nomor-telp"
           type="text"
-          val={teleponInput}
+          value={teleponInput}
           onChangeHandler={onTeleponInputChange}
         >
           Nomor Telepon
         </Input>
         <Input
-          colsize="5"
+          divClassName="col-5"
           labelAndId="email"
           type="email"
-          val={emailInput}
+          value={emailInput}
           onChangeHandler={onEmailInputChange}
         >
           Email
         </Input>
-        <Input colsize="5" labelAndId="NIM" type="text" val={nim} disabled>
+        <Input
+          divClassName="col-5"
+          labelAndId="NIM"
+          type="text"
+          value={nim}
+          disabled
+        >
           NIM
         </Input>
       </div>

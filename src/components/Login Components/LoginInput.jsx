@@ -1,13 +1,13 @@
 // LoginInput.jsx
-import React from 'react';
-import PropTypes from 'prop-types';
-import useInput from '../hooks/useInput';
-import Input from '../form/Input';
-import Button from '../form/Button';
+import React from "react";
+import PropTypes from "prop-types";
+import { useInput } from "../../hooks/useInput";
+import Input from "../form/Input";
+import Button from "../form/Button";
 
 function LoginInput({ login }) {
-  const [username, onUsernameChange] = useInput('');
-  const [password, onPasswordChange] = useInput('');
+  const [username, onUsernameChange] = useInput("");
+  const [password, onPasswordChange] = useInput("");
 
   return (
     <form
@@ -23,11 +23,11 @@ function LoginInput({ login }) {
       <Input
         labelAndId="username"
         type="text"
-        val={username}
+        value={username}
         onChangeHandler={onUsernameChange}
         placeholder="Username"
         required
-        min="5"
+        minLength="5"
       >
         Username
       </Input>
@@ -35,11 +35,11 @@ function LoginInput({ login }) {
       <Input
         labelAndId="password"
         type="password"
-        val={password}
+        value={password}
         onChangeHandler={onPasswordChange}
         placeholder="Password"
         required
-        min="8"
+        minLength="8"
       >
         Password
       </Input>

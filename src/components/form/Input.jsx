@@ -16,6 +16,8 @@ function Input({
   required,
   minLength,
   maxLength,
+  min,
+  max,
   name,
 }) {
   return (
@@ -42,6 +44,8 @@ function Input({
           type !== "checkbox" && type !== "radio" ? maxLength : undefined
         }
         name={type === "radio" ? name : undefined}
+        min={type === "number" ? min : undefined}
+        max={type === "number" ? max : undefined}
       />
     </div>
   );
@@ -62,6 +66,8 @@ Input.propTypes = {
   required: PropTypes.bool.isRequired,
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
+  min: PropTypes.string,
+  max: PropTypes.string,
   name: PropTypes.string,
 };
 
