@@ -3,14 +3,7 @@ import React from 'react';
 function AboutTop() {
   return (
     <div className="row" style={{ '--bs-gutter-x': '0' }}>
-      <div
-        className="col-xl-6 d-flex flex-column justify-content-start"
-        style={{
-          paddingLeft: '100px',
-          paddingTop: '150px',
-          paddingRight: '170px',
-        }}
-      >
+      <div className="col-xl-6 d-flex flex-column justify-content-center text-break about-top-text">
         <h1 className="mb-0">
           <b style={{ color: '#0d6efd' }}>Halo,</b>
         </h1>

@@ -18,7 +18,7 @@ function AboutMiddleList() {
       </div>
       <div className="col-xl-6" style={{ padding: '50px 50px' }}>
         <div className="d-flex flex-column">
-          <div className="d-flex flex-column text-sm-center text-xl-end align-self-sm-center align-self-xl-end">
+          <div className="d-flex flex-column text-center text-sm-center text-xl-end align-self-center align-self-xl-end">
             <h1 className="fw-bold" style={{ color: '#0d6efd' }}>
               Layanan Kami
             </h1>
@@ -27,7 +27,7 @@ function AboutMiddleList() {
             </p>
           </div>
           <div
-            className="d-flex flex-sm-column align-self-sm-center align-self-xl-end flex-xl-row gap-5"
+            className="d-flex flex-column align-self-center align-self-xl-end flex-xl-row gap-5"
             style={{ margin: '100px 0px' }}
           >
             <AboutMiddleItem
