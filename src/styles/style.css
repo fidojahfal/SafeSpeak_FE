@@ -257,6 +257,10 @@
   width: 100% !important;
 }
 
+.footer-box-shadow {
+  box-shadow: 0 -.1em .3em rgba(0, 0, 0, .1);
+}
+
 @media (max-width: 768px) {
   .Mahasiswa-page h1 {
     font-size: 1.75rem;
