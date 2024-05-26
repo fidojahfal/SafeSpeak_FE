@@ -5,6 +5,9 @@ function useInput(defaultValue = "") {
   const [value, setValue] = useState(defaultValue);
 
   function handleValueChange({ target }) {
+    if (target.type === "checkbox") {
+      setValue(target.checked);
+    }
     setValue(target.value);
   }
 

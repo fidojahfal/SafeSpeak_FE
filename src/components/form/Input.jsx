@@ -2,51 +2,67 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Input({
-  colsize,
+  divClassName,
   labelAndId,
-  type,
-  placeholder = "",
-  val = "",
-  onChangeHandler = () => {},
+  labelClassName = "form-profile-label",
   children,
+  type,
+  inputClassName = "form-control",
+  placeholder = "",
+  value = "",
+  onChangeHandler = () => {},
   disabled,
+  checked,
   required,
-  min,
-  max,
+  minLength,
+  maxLength,
+  name,
 }) {
   return (
-    <div className={`col-${colsize}`}>
-      <label htmlFor={labelAndId} className="form-profile-label">
+    <div className={divClassName}>
+      <label htmlFor={labelAndId} className={labelClassName}>
         {children}
       </label>
       <input
         type={type}
-        className="form-control"
+        className={inputClassName}
         id={labelAndId}
-        placeholder={placeholder}
-        value={val}
+        placeholder={
+          type !== "checkbox" && type !== "radio" ? placeholder : undefined
+        }
+        value={type !== "checkbox" ? value : undefined}
         onChange={onChangeHandler}
         disabled={disabled}
-        min={min}
-        required
-        max={max}
+        checked={type === "checkbox" || type === "radio" ? checked : undefined}
+        required={required}
+        minLength={
+          type !== "checkbox" && type !== "radio" ? minLength : undefined
+        }
+        maxLength={
+          type !== "checkbox" && type !== "radio" ? maxLength : undefined
+        }
+        name={type === "radio" ? name : undefined}
       />
     </div>
   );
 }
 
 Input.propTypes = {
-  colsize: PropTypes.string,
+  divClassName: PropTypes.string,
   labelAndId: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  val: PropTypes.string.isRequired,
-  onChangeinHandler: PropTypes.func,
+  labelClassName: PropTypes.string,
   children: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  inputClassName: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChangeHandler: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
+  checked: PropTypes.bool,
   required: PropTypes.bool.isRequired,
-  min: PropTypes.string.isRequired,
-  max: PropTypes.string,
+  minLength: PropTypes.string,
+  maxLength: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default Input;
