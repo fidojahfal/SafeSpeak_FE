@@ -18,7 +18,7 @@ function AboutBottomList() {
           >
             Tim SafeSpeak
           </h1>
-          <div className="d-flex flex-xl-row flex-sm-column gap-5 mt-5 justify-content-center align-items-center">
+          <div className="d-flex flex-xl-row flex-column gap-5 mt-5 justify-content-center align-items-center">
             <AboutBottomItem name="Giovillando" jobdesk="Frontend Developer" />
             <AboutBottomItem
               name="Fido Jahfal Prayoga"
@@ -26,7 +26,7 @@ function AboutBottomList() {
             />
             <AboutBottomItem
               name="Shabrina Nurmalitasari"
-              jobdesk="Frontend Developer & UI/UX Designer"
+              jobdesk="Frontend Developer & UI/UX"
             />
           </div>
         </div>

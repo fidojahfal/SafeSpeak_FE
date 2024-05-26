@@ -4,9 +4,8 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 function AboutBottomItem({ name, github, linkedin, src, jobdesk }) {
   return (
     <div
-      className="card text-center"
+      className="card text-center card-about-bottom"
       style={{
-        width: '25rem',
         minHeight: '30rem',
         border: 'solid 20px #cfe2ff',
         borderRadius: '20px',
