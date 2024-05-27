@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import ProfilePage from './pages/ProfilePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import { useDispatch, useSelector } from 'react-redux';
-import { asyncIsPreloadProcess } from './states/isPreload/action';
-import { asyncUnsetAuthUser } from './states/authUser/action';
-import Loading from './components/Loading';
-import CreateReportPage from './pages/CreateReportPage';
-import HomePage from './pages/HomePage';
-import Beranda from './pages/Beranda/Mahasiswa';
-import Dosen from './pages/Beranda/Dosen';
-import AboutPage from './pages/AboutPage';
+import React, { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import ProfilePage from "./pages/ProfilePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncIsPreloadProcess } from "./states/isPreload/action";
+import { asyncUnsetAuthUser } from "./states/authUser/action";
+import Loading from "./components/Loading";
+import CreateReportPage from "./pages/CreateReportPage";
+import DetailReportPage from "./pages/DetailReportPage";
+import HomePage from "./pages/HomePage";
+import Beranda from "./pages/Beranda/Mahasiswa";
+import Dosen from "./pages/Beranda/Dosen";
+import AboutPage from "./pages/AboutPage";
+import UpdateReport from "./components/reports/UpdateReports";
 
 function App() {
   const { authUser, isPreload } = useSelector((states) => states);
@@ -56,6 +58,15 @@ function App() {
                 path="/reports/create"
                 element={<CreateReportPage />}
               ></Route>
+              <Route
+                path="/reports/detail"
+                element={<DetailReportPage />}
+              ></Route>
+              <Route
+                path="/reports/detail/update"
+                element={<UpdateReport />}
+              ></Route>
+
               {/* Temporary */}
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/beranda" element={<Beranda />} />

@@ -1,11 +1,12 @@
-import Button from "../components/form/Button";
-import { MdOutlineFileUpload, MdEdit, MdDeleteForever } from "react-icons/md";
+import Button from "../form/Button";
+import { MdOutlineFileUpload } from "react-icons/md";
 import { IconContext } from "react-icons";
 
 // Report Styling
-import "../styles/report.css";
+import "../../styles/report.css";
 
-function CreateReportPage() {
+function UpdateReport() {
+  const uploadedFile = "foto_pesan_pelaku.pdf";
   return (
     <section className="bg-yellow-100 p-4 position-relative">
       <div className="row">
@@ -13,9 +14,9 @@ function CreateReportPage() {
           <img src="/icons/arrow-left-circle-fill.svg" alt="arrow-left" />
         </div>
         <div className="card p-3">
-          <div className="col-md-13">
+          <div className="col-md-11">
             <div className="card-body">
-              <h5 className="mb-3">Buat Laporan</h5>
+              <h5 className="mb-3">Ubah Laporan</h5>
               <div className="row gy-3 gx-4">
                 <div className="col-md-4">
                   <p className="mb-2">Jenis Kejadian</p>
@@ -40,6 +41,7 @@ function CreateReportPage() {
                         type="radio"
                         id="bullying"
                         name="type"
+                        checked
                       />
                     </div>
                   </div>
@@ -52,6 +54,7 @@ function CreateReportPage() {
                       type="checkbox"
                       value=""
                       id="flexCheckDefault"
+                      checked
                     />
                     <label
                       className="form-check-label"
@@ -65,28 +68,40 @@ function CreateReportPage() {
                   <label htmlFor="judul" className="">
                     Judul
                   </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    value="Lorem ipsum"
+                  />
                 </div>
                 <div className="col-md-4">
                   <label htmlFor="judul" className="">
                     Tempat Kejadian
                   </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    value="Gedung A, Universitas XYZ"
+                  />
                 </div>
                 <div className="col-md-4">
                   <label htmlFor="judul" className="">
                     Tanggal Kejadian
                   </label>
-                  <input type="date" className="form-control" />
+                  <input
+                    type="date"
+                    className="form-control"
+                    value="2023-05-20"
+                  />
                 </div>
                 <div className="col-12">
                   <label htmlFor="judul" className="">
                     Deskripsi Kejadian
                   </label>
-                  <textarea
-                    id="deskripsi"
-                    className="form-control deskripsi"
-                  ></textarea>
+                  <textarea id="deskripsi" className="form-control deskripsi">
+                    Terjadi kekerasan seksual di Gedung A pada tanggal 20 Mei
+                    2023. Pelaku adalah mahasiswa dari fakultas teknik.
+                  </textarea>
                 </div>
                 <div className="col-12">
                   <p>Bukti</p>
@@ -98,15 +113,16 @@ function CreateReportPage() {
                     </IconContext.Provider>
                     <p className="m-0 ms-2">Telusuri File</p>
                   </Button>
+                  <a href="">{uploadedFile}</a>
                 </div>
-                <p className="text-primary">
-                  *Dosen atau pihak penanganan kampus tetap akan mengontak kamu
-                  via email atau nomor telepon yang tersedia pada akun untuk
-                  penindaklanjutan.
-                </p>
-                <div className="d-flex justify-content-center">
-                  <Button>Kirim Laporan</Button>
-                </div>
+              </div>
+              <p className="text-primary">
+                *Dosen atau pihak penanganan kampus tetap akan mengontak kamu
+                via email atau nomor telepon yang tersedia pada akun untuk
+                penindaklanjutan.
+              </p>
+              <div className="d-flex justify-content-center">
+                <Button>Update Laporan</Button>
               </div>
             </div>
           </div>
@@ -116,4 +132,4 @@ function CreateReportPage() {
   );
 }
 
-export default CreateReportPage;
+export default UpdateReport;
