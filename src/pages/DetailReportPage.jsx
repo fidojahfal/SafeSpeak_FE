@@ -9,6 +9,8 @@ import DetailReport from "../components/reports/DetailReport";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useParams } from "react-router-dom";
 // import { asyncReceiveReportDetail } from "../states/threadDetail/action";
+import "../styles/report.css";
+import Modal from "../components/form/Modal";
 
 function DetailReportPage() {
   const navigate = useNavigate();
@@ -24,6 +26,19 @@ function DetailReportPage() {
   const handleEditClick = () => {
     navigate("/reports/detail/update"); // Path ke halaman UpdateReport
   };
+
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
+  // Contoh tanggal dan file
+  const reportDate = new Date();
+  const formattedDate = formatDate(reportDate);
+  const uploadedFile = "foto_pesan_pelaku.pdf";
 
   return (
     <section className="bg-yellow-100 p-4 position-relative">
@@ -45,7 +60,10 @@ function DetailReportPage() {
                 </IconContext.Provider>
                 <p className="m-0 ms-2">Update</p>
               </Button>
-              <Button marginClass="btn btn-danger d-flex align-items-center">
+              <Button
+                marginClass="btn btn-danger d-flex align-items-center"
+                target="#deleteModal"
+              >
                 <IconContext.Provider value={{ size: "25px" }}>
                   <div>
                     <MdDeleteForever />
@@ -63,6 +81,14 @@ function DetailReportPage() {
           </div>
         </div>
       </div>
+      <Modal
+        body="Apakah anda yakin ingin menghapus laporan ini? Anda tidak dapat memulihkan laporan."
+        title="Konfirmasi Hapus Laporan"
+        cancel="Batal"
+        confirm="Hapus"
+        onConfirm={() => {}}
+        variant="btn-danger"
+      />
     </section>
   );
 }

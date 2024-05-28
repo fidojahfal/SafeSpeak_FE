@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import RegisterInput from "../components/register/RegisterInput.jsx";
+import RegisterInput from "../components/Register Components/RegisterInput";
 import { useDispatch } from "react-redux";
 import { asyncRegisterUser } from "../states/user/action.js";
 import { Link } from "react-router-dom";
@@ -56,16 +56,13 @@ function RegisterPage() {
               <Link to="/" className="ms-1 text-secondary fw-bold">
                 Login
               </Link>
+              custom-img-size
             </div>
           </div>
         </div>
         <div className="col-lg-6 d-none d-lg-flex justify-content-center align-items-center bg-light-custom position-fixed top-0 end-0 min-vh-100">
           <div className="register-image container w-125 h-125 d-flex justify-content-center align-items-center">
-            <img
-              src="/img/SignIn.png"
-              className="img-fluid custom-img-size"
-              alt="Register"
-            />
+            <img src="/img/SignIn.png" className="img-fluid " alt="Register" />
           </div>
         </div>
       </div>
