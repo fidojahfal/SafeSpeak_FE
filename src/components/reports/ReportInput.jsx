@@ -1,8 +1,10 @@
-import Button from "../form/Button";
-import { MdOutlineFileUpload } from "react-icons/md";
-import { IconContext } from "react-icons";
-import { useInput } from "../../hooks/useInput";
-import Input from "../form/Input";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '../form/Button';
+import { MdOutlineFileUpload } from 'react-icons/md';
+import { IconContext } from 'react-icons';
+import { useInput } from '../../hooks/useInput';
+import Input from '../form/Input';
 
 function ReportInput({
   title,
@@ -19,7 +21,6 @@ function ReportInput({
   const [placeInput, onPlaceInputChange] = useInput(place_report);
   const [dateInput, onDateInputChange] = useInput(date_report);
   const [descriptionInput, onDescriptionInputChange] = useInput(description);
-  //   const [evidenceInput, onEvidenceInputChange] = useInput(evidence);
   const [anonimInput, onAnonimInputChange] = useInput(is_anonim);
 
   return (
@@ -37,26 +38,28 @@ function ReportInput({
               inputClassName="form-check-input"
               name="type"
               required
-              value={0}
+              value="Kekerasan Seksual"
+              checked={typeInput === "Kekerasan Seksual"}
               onChangeHandler={onTypeInputChange}
             >
               Kekerasan Seksual
             </Input>
             <Input
-              divClassName="form-check me-4"
+              divClassName="form-check"
               labelAndId="bullying"
               labelClassName="fst-italic"
               type="radio"
               inputClassName="form-check-input"
               name="type"
-              value={1}
+              value="Bullying"
+              checked={typeInput === "Bullying"}
               onChangeHandler={onTypeInputChange}
             >
               Bullying
             </Input>
           </div>
         </div>
-        <div className="col-8">
+        <div className="col-md-4">
           <p className="mb-2">Kirim Secara Anonim*</p>
           <Input
             divClassName="form-check"
@@ -64,7 +67,7 @@ function ReportInput({
             labelClassName=""
             type="checkbox"
             inputClassName="form-check-input"
-            value={anonimInput}
+            checked={anonimInput}
             onChangeHandler={onAnonimInputChange}
           >
             Anonim
@@ -83,7 +86,7 @@ function ReportInput({
         </Input>
         <Input
           divClassName="col-md-4"
-          labelAndId="judul"
+          labelAndId="place_report"
           labelClassName=""
           type="text"
           value={placeInput}
@@ -94,7 +97,7 @@ function ReportInput({
         </Input>
         <Input
           divClassName="col-md-4"
-          labelAndId="judul"
+          labelAndId="date_report"
           labelClassName=""
           type="date"
           value={dateInput}
@@ -109,7 +112,7 @@ function ReportInput({
           labelClassName=""
           type="textarea"
           inputClassName="form-control deskripsi"
-          value={description}
+          value={descriptionInput}
           onChangeHandler={onDescriptionInputChange}
           required
         >
@@ -118,7 +121,7 @@ function ReportInput({
         <div className="col-12">
           <p className="mb-2">Bukti</p>
           <Button marginClass="d-flex align-items-center">
-            <IconContext.Provider value={{ size: "25px" }}>
+            <IconContext.Provider value={{ size: '25px' }}>
               <div>
                 <MdOutlineFileUpload />
               </div>
@@ -138,5 +141,16 @@ function ReportInput({
     </>
   );
 }
+
+ReportInput.propTypes = {
+  title: PropTypes.string,
+  type: PropTypes.string,
+  place_report: PropTypes.string,
+  date_report: PropTypes.string,
+  description: PropTypes.string,
+  evidence: PropTypes.string,
+  is_anonim: PropTypes.bool,
+  isEdit: PropTypes.bool,
+};
 
 export default ReportInput;
