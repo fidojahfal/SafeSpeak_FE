@@ -32,25 +32,27 @@ function ProfileInput({
     <form onSubmit={onSubmitHandler}>
       <div className="row gy-3 gx-5">
         <Input
-          divClassName="col-5"
+          divClassName="col-md-5"
           labelAndId="name"
           type="text"
           value={nameInput}
           onChangeHandler={onNameInputChange}
+          required
         >
           Nama
         </Input>
         <Input
-          divClassName="col-5"
+          divClassName="col-md-5"
           labelAndId="jurusan"
           type="text"
           value={jurusanInput}
           onChangeHandler={onJurusanInputChange}
+          required
         >
           Jurusan
         </Input>
         <Input
-          divClassName="col-5"
+          divClassName="col-md-5"
           labelAndId="username"
           type="text"
           value={user_id.username}
@@ -59,25 +61,27 @@ function ProfileInput({
           Username
         </Input>
         <Input
-          divClassName="col-5"
+          divClassName="col-md-5"
           labelAndId="nomor-telp"
           type="text"
           value={teleponInput}
           onChangeHandler={onTeleponInputChange}
+          required
         >
           Nomor Telepon
         </Input>
         <Input
-          divClassName="col-5"
+          divClassName="col-md-5"
           labelAndId="email"
           type="email"
           value={emailInput}
           onChangeHandler={onEmailInputChange}
+          required
         >
           Email
         </Input>
         <Input
-          divClassName="col-5"
+          divClassName="col-md-5"
           labelAndId="NIM"
           type="text"
           value={nim}
@@ -86,7 +90,7 @@ function ProfileInput({
           NIM
         </Input>
       </div>
-      <div className="d-flex justify-content-center mt-5">
+      <div className="d-flex flex-column flex-sm-row justify-content-center align-items-center mt-5 gap-3">
         <Button
           type="button"
           primaryOrOutline="outline-warning"

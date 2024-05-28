@@ -61,8 +61,10 @@ function ProfilePage() {
       {/* <Alert onClose={handleCloseAlert} /> */}
       <div className="card">
         <div className="card-body p-5 profile-card">
-          <div className="d-flex align-items-center justify-content-between mb-3">
-            <h3 className="fw-bold color-yellow">Profil</h3>
+          <div className="d-flex flex-column flex-sm-row align-items-center justify-content-between mb-3">
+            <h3 className="fw-bold color-yellow">
+              {!loading && (isEditing ? "Edit Profil" : "Profil")}
+            </h3>
             {!loading && isEditing && (
               <img
                 src={user.user_id.avatar}
