@@ -5,7 +5,7 @@ function IntroSection({ role }) {
     <section>
       <div className="row" style={{ "--bs-gutter-x": "0" }}>
         <div className="col-xl-6 d-flex flex-column justify-content-center title-right-padding">
-          <div className="p-4 pt-lg-0 ps-lg-5">
+          <div className="p-4 pt-xl-0 ps-lg-5">
             <h1 className="text-primary fw-bold mb-3">
               {role ? "Dengarkan suara siswa," : "Memiliki masalah?"}
               <br />
