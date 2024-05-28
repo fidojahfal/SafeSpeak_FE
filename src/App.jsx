@@ -12,6 +12,8 @@ import CreateReportPage from "./pages/CreateReportPage";
 import HomePage from "./pages/HomePage";
 import Footer from "./components/footer/Footer";
 import AboutPage from "./pages/AboutPage";
+import DetailReportPage from "./pages/DetailReportPage";
+import UpdateReport from "./components/reports/UpdateReports";
 
 function App() {
   const { authUser, isPreload } = useSelector((states) => states);
@@ -56,6 +58,15 @@ function App() {
                 path="/reports/create"
                 element={<CreateReportPage />}
               ></Route>
+              <Route
+                path="/reports/detail"
+                element={<DetailReportPage />}
+              ></Route>
+              <Route
+                path="/reports/detail/update"
+                element={<UpdateReport />}
+              ></Route>
+
               {/* Temporary */}
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />

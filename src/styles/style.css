@@ -149,6 +149,33 @@
   border-color: var(--yellow-500);
 }
 
+.Login-image {
+  background-color: #fff3cd;
+  width: 100%; /* Ensures the background covers the full width */
+  height: 100%; /* Ensures the background covers the full height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-image {
+  width: 100%; /* Ensures the background covers the full width */
+  height: 100%; /* Ensures the background covers the full height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: skyblue;
+}
+
+.position-fixed {
+  height: 100vh;
+}
+
+.custom-img-size {
+  max-width: 50%; /* Adjust the value to make the image smaller */
+  height: auto; /* Maintain aspect ratio */
+}
+
 .dropdown-item a {
   text-decoration: none;
   color: var(--gray);

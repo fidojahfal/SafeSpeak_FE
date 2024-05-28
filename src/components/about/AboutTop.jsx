@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
 function AboutTop() {
   return (
-    <div className="row" style={{ '--bs-gutter-x': '0' }}>
+    <div className="row" style={{ "--bs-gutter-x": "0" }}>
       <div className="col-xl-6 d-flex flex-column justify-content-center text-break about-top-text">
         <h1 className="mb-0">
-          <b style={{ color: '#0d6efd' }}>Halo,</b>
+          <b style={{ color: "#0d6efd" }}>Halo,</b>
         </h1>
         <h1 className="mb-4">
-          <b style={{ color: '#0d6efd' }}>
-            Kami adalah{' '}
-            <u style={{ textDecorationColor: '#ffda6a' }}> SafeSpeak.</u>
+          <b style={{ color: "#0d6efd" }}>
+            Kami adalah{" "}
+            <u style={{ textDecorationColor: "#ffda6a" }}> SafeSpeak.</u>
           </b>
         </h1>
 
@@ -28,18 +28,18 @@ function AboutTop() {
           </h5>
         </p>
         <p>
-          [1]{' '}
+          [1]{" "}
           <a
-            style={{ textDecoration: 'none', color: '#6C757D' }}
+            style={{ textDecoration: "none", color: "#6C757D" }}
             href="https://lm.psikologi.ugm.ac.id/2022/05/kekerasan-seksual-di-kampus/"
           >
             https://lm.psikologi.ugm.ac.id/2022/05/kekerasan-seksual-di-kampus/
           </a>
         </p>
         <p>
-          [2]{' '}
+          [2]{" "}
           <a
-            style={{ textDecoration: 'none', color: '#6C757D' }}
+            style={{ textDecoration: "none", color: "#6C757D" }}
             href="https://www.ums.ac.id/berita/perspektif/jeratan-gelap-bullying-di-dunia-pendidikan-indonesia"
           >
             https://www.ums.ac.id/berita/perspektif/jeratan-gelap-bullying-di-dunia-pendidikan-indonesia

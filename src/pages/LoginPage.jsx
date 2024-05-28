@@ -21,38 +21,42 @@ function LoginPage() {
   };
 
   return (
-    <section className="login-page">
-      <div className="login-page__left">
-        <header className="login-page__hero">
-          <h1>
-            <img src="/img/LogIn.png" width="400" height="387"></img>
-          </h1>
-        </header>
-      </div>
-      <div className="login-page__right">
-        <div className="d-flex align-items-center pe-2 ms-auto me-3">
-          <img
-            src="/logo/SafeSpeak-Logo.svg"
-            alt="SafeSpeak Logo"
-            className="nav-logo pe-2"
-          />
-          <p className="fs-5 fw-bold m-0 text-primary">SafeSpeak</p>
-        </div>
-        <article className="login-page__main">
-          <h2>
-            <strong> Log In</strong>
-          </h2>
-          <h3>Silahkan masuk untuk mengakses fitur Lapor</h3>
-          <LoginInput login={onLogin} />
-          <div className="d-flex align-items-center mt-4 link-login-register-group">
-            <p className="m-0 text-secondary">Belum memiliki akun?</p>
-            <Link to="/register" className="ms-1">
-              <p className="m-0 text-secondary fw-bold">Daftar disini.</p>
-            </Link>
+    <div className="container-fluid min-vh-100 d-flex flex-column">
+      <div className="row flex-grow-1">
+        <div className="col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
+          <div className="Login-image container w-125">
+            <img
+              src="/img/LogIn.png"
+              className="img-fluid custom-img-size"
+              alt="Register"
+            />
           </div>
-        </article>
+        </div>
+        <div className="col-lg-6 d-flex flex-column justify-content-center p-4 position-relative">
+          <div className="d-flex align-items-center pe-2 ms-auto me-3 position-absolute top-0 end-0 mt-3 me-3">
+            <img
+              src="/logo/SafeSpeak-Logo.svg"
+              alt="SafeSpeak Logo"
+              className="nav-logo pe-2"
+            />
+            <p className="fs-5 fw-bold m-0 text-primary">SafeSpeak</p>
+          </div>
+          <div className="p-5">
+            <h2 className="text-center text-primary">Sign In</h2>
+            <h3 className="text-center text-secondary">
+              Silahkan masuk untuk mengakses fitur Lapor
+            </h3>
+            <LoginInput login={onLogin} />
+            <div className="d-flex align-items-center mt-4 justify-content-center">
+              <p className="m-0 text-secondary">Belum memiliki akun?</p>
+              <Link to="/register" className="ms-1">
+                <p className="m-0 text-secondary fw-bold">Daftar disini.</p>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
 
