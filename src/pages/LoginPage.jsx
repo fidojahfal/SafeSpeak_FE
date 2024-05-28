@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import LoginInput from "../components/Login Components/LoginInput";
+import LoginInput from "../components/login/LoginInput";
 import Button from "../components/form/Button";
 import { useDispatch } from "react-redux";
 import { asyncSetAuthUser } from "../states/authUser/action";

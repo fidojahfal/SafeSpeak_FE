@@ -25,28 +25,40 @@ function Input({
       <label htmlFor={labelAndId} className={labelClassName}>
         {children}
       </label>
-      <input
-        type={type}
-        className={inputClassName}
-        id={labelAndId}
-        placeholder={
-          type !== "checkbox" && type !== "radio" ? placeholder : undefined
-        }
-        value={type !== "checkbox" ? value : undefined}
-        onChange={onChangeHandler}
-        disabled={disabled}
-        checked={type === "checkbox" || type === "radio" ? checked : undefined}
-        required={required}
-        minLength={
-          type !== "checkbox" && type !== "radio" ? minLength : undefined
-        }
-        maxLength={
-          type !== "checkbox" && type !== "radio" ? maxLength : undefined
-        }
-        name={type === "radio" ? name : undefined}
-        min={type === "number" ? min : undefined}
-        max={type === "number" ? max : undefined}
-      />
+      {type === "textarea" ? (
+        <textarea
+          id={labelAndId}
+          placeholder={placeholder}
+          className={inputClassName}
+          onChange={onChangeHandler}
+          required={required}
+        ></textarea>
+      ) : (
+        <input
+          type={type}
+          className={inputClassName}
+          id={labelAndId}
+          placeholder={
+            type !== "checkbox" && type !== "radio" ? placeholder : undefined
+          }
+          value={type !== "checkbox" ? value : undefined}
+          onChange={onChangeHandler}
+          disabled={disabled}
+          checked={
+            type === "checkbox" || type === "radio" ? checked : undefined
+          }
+          required={required}
+          minLength={
+            type !== "checkbox" && type !== "radio" ? minLength : undefined
+          }
+          maxLength={
+            type !== "checkbox" && type !== "radio" ? maxLength : undefined
+          }
+          name={type === "radio" ? name : undefined}
+          min={type === "number" ? min : undefined}
+          max={type === "number" ? max : undefined}
+        />
+      )}
     </div>
   );
 }
