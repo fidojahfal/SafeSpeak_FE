@@ -1,8 +1,9 @@
-import { getOwnProfile, login, putAccessToken } from '../../utils/api';
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { getOwnProfile, login, putAccessToken } from "../../utils/api";
 
 const ActionType = {
-  SET_AUTH_USER: 'SET_AUTH_USER',
-  UNSET_AUTH_USER: 'UNSET_AUTH_USER',
+  SET_AUTH_USER: "SET_AUTH_USER",
+  UNSET_AUTH_USER: "UNSET_AUTH_USER",
 };
 
 function setAuthUserActionCreator(authUser) {
@@ -25,6 +26,7 @@ function unsetAuthUserActionCreator() {
 
 function asyncSetAuthUser({ username, password }) {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const token = await login({ username, password });
       putAccessToken(token);
@@ -34,13 +36,14 @@ function asyncSetAuthUser({ username, password }) {
     } catch (error) {
       alert(error);
     }
+    dispatch(hideLoading());
   };
 }
 
 function asyncUnsetAuthUser() {
   return async (dispatch) => {
     dispatch(unsetAuthUserActionCreator());
-    putAccessToken('');
+    putAccessToken("");
   };
 }
 

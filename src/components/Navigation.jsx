@@ -3,8 +3,14 @@ import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import Button from "./form/Button";
+import { useNavigate } from "react-router-dom";
 
 function Navigation({ onLogout, profile_id }) {
+  const navigate = useNavigate();
+  const goToLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg shadow-sm">
       <div className="container-fluid">
@@ -61,7 +67,9 @@ function Navigation({ onLogout, profile_id }) {
                 </ul>
               </>
             ) : (
-              <Button marginClass="ms-lg-auto">Log In</Button>
+              <Button marginClass="ms-lg-auto" onClickHandler={goToLogin}>
+                Log In
+              </Button>
             )}
           </div>
         </div>
