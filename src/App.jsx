@@ -10,8 +10,6 @@ import { asyncUnsetAuthUser } from "./states/authUser/action";
 import Loading from "./components/Loading";
 import CreateReportPage from "./pages/CreateReportPage";
 import HomePage from "./pages/HomePage";
-import Beranda from "./pages/Beranda/Mahasiswa";
-import Dosen from "./pages/Beranda/Dosen";
 import Footer from "./components/footer/Footer";
 import AboutPage from "./pages/AboutPage";
 
@@ -46,7 +44,8 @@ function App() {
       {authUser && (
         <>
           <header>
-            <Navigation onLogout={onLogoutHandler} profile_id={authUser._id} />
+            <Navigation onLogout={onLogoutHandler} />
+            {/* <Navigation onLogout={onLogoutHandler} profile_id={authUser._id} /> */}
           </header>
           <Loading />
           <main>
@@ -58,9 +57,7 @@ function App() {
                 element={<CreateReportPage />}
               ></Route>
               {/* Temporary */}
-              <Route path="/" element={<HomePage />}></Route>
-              <Route path="/beranda" element={<Beranda />} />
-              <Route path="/dosen" element={<Dosen />} />
+              <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
             </Routes>
           </main>

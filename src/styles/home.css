@@ -2,12 +2,6 @@
     width: 50%;
 }
 
-@media (max-width: 768px) {
-    .home-article-image {
-        width: 75%;
-    }
-}
-
 .home-article-card {
     width: 18rem;
 }
@@ -33,7 +27,25 @@
 }
 
 .laporan-jumlah-section {
-    background-color: #ddebff; /* Primary color */
+    background-color: #ddebff;
     color: aliceblue;
     gap: 6rem;
+}
+
+@media (max-width: 768px) {
+    .home-article-image {
+        width: 75%;
+    }
+}
+
+@media (min-width: 992px) {
+    .title-right-padding {
+        padding-right: 7rem !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .laporan-jumlah-section {
+        gap: 1rem;
+    }
 }
