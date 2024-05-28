@@ -37,3 +37,37 @@
     font-weight: bold;
     color: var(--blue-500);
 }
+
+@media (max-width: 576px) { 
+    .avatar-big {
+        width: 50%;
+        border-radius: 50%;
+        padding-bottom: 2rem;
+    }
+
+    .xs-flex-center {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 576px) { 
+    .avatar-big {
+        width: 25%;
+        border-radius: 50%;
+        padding-bottom: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .avatar-big {
+        width: 100%;
+        border-radius: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-card {
+        height: auto;
+    }
+}
