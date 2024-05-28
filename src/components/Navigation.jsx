@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import Button from "./form/Button";
 
 function Navigation({ onLogout, profile_id }) {
   return (
@@ -34,26 +35,34 @@ function Navigation({ onLogout, profile_id }) {
             <Link className="nav-link">Laporan</Link>
             <Link className="nav-link">Artikel</Link>
             <Link className="nav-link">Tentang</Link>
-            <a
-              className="nav-link ms-auto"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-            >
-              <IconContext.Provider value={{ color: "#ffc107", size: "35px" }}>
-                <div>
-                  <BsPersonCircle />
-                </div>
-              </IconContext.Provider>
-            </a>
-            <ul className="dropdown-menu dropdown-menu-end">
-              <li className="dropdown-item">
-                <Link to={`/profile/${profile_id}`}>Detail</Link>
-              </li>
-              <li className="dropdown-item">
-                <Link onClick={() => onLogout()}>Log out</Link>
-              </li>
-            </ul>
+            {profile_id ? (
+              <>
+                <a
+                  className="nav-link ms-lg-auto"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  <IconContext.Provider
+                    value={{ color: "#ffc107", size: "35px" }}
+                  >
+                    <div>
+                      <BsPersonCircle />
+                    </div>
+                  </IconContext.Provider>
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end">
+                  <li className="dropdown-item">
+                    {<Link to={`/profile/${profile_id}`}>Detail</Link>}
+                  </li>
+                  <li className="dropdown-item">
+                    <Link onClick={() => onLogout()}>Log out</Link>
+                  </li>
+                </ul>
+              </>
+            ) : (
+              <Button marginClass="ms-lg-auto">Log In</Button>
+            )}
           </div>
         </div>
       </div>
