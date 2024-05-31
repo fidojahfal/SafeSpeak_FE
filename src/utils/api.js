@@ -278,3 +278,48 @@ export async function getCountReports() {
 
   return { total, status_0, status_1, status_2 };
 }
+
+export async function getAllArticles() {
+  const response = await fetch(`${BASE_URL}/articles`);
+  const responseJson = await response.json();
+  const {
+    message,
+    data: { articles },
+  } = responseJson;
+
+  if (message !== 'Success') throw new Error(message);
+
+  return articles;
+}
+
+export async function insertArticle({ title, content, image }) {
+  const response = await fetchWithToken(`${BASE_URL}/articles`, {
+    method: 'POST',
+    body: JSON.stringify({ title, content, image }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const responseJson = await response.json();
+  const { message } = responseJson;
+
+  if (message !== 'Success') throw new Error(message);
+
+  return message;
+}
+
+export async function updateArticle({ title, content, id }) {
+  const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({ title, content }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const responseJson = await response.json();
+  const { message } = responseJson;
+
+  if (message !== 'Success') throw new Error(message);
+
+  return message;
+}
