@@ -265,3 +265,16 @@ export async function deleteReport(id) {
 
   return message;
 }
+
+export async function getCountReports() {
+  const response = await fetch(`${BASE_URL}/reports/sum`);
+  const responseJson = await response.json();
+  const {
+    message,
+    data: { total, status_0, status_1, status_2 },
+  } = responseJson;
+
+  if (message !== 'Success') throw new Error(message);
+
+  return { total, status_0, status_1, status_2 };
+}
