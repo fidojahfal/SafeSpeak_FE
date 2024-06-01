@@ -1,5 +1,6 @@
-import { createReport } from "../../utils/api";
+import { insertReport } from "../../utils/api";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { setNotificationActionCreator } from "../notification/action";
 
 const ActionType = {
   RECEIVE_REPORTS: "RECEIVE_REPORTS",
@@ -45,9 +46,10 @@ function asyncCreateReport({
         evidence,
         is_anonim,
       };
-      await createReport(report);
+      await insertReport(report);
       dispatch(createReportActionCreator(report));
     } catch (error) {
+      dispatch(setNotificationActionCreator(error.message));
       alert(error.message);
     }
     dispatch(hideLoading());

@@ -220,14 +220,6 @@
   justify-content: flex-start; /* Align the image to the left */
 }
 
-.laporan-jumlah-section {
-  background-color: #ddebff; /* Primary color */
-  color: aliceblue;
-  padding: 0;
-  width: 100%;
-  align-items: center;
-}
-
 .laporan-jumlah-section p,
 .laporan-jumlah-section h1 {
   text-align: center; /* Center align text */
@@ -236,23 +228,9 @@
   margin-right: 10px; /* Add margin below text */
 }
 
-.laporan-jumlah-section p {
-  font-size: 1.125rem;
-  margin-bottom: 0.5rem;
-  color: #0d6efd;
-  align-items: center;
-  font-weight: 700;
-}
-
-.laporan-jumlah-section h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  color: #ffc107;
-}
-
-.mt-3 {
+/* .mt-3 {
   margin-top: 1rem !important;
-}
+} */
 
 .w-100 {
   width: 100% !important;

@@ -2,18 +2,29 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import LoginInput from "../components/login/LoginInput";
 import Button from "../components/form/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { asyncSetAuthUser } from "../states/authUser/action";
 import { Link } from "react-router-dom";
+import Alert from "../components/form/Alert";
+import { setNotificationActionCreator } from "../states/notification/action";
 
 function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { notification } = useSelector((states) => states);
 
-  const onLogin = ({ username, password }) => {
+  const onLogin = async ({ username, password }) => {
     // @TODO: dispatch async action to login
-    dispatch(asyncSetAuthUser({ username, password }));
-    navigate("/");
+    // try {
+    //   await dispatch(asyncSetAuthUser({ username, password }));
+    // } catch (error) {
+    //   return dispatch(setNotificationActionCreator(error.message));
+    // }
+    // navigate("/");
+    await dispatch(asyncSetAuthUser({ username, password }));
+    if (!notification) {
+      navigate("/");
+    }
   };
 
   const goToRegister = () => {
@@ -22,6 +33,7 @@ function LoginPage() {
 
   return (
     <div className="container-fluid min-vh-100 d-flex flex-column">
+      <Alert />
       <div className="row flex-grow-1">
         <div className="col-lg-6 d-none d-lg-flex justify-content-center align-items-center gx-0">
           <div className="Login-image container w-125">

@@ -45,7 +45,7 @@ function RegisterPage() {
             />
             <p className="fs-5 fw-bold text-primary m-0">SafeSpeak</p>
           </div>
-          <div className="p-5">
+          <div className="py-5">
             <h4 className="text-center text-primary fw-bold">Sign Up</h4>
             <p className="text-center text-primary">
               Silahkan daftar untuk bisa mengakses fitur Lapor

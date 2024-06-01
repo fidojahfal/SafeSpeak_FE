@@ -28,8 +28,7 @@
 
 .laporan-jumlah-section {
     background-color: #ddebff;
-    color: aliceblue;
-    gap: 6rem;
+    color: var(--blue-500);
 }
 
 @media (max-width: 768px) {

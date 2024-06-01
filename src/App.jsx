@@ -15,6 +15,7 @@ import AboutPage from "./pages/AboutPage";
 import DetailReportPage from "./pages/DetailReportPage";
 import UpdateReport from "./components/reports/UpdateReports";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Alert from "./components/form/Alert";
 
 function App() {
   const { authUser, isPreload } = useSelector((states) => states);
@@ -50,6 +51,7 @@ function App() {
         </header>
       )}
       <Loading />
+      <Alert />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -22,7 +22,7 @@ function ReportInput({
   const [placeInput, onPlaceInputChange] = useInput(place_report);
   const [dateInput, onDateInputChange] = useInput(date_report);
   const [descriptionInput, onDescriptionInputChange] = useInput(description);
-  const [anonimInput, onAnonimInputChange] = useInput(is_anonim);
+  const [anonimInput, onAnonimInputChange] = useInput(is_anonim || 0);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();

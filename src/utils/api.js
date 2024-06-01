@@ -141,7 +141,7 @@ export async function getAllreports() {
     data: { reports },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return reports;
 }
@@ -156,7 +156,7 @@ export async function insertReport({
   is_anonim,
 }) {
   const response = await fetchWithToken(`${BASE_URL}/reports`, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({
       title,
       type,
@@ -167,14 +167,14 @@ export async function insertReport({
       is_anonim,
     }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
 }
@@ -187,7 +187,7 @@ export async function getReportById(id) {
     data: { report },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return report;
 }
@@ -200,7 +200,7 @@ export async function getReportsByUserId(id) {
     data: { reports },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return reports;
 }
@@ -216,7 +216,7 @@ export async function updateReport({
   id,
 }) {
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify({
       title,
       type,
@@ -227,41 +227,41 @@ export async function updateReport({
       is_anonim,
     }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
 }
 
 export async function updateStatus({ id, status }) {
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}/status`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify({ status }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   const responseJson = response.json();
   const { message } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
 }
 
 export async function deleteReport(id) {
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
   });
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
 }
@@ -274,7 +274,7 @@ export async function getCountReports() {
     data: { total, status_0, status_1, status_2 },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return { total, status_0, status_1, status_2 };
 }
@@ -287,73 +287,39 @@ export async function getAllArticles() {
     data: { articles },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return articles;
 }
 
 export async function insertArticle({ title, content, image }) {
   const response = await fetchWithToken(`${BASE_URL}/articles`, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({ title, content, image }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
 }
 
 export async function updateArticle({ title, content, id }) {
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify({ title, content }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
-}
-
-export async function createReport({
-  title,
-  type,
-  place_report,
-  date_report,
-  description,
-  evidence,
-  is_anonim,
-}) {
-  const response = await fetchWithToken(`${BASE_URL}/reports`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      title,
-      type,
-      place_report,
-      date_report,
-      description,
-      evidence,
-      is_anonim,
-    }),
-  });
-
-  const responseJson = await response.json();
-
-  const { status, message } = responseJson;
-
-  if (status !== 201) {
-    throw new Error(message);
-  }
 }

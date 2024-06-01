@@ -4,6 +4,7 @@ import userReducer from "./user/reducer";
 import isPreloadReducer from "./isPreload/reducer";
 import { loadingBarReducer } from "react-redux-loading-bar";
 import reportsReducer from "./reports/reducer";
+import notificationReducer from "./notification/reducer";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     isPreload: isPreloadReducer,
     loadingBar: loadingBarReducer,
     reports: reportsReducer,
+    notification: notificationReducer,
   },
 });
 
