@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import ProfilePage from "./pages/ProfilePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import { useDispatch, useSelector } from "react-redux";
-import { asyncIsPreloadProcess } from "./states/isPreload/action";
-import { asyncUnsetAuthUser } from "./states/authUser/action";
-import Loading from "./components/Loading";
-import CreateReportPage from "./pages/CreateReportPage";
-import HomePage from "./pages/HomePage";
-import Footer from "./components/footer/Footer";
-import AboutPage from "./pages/AboutPage";
-import DetailReportPage from "./pages/DetailReportPage";
-import UpdateReport from "./components/reports/UpdateReports";
-import ProtectedRoute from "./components/ProtectedRoute";
+import React, { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import ProfilePage from './pages/ProfilePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncIsPreloadProcess } from './states/isPreload/action';
+import { asyncUnsetAuthUser } from './states/authUser/action';
+import Loading from './components/Loading';
+import CreateReportPage from './pages/CreateReportPage';
+import HomePage from './pages/HomePage';
+import Footer from './components/footer/Footer';
+import AboutPage from './pages/AboutPage';
+import DetailReportPage from './pages/DetailReportPage';
+import UpdateReport from './components/reports/UpdateReports';
+import ProtectedRoute from './components/ProtectedRoute';
+import ReportPage from './pages/ReportPage';
 
 function App() {
   const { authUser, isPreload } = useSelector((states) => states);
@@ -31,8 +32,8 @@ function App() {
   const location = useLocation();
 
   const showNavbarFooter = !(
-    location.pathname.includes("/login") ||
-    location.pathname.includes("/register")
+    location.pathname.includes('/login') ||
+    location.pathname.includes('/register')
   );
 
   if (isPreload) {
@@ -62,6 +63,10 @@ function App() {
             path="/profile/:id"
             element={<ProtectedRoute element={<ProfilePage />} />}
           />
+          <Route
+            path="/reports"
+            element={<ProtectedRoute element={<ReportPage />} />}
+          ></Route>
           <Route
             path="/reports/create"
             element={<ProtectedRoute element={<CreateReportPage />} />}

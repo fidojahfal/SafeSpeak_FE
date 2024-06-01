@@ -1,9 +1,9 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import RegisterInput from "../components/Register Components/RegisterInput";
-import { useDispatch } from "react-redux";
-import { asyncRegisterUser } from "../states/user/action.js";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import RegisterInput from '../components/register/RegisterInput.jsx';
+import { useDispatch } from 'react-redux';
+import { asyncRegisterUser } from '../states/user/action.js';
+import { Link } from 'react-router-dom';
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function RegisterPage() {
         telepon,
       })
     );
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -41,7 +41,7 @@ function RegisterPage() {
               src="/logo/SafeSpeak-Logo.svg"
               alt="SafeSpeak Logo"
               className="me-2"
-              style={{ width: "35px" }}
+              style={{ width: '35px' }}
             />
             <p className="fs-5 fw-bold text-primary m-0">SafeSpeak</p>
           </div>
