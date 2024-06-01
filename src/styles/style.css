@@ -30,8 +30,7 @@
   font-weight: bold;
 }
 
-.form-profile-label {
-  font-size: 20px;
+.form-blue-label {
   font-weight: bold;
   color: var(--blue-500);
 }
