@@ -172,11 +172,14 @@ export async function insertReport({
   });
 
   const responseJson = await response.json();
-  const { message } = responseJson;
+  const {
+    message,
+    data: { report },
+  } = responseJson;
 
   if (message !== "Success") throw new Error(message);
 
-  return message;
+  return report;
 }
 
 export async function getReportById(id) {
@@ -293,7 +296,7 @@ export async function getAllArticles() {
 }
 
 export async function insertArticle({ title, content, image }) {
-  const response = await fetchWithToken(`http://localhost:3000/v1/articles`, {
+  const response = await fetchWithToken(`${BASE_URL}/articles`, {
     method: "POST",
     body: JSON.stringify({ title, content, image }),
     headers: {
@@ -301,11 +304,14 @@ export async function insertArticle({ title, content, image }) {
     },
   });
   const responseJson = await response.json();
-  const { message } = responseJson;
+  const {
+    message,
+    data: { article },
+  } = responseJson;
 
   if (message !== "Success") throw new Error(message);
 
-  return message;
+  return article;
 }
 
 export async function updateArticle({ title, content, id }) {
