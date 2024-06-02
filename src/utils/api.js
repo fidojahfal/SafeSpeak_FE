@@ -12,26 +12,26 @@ async function fetchWithToken(url, options = {}) {
 }
 
 export function putAccessToken(token) {
-  localStorage.setItem("accessToken", token);
+  localStorage.setItem('accessToken', token);
 }
 
 export function getAccessToken() {
-  return localStorage.getItem("accessToken");
+  return localStorage.getItem('accessToken');
 }
 
 export async function login({ username, password }) {
   const response = await fetch(`${BASE_URL}/login`, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({ username, password }),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
   const responseJson = await response.json();
 
   const { message } = responseJson;
 
-  if (message !== "Success") {
+  if (message !== 'Success') {
     throw new Error(message);
   }
 
@@ -52,7 +52,7 @@ export async function register({
   telepon,
 }) {
   const response = await fetch(`${BASE_URL}/register`, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({
       username,
       password,
@@ -63,18 +63,18 @@ export async function register({
       telepon,
     }),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
   const responseJson = await response.json();
 
   const { message } = responseJson;
 
-  if (message !== "Success") {
+  if (message !== 'Success') {
     throw new Error(message);
   }
 
-  return "Your account successfully registered";
+  return 'Your account successfully registered';
 }
 
 // get user by id
@@ -84,7 +84,7 @@ export async function getUser(id) {
 
   const { message } = responseJson;
 
-  if (message !== "Success") {
+  if (message !== 'Success') {
     throw new Error(message);
   }
 
@@ -101,7 +101,7 @@ export async function getOwnProfile() {
 
   const { message } = responseJson;
 
-  if (message !== "Success") {
+  if (message !== 'Success') {
     throw new Error(message);
   }
 
@@ -114,17 +114,17 @@ export async function getOwnProfile() {
 
 export async function updateUser({ name, jurusan, telepon, email, id }) {
   const response = await fetchWithToken(`${BASE_URL}/users/${id}`, {
-    method: "PUT",
+    method: 'PUT',
     body: JSON.stringify({ name, jurusan, telepon, email }),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
   const responseJson = await response.json();
 
   const { message } = responseJson;
 
-  if (message !== "Success") {
+  if (message !== 'Success') {
     throw new Error(message);
   }
 
@@ -141,7 +141,7 @@ export async function getAllreports() {
     data: { reports },
   } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   return reports;
 }
@@ -156,7 +156,7 @@ export async function insertReport({
   is_anonim,
 }) {
   const response = await fetchWithToken(`${BASE_URL}/reports`, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({
       title,
       type,
@@ -167,7 +167,7 @@ export async function insertReport({
       is_anonim,
     }),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
@@ -175,14 +175,14 @@ export async function insertReport({
 
   const { message, data } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   if (data) {
     const report = data.report;
     return report;
   }
 
-  throw new Error("Missing report data in response");
+  throw new Error('Missing report data in response');
 }
 
 export async function getReportById(id) {
@@ -193,7 +193,7 @@ export async function getReportById(id) {
     data: { report },
   } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   return report;
 }
@@ -206,7 +206,7 @@ export async function getReportsByUserId(id) {
     data: { reports },
   } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   return reports;
 }
@@ -222,7 +222,7 @@ export async function updateReport({
   id,
 }) {
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
-    method: "PUT",
+    method: 'PUT',
     body: JSON.stringify({
       title,
       type,
@@ -233,41 +233,41 @@ export async function updateReport({
       is_anonim,
     }),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   return message;
 }
 
 export async function updateStatus({ id, status }) {
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}/status`, {
-    method: "PUT",
+    method: 'PUT',
     body: JSON.stringify({ status }),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
   const responseJson = response.json();
   const { message } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   return message;
 }
 
 export async function deleteReport(id) {
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
-    method: "DELETE",
+    method: 'DELETE',
   });
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   return message;
 }
@@ -280,7 +280,7 @@ export async function getCountReports() {
     data: { total, status_0, status_1, status_2 },
   } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   return { total, status_0, status_1, status_2 };
 }
@@ -293,47 +293,45 @@ export async function getAllArticles() {
     data: { articles },
   } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   return articles;
 }
 
 export async function insertArticle({ title, content, image }) {
   const formData = new FormData();
-  formData.append("title", title);
-  formData.append("content", content);
-  formData.append("image", image);
+  formData.append('title', title);
+  formData.append('content', content);
+  formData.append('image', image);
 
   const response = await fetchWithToken(`http://localhost:3000/v1/articles`, {
-    method: "POST",
+    method: 'POST',
     body: formData,
-    headers: {
-      "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
-    },
   });
+
   const responseJson = await response.json();
   const {
     message,
     data: { article },
   } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   return article;
 }
 
 export async function updateArticle({ title, content, id }) {
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
-    method: "PUT",
+    method: 'PUT',
     body: JSON.stringify({ title, content }),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== "Success") throw new Error(message);
+  if (message !== 'Success') throw new Error(message);
 
   return message;
 }
@@ -341,11 +339,11 @@ export async function updateArticle({ title, content, id }) {
 export async function uploadImage(imageInput) {
   const formData = new FormData();
   console.log(imageInput);
-  formData.append("file", imageInput);
-  formData.append("upload_preset", "alxssoyv");
+  formData.append('file', imageInput);
+  formData.append('upload_preset', 'alxssoyv');
 
   const response = await fetch(``, {
-    method: "POST",
+    method: 'POST',
     body: formData,
   });
 
@@ -357,5 +355,5 @@ export async function uploadImage(imageInput) {
   }
 
   alert(response.statusText);
-  return "";
+  return '';
 }
