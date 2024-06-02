@@ -1,0 +1,4 @@
+.bg-blue-100 {
+    background-color: var(--blue-100);
+    min-height: 100vh;
+}
