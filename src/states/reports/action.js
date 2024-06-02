@@ -1,4 +1,5 @@
 import {
+  deleteReport,
   getAllreports,
   getReportsByUserId,
   insertReport,
@@ -9,6 +10,7 @@ import { setNotificationActionCreator } from '../notification/action';
 const ActionType = {
   RECEIVE_REPORTS: 'RECEIVE_REPORTS',
   CREATE_REPORT: 'CREATE_REPORT',
+  DELETE_REPORT: 'DELETE_REPORT',
 };
 
 function receiveReportsActionCreator(reports) {
@@ -25,6 +27,15 @@ function createReportActionCreator(report) {
     type: ActionType.CREATE_REPORT,
     payload: {
       report,
+    },
+  };
+}
+
+function deleteReportActionCreator(report_id) {
+  return {
+    type: ActionType.DELETE_REPORT,
+    payload: {
+      report_id,
     },
   };
 }
@@ -79,9 +90,24 @@ function asyncCreateReport({
   };
 }
 
+function asyncDeleteReport(id) {
+  return async (dispatch) => {
+    dispatch(showLoading());
+    try {
+      await deleteReport(id);
+      dispatch(deleteReportActionCreator(id));
+    } catch (error) {
+      dispatch(setNotificationActionCreator(error.message));
+    }
+    dispatch(hideLoading());
+  };
+}
+
 export {
   ActionType,
   receiveReportsActionCreator,
   asyncCreateReport,
   asyncReceiveReports,
+  deleteReportActionCreator,
+  asyncDeleteReport,
 };
