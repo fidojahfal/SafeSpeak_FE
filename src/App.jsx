@@ -15,7 +15,6 @@ import AboutPage from "./pages/AboutPage";
 import DetailReportPage from "./pages/DetailReportPage";
 import UpdateReport from "./components/reports/UpdateReports";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Alert from "./components/form/Alert";
 import ReportPage from "./pages/ReportPage";
 
 function App() {
@@ -52,7 +51,6 @@ function App() {
         </header>
       )}
       <Loading />
-      <Alert />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />

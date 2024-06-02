@@ -48,11 +48,13 @@ function asyncCreateReport({
       };
       await insertReport(report);
       dispatch(createReportActionCreator(report));
+      return true;
     } catch (error) {
       dispatch(setNotificationActionCreator(error.message));
-      alert(error.message);
+      return false;
+    } finally {
+      dispatch(hideLoading());
     }
-    dispatch(hideLoading());
   };
 }
 
