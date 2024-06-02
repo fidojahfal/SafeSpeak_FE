@@ -21,30 +21,39 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
         body: formData,
       }
     );
-    console.log(response);
+
+    if (response.ok) {
+      const responseJson = await response.json();
+      const imageUrl = responseJson.secure_url;
+      return imageUrl;
+    }
+
+    alert(response.statusText);
+    return "";
   };
 
-  const onSubmitMock = async (event) => {
-    event.preventDefault();
-    await uploadImage();
-    console.log({
-      title: titleInput,
-      content: contentInput,
-      image: "temporary",
-    });
-  };
+  //   const onSubmitMock = async (event) => {
+  //     event.preventDefault();
+  //     const imageUrl = await uploadImage();
+  //     console.log({
+  //       title: titleInput,
+  //       content: contentInput,
+  //       image: imageUrl,
+  //     });
+  //   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
+    const imageUrl = await uploadImage();
     submitHandler({
       title: titleInput,
       content: contentInput,
-      image: "temporary",
+      image: imageUrl,
     });
   };
 
   return (
-    <form onSubmit={onSubmitMock}>
+    <form onSubmit={onSubmitHandler}>
       <h5 className="mb-3">{isEdit ? "Ubah Artikel" : "Buat Artikel"}</h5>
       <div className="row gy-3 gx-4">
         <Input
