@@ -3,48 +3,17 @@ import Button from "../form/Button";
 import Input from "../form/Input";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useInput } from "../../hooks/useInput";
+import { uploadImage } from "../../utils/api";
 
 function ArticleInput({ title, content, image, isEdit, submitHandler }) {
   const [titleInput, onTitleInputChange] = useInput(title);
   const [contentInput, onContentInputChange] = useInput(content);
   const [imageInput, onImageInputChange] = useInput(image);
 
-  const uploadImage = async () => {
-    const formData = new FormData();
-    formData.append("file", imageInput);
-    formData.append("upload_preset", "alxssoyv");
-
-    const response = await fetch(
-      "https://api.cloudinary.com/v1_1/dcgp7jyh2/upload",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-
-    if (response.ok) {
-      const responseJson = await response.json();
-      const imageUrl = responseJson.secure_url;
-      return imageUrl;
-    }
-
-    alert(response.statusText);
-    return "";
-  };
-
-  //   const onSubmitMock = async (event) => {
-  //     event.preventDefault();
-  //     const imageUrl = await uploadImage();
-  //     console.log({
-  //       title: titleInput,
-  //       content: contentInput,
-  //       image: imageUrl,
-  //     });
-  //   };
-
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    const imageUrl = await uploadImage();
+    console.log(imageInput);
+    const imageUrl = await uploadImage(imageInput);
     submitHandler({
       title: titleInput,
       content: contentInput,
@@ -79,15 +48,14 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
         </Input>
         <div className="col-12">
           <p className="mb-2 form-blue-label-semibold">Lampiran Gambar</p>
-          {/* <Button marginClass="d-flex align-items-center">
-            <IconContext.Provider value={{ size: "25px" }}>
-              <div>
-                <MdOutlineFileUpload />
-              </div>
-            </IconContext.Provider>
-            <p className="m-0 ms-2">Telusuri File</p>
-          </Button> */}
-          <input type="file" onChange={onImageInputChange} />
+          <Input
+            type="file"
+            labelAndId="image"
+            labelClassName="custom-file-button"
+            inputClassName=""
+            onChangeHandler={onImageInputChange}
+            required
+          ></Input>
         </div>
         <div className="d-flex justify-content-center">
           <Button type="submit">Buat Laporan</Button>

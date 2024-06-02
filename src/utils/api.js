@@ -296,7 +296,7 @@ export async function getAllArticles() {
 }
 
 export async function insertArticle({ title, content, image }) {
-  const response = await fetchWithToken(`http://localhost:3000/v1/articles`, {
+  const response = await fetchWithToken(`${BASE_URL}/articles`, {
     method: "POST",
     body: JSON.stringify({ title, content, image }),
     headers: {
@@ -328,4 +328,29 @@ export async function updateArticle({ title, content, id }) {
   if (message !== "Success") throw new Error(message);
 
   return message;
+}
+
+export async function uploadImage(imageInput) {
+  const formData = new FormData();
+  console.log(imageInput);
+  formData.append("file", imageInput);
+  formData.append("upload_preset", "alxssoyv");
+
+  const response = await fetch(
+    "https://api.cloudinary.com/v1_1/dcgp7jyh2/upload",
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  if (response.ok) {
+    const responseJson = await response.json();
+    console.log(responseJson);
+    const imageUrl = responseJson.secure_url;
+    return imageUrl;
+  }
+
+  alert(response.statusText);
+  return "";
 }
