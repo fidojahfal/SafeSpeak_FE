@@ -5,12 +5,12 @@ import ArticleSection from "../components/home/ArticleSection";
 // Home Styling
 import "../styles/home.css";
 
-function HomePage() {
+function HomePage({ role }) {
   return (
     <>
-      <IntroSection />
+      <IntroSection role={role} />
       <SumLaporanSection />
-      <ArticleSection />
+      <ArticleSection role={role} />
     </>
   );
 }

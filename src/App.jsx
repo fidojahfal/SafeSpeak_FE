@@ -45,16 +45,16 @@ function App() {
     <>
       {showNavbarFooter && (
         <header>
-          <Navigation
-            onLogout={onLogoutHandler}
-            profile_id={authUser ? authUser._id : null}
-          />
+          <Navigation onLogout={onLogoutHandler} authUser={authUser} />
         </header>
       )}
       <Loading />
       <main>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={<HomePage role={authUser ? authUser.role : 0} />}
+          />
           <Route path="/about" element={<AboutPage />} />
           <Route
             path="/profile/:id/edit"

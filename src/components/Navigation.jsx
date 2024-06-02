@@ -5,7 +5,7 @@ import { IconContext } from "react-icons";
 import Button from "./form/Button";
 import { useNavigate } from "react-router-dom";
 
-function Navigation({ onLogout, profile_id }) {
+function Navigation({ onLogout, authUser }) {
   const navigate = useNavigate();
   const goToLogin = () => {
     navigate("/login");
@@ -37,11 +37,63 @@ function Navigation({ onLogout, profile_id }) {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav d-flex w-100 align-items-center">
-            <Link className="nav-link">Beranda</Link>
-            <Link className="nav-link">Laporan</Link>
-            <Link className="nav-link">Artikel</Link>
-            <Link className="nav-link">Tentang</Link>
-            {profile_id ? (
+            <Link to="/" className="nav-link">
+              Beranda
+            </Link>
+            {authUser && authUser.role === 0 ? (
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Laporan
+                </a>
+                <ul className="dropdown-menu">
+                  <Link className="dropdown-item" to="/reports/create">
+                    Buat Laporan
+                  </Link>
+                  <Link className="dropdown-item" to="/reports">
+                    Lihat Semua Laporan
+                  </Link>
+                </ul>
+              </li>
+            ) : (
+              <Link className="nav-link" to="/reports">
+                Laporan
+              </Link>
+            )}
+            {authUser && authUser.role === 1 ? (
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Artikel
+                </a>
+                <ul className="dropdown-menu">
+                  <Link className="dropdown-item" to="/articles/create">
+                    Buat Artikel
+                  </Link>
+                  <Link className="dropdown-item" to="/articles">
+                    Lihat Semua Artikel
+                  </Link>
+                </ul>
+              </li>
+            ) : (
+              <Link className="nav-link" to="/articles">
+                Artikel
+              </Link>
+            )}
+            <Link className="nav-link" to="/about">
+              Tentang
+            </Link>
+            {authUser ? (
               <>
                 <a
                   className="nav-link ms-lg-auto"
@@ -59,7 +111,7 @@ function Navigation({ onLogout, profile_id }) {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li className="dropdown-item">
-                    {<Link to={`/profile/${profile_id}`}>Detail</Link>}
+                    {<Link to={`/profile/${authUser._id}`}>Detail</Link>}
                   </li>
                   <li className="dropdown-item">
                     <Link onClick={() => onLogout()}>Log out</Link>
