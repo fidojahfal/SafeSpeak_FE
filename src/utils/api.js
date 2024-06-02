@@ -299,11 +299,16 @@ export async function getAllArticles() {
 }
 
 export async function insertArticle({ title, content, image }) {
-  const response = await fetchWithToken(`${BASE_URL}/articles`, {
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("content", content);
+  formData.append("image", image);
+
+  const response = await fetchWithToken(`http://localhost:3000/v1/articles`, {
     method: "POST",
-    body: JSON.stringify({ title, content, image }),
+    body: formData,
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
     },
   });
   const responseJson = await response.json();
@@ -339,13 +344,10 @@ export async function uploadImage(imageInput) {
   formData.append("file", imageInput);
   formData.append("upload_preset", "alxssoyv");
 
-  const response = await fetch(
-    "https://api.cloudinary.com/v1_1/dcgp7jyh2/upload",
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
+  const response = await fetch(``, {
+    method: "POST",
+    body: formData,
+  });
 
   if (response.ok) {
     const responseJson = await response.json();

@@ -12,12 +12,10 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log(imageInput);
-    const imageUrl = await uploadImage(imageInput);
     submitHandler({
       title: titleInput,
       content: contentInput,
-      image: imageUrl,
+      image: imageInput,
     });
   };
 
