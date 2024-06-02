@@ -19,12 +19,11 @@ function asyncCreateArticle({ title, content, image }) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const article = {
+      const article = await insertArticle({
         title,
         content,
         image,
-      };
-      await insertArticle(article);
+      });
       dispatch(createArticleActionCreator(article));
       return true;
     } catch (error) {

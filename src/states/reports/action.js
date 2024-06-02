@@ -3,14 +3,14 @@ import {
   getAllreports,
   getReportsByUserId,
   insertReport,
-} from '../../utils/api';
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import { setNotificationActionCreator } from '../notification/action';
+} from "../../utils/api";
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { setNotificationActionCreator } from "../notification/action";
 
 const ActionType = {
-  RECEIVE_REPORTS: 'RECEIVE_REPORTS',
-  CREATE_REPORT: 'CREATE_REPORT',
-  DELETE_REPORT: 'DELETE_REPORT',
+  RECEIVE_REPORTS: "RECEIVE_REPORTS",
+  CREATE_REPORT: "CREATE_REPORT",
+  DELETE_REPORT: "DELETE_REPORT",
 };
 
 function receiveReportsActionCreator(reports) {
@@ -71,7 +71,7 @@ function asyncCreateReport({
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const report = {
+      const report = await insertReport({
         title,
         type,
         place_report,
@@ -79,8 +79,7 @@ function asyncCreateReport({
         description,
         evidence,
         is_anonim,
-      };
-      await insertReport(report);
+      });
       dispatch(createReportActionCreator(report));
       return true;
     } catch (error) {
