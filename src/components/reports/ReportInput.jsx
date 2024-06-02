@@ -28,7 +28,7 @@ function ReportInput({
     event.preventDefault();
     console.log({
       title: titleInput,
-      type: typeInput,
+      type: Number(typeInput),
       place_report: placeInput,
       date_report: dateInput,
       description: descriptionInput,
@@ -37,7 +37,7 @@ function ReportInput({
     });
     submitHandler({
       title: titleInput,
-      type: typeInput,
+      type: Number(typeInput),
       place_report: placeInput,
       date_report: dateInput,
       description: descriptionInput,
@@ -61,8 +61,8 @@ function ReportInput({
               inputClassName="form-check-input"
               name="type"
               required
-              value="Kekerasan Seksual"
-              checked={typeInput === "Kekerasan Seksual"}
+              value="0"
+              checked={typeInput === "0"}
               onChangeHandler={onTypeInputChange}
             >
               Kekerasan Seksual
@@ -74,8 +74,8 @@ function ReportInput({
               type="radio"
               inputClassName="form-check-input"
               name="type"
-              value="Bullying"
-              checked={typeInput === "Bullying"}
+              value="1"
+              checked={typeInput === "1"}
               onChangeHandler={onTypeInputChange}
             >
               Bullying

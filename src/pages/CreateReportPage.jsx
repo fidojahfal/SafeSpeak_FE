@@ -21,15 +21,6 @@ function CreateReportPage() {
     evidence,
     is_anonim,
   }) => {
-    console.log({
-      title,
-      type,
-      place_report,
-      date_report,
-      description,
-      evidence,
-      is_anonim,
-    });
     const success = await dispatch(
       asyncCreateReport({
         title,

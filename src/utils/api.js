@@ -172,14 +172,17 @@ export async function insertReport({
   });
 
   const responseJson = await response.json();
-  const {
-    message,
-    data: { report },
-  } = responseJson;
+
+  const { message, data } = responseJson;
 
   if (message !== "Success") throw new Error(message);
 
-  return report;
+  if (data) {
+    const report = data.report;
+    return report;
+  }
+
+  throw new Error("Missing report data in response");
 }
 
 export async function getReportById(id) {

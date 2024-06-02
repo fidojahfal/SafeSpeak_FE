@@ -80,9 +80,14 @@ function asyncCreateReport({
         evidence,
         is_anonim,
       });
-      dispatch(createReportActionCreator(report));
+      // Add a log to verify the report object
+      console.log("Report object:", report);
+      if (report) {
+        dispatch(createReportActionCreator(report));
+      }
       return true;
     } catch (error) {
+      console.log("Error", error.message);
       dispatch(setNotificationActionCreator(error.message));
       return false;
     } finally {
