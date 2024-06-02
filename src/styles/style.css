@@ -1,5 +1,6 @@
 :root {
   --blue-500: #0d6efd;
+  --blue-100: #CFE2FF;
   --yellow-500: #ffc107;
   --yellow-100: #fff3cd;
   --gray: #828282;
@@ -32,6 +33,11 @@
 
 .form-blue-label {
   font-weight: bold;
+  color: var(--blue-500);
+}
+
+.form-blue-label-semibold {
+  font-weight: 500;
   color: var(--blue-500);
 }
 

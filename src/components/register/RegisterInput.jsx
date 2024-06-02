@@ -32,6 +32,7 @@ function RegisterInput({ register }) {
     >
       <Input
         labelAndId="username"
+        labelClassName="form-blue-label"
         type="text"
         value={username}
         onChangeHandler={onUsernameChange}
@@ -43,6 +44,7 @@ function RegisterInput({ register }) {
       </Input>
       <Input
         labelAndId="password"
+        labelClassName="form-blue-label"
         type="password"
         value={password}
         onChangeHandler={onPasswordChange}
@@ -54,6 +56,7 @@ function RegisterInput({ register }) {
       </Input>
       <Input
         labelAndId="name"
+        labelClassName="form-blue-label"
         type="text"
         value={name}
         onChangeHandler={onNameChange}
@@ -65,6 +68,7 @@ function RegisterInput({ register }) {
       </Input>
       <Input
         labelAndId="nim"
+        labelClassName="form-blue-label"
         type="number"
         value={nim}
         onChangeHandler={onNimChange}
@@ -78,6 +82,7 @@ function RegisterInput({ register }) {
 
       <Input
         labelAndId="email"
+        labelClassName="form-blue-label"
         type="email"
         value={email}
         onChangeHandler={onEmailChange}
@@ -89,6 +94,7 @@ function RegisterInput({ register }) {
 
       <Input
         labelAndId="jurusan"
+        labelClassName="form-blue-label"
         type="text"
         value={jurusan}
         onChangeHandler={onJurusanChange}
@@ -101,6 +107,7 @@ function RegisterInput({ register }) {
 
       <Input
         labelAndId="telepon"
+        labelClassName="form-blue-label"
         type="text"
         value={telepon}
         onChangeHandler={onTeleponChange}

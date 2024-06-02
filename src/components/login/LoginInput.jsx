@@ -22,6 +22,7 @@ function LoginInput({ login }) {
     >
       <Input
         labelAndId="username"
+        labelClassName="form-blue-label"
         type="text"
         value={username}
         onChangeHandler={onUsernameChange}
@@ -34,6 +35,7 @@ function LoginInput({ login }) {
 
       <Input
         labelAndId="password"
+        labelClassName="form-blue-label"
         type="password"
         value={password}
         onChangeHandler={onPasswordChange}
