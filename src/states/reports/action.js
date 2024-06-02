@@ -37,9 +37,9 @@ function asyncReceiveReports() {
       let reports;
       if (authUser.role) {
         reports = await getAllreports();
-      } else {
-        reports = await getReportsByUserId(authUser._id);
+        return dispatch(receiveReportsActionCreator(reports));
       }
+      reports = await getReportsByUserId(authUser._id);
       dispatch(receiveReportsActionCreator(reports));
     } catch (error) {
       dispatch(setNotificationActionCreator(error.message));
