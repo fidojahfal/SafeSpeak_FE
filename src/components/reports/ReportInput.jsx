@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '../form/Button';
-import { MdOutlineFileUpload } from 'react-icons/md';
-import { IconContext } from 'react-icons';
-import { useInput } from '../../hooks/useInput';
-import Input from '../form/Input';
+import React from "react";
+import PropTypes from "prop-types";
+import Button from "../form/Button";
+import { MdOutlineFileUpload } from "react-icons/md";
+import { IconContext } from "react-icons";
+import { useInput } from "../../hooks/useInput";
+import Input from "../form/Input";
 
 function ReportInput({
   title,
@@ -15,16 +15,30 @@ function ReportInput({
   evidence,
   is_anonim,
   isEdit,
+  submitHandler,
 }) {
   const [titleInput, onTitleInputChange] = useInput(title);
   const [typeInput, onTypeInputChange] = useInput(type);
   const [placeInput, onPlaceInputChange] = useInput(place_report);
   const [dateInput, onDateInputChange] = useInput(date_report);
   const [descriptionInput, onDescriptionInputChange] = useInput(description);
-  const [anonimInput, onAnonimInputChange] = useInput(is_anonim);
+  const [anonimInput, onAnonimInputChange] = useInput(is_anonim || 0);
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    submitHandler({
+      title: titleInput,
+      type: typeInput,
+      place_report: placeInput,
+      date_report: dateInput,
+      description: descriptionInput,
+      evidence: "temporary",
+      is_anonim: anonimInput,
+    });
+  };
 
   return (
-    <>
+    <form onSubmit={onSubmitHandler}>
       <h5 className="mb-3">{isEdit ? "Ubah Laporan" : "Buat Laporan"}</h5>
       <div className="row gy-3 gx-4">
         <div className="col-md-4">
@@ -59,7 +73,7 @@ function ReportInput({
             </Input>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-8">
           <p className="mb-2">Kirim Secara Anonim*</p>
           <Input
             divClassName="form-check"
@@ -121,7 +135,7 @@ function ReportInput({
         <div className="col-12">
           <p className="mb-2">Bukti</p>
           <Button marginClass="d-flex align-items-center">
-            <IconContext.Provider value={{ size: '25px' }}>
+            <IconContext.Provider value={{ size: "25px" }}>
               <div>
                 <MdOutlineFileUpload />
               </div>
@@ -135,10 +149,10 @@ function ReportInput({
           penindaklanjutan.
         </p>
         <div className="d-flex justify-content-center">
-          <Button>Kirim Laporan</Button>
+          <Button type="submit">Kirim Laporan</Button>
         </div>
       </div>
-    </>
+    </form>
   );
 }
 

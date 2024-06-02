@@ -128,5 +128,198 @@ export async function updateUser({ name, jurusan, telepon, email, id }) {
     throw new Error(message);
   }
 
-  return responseJson.message;
+  return message;
+}
+
+export async function getAllreports() {
+  const response = await fetchWithToken(`${BASE_URL}/reports`);
+
+  const responseJson = await response.json();
+
+  const {
+    message,
+    data: { reports },
+  } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return reports;
+}
+
+export async function insertReport({
+  title,
+  type,
+  place_report,
+  date_report,
+  description,
+  evidence,
+  is_anonim,
+}) {
+  const response = await fetchWithToken(`${BASE_URL}/reports`, {
+    method: "POST",
+    body: JSON.stringify({
+      title,
+      type,
+      place_report,
+      date_report,
+      description,
+      evidence,
+      is_anonim,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const responseJson = await response.json();
+  const { message } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return message;
+}
+
+export async function getReportById(id) {
+  const response = await fetchWithToken(`${BASE_URL}/reports/${id}`);
+  const responseJson = await response.json();
+  const {
+    message,
+    data: { report },
+  } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return report;
+}
+
+export async function getReportsByUserId(id) {
+  const response = await fetchWithToken(`${BASE_URL}/reports/user/${id}`);
+  const responseJson = await response.json();
+  const {
+    message,
+    data: { reports },
+  } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return reports;
+}
+
+export async function updateReport({
+  title,
+  type,
+  place_report,
+  date_report,
+  description,
+  evidence,
+  is_anonim,
+  id,
+}) {
+  const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      title,
+      type,
+      place_report,
+      date_report,
+      description,
+      evidence,
+      is_anonim,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const responseJson = await response.json();
+  const { message } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return message;
+}
+
+export async function updateStatus({ id, status }) {
+  const response = await fetchWithToken(`${BASE_URL}/reports/${id}/status`, {
+    method: "PUT",
+    body: JSON.stringify({ status }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const responseJson = response.json();
+  const { message } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return message;
+}
+
+export async function deleteReport(id) {
+  const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
+    method: "DELETE",
+  });
+  const responseJson = await response.json();
+  const { message } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return message;
+}
+
+export async function getCountReports() {
+  const response = await fetch(`${BASE_URL}/reports/sum`);
+  const responseJson = await response.json();
+  const {
+    message,
+    data: { total, status_0, status_1, status_2 },
+  } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return { total, status_0, status_1, status_2 };
+}
+
+export async function getAllArticles() {
+  const response = await fetch(`${BASE_URL}/articles`);
+  const responseJson = await response.json();
+  const {
+    message,
+    data: { articles },
+  } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return articles;
+}
+
+export async function insertArticle({ title, content, image }) {
+  const response = await fetchWithToken(`${BASE_URL}/articles`, {
+    method: "POST",
+    body: JSON.stringify({ title, content, image }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const responseJson = await response.json();
+  const { message } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return message;
+}
+
+export async function updateArticle({ title, content, id }) {
+  const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ title, content }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const responseJson = await response.json();
+  const { message } = responseJson;
+
+  if (message !== "Success") throw new Error(message);
+
+  return message;
 }

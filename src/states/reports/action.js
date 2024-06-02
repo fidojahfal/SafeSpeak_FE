@@ -1,5 +1,6 @@
-import { getReports, createReport } from "../../utils/api";
+import { insertReport, getReportById } from "../../utils/api";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { setNotificationActionCreator } from "../notification/action";
 
 const ActionType = {
   RECEIVE_REPORTS: "RECEIVE_REPORTS",
@@ -29,24 +30,26 @@ function asyncCreateReport({
   type,
   place_report,
   date_report,
-  time_report,
-  description_report,
-  urgency,
+  description,
+  evidence,
+  is_anonim,
 }) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const report = await createReport({
+      const report = {
         title,
         type,
         place_report,
         date_report,
-        time_report,
-        description_report,
-        urgency,
-      });
+        description,
+        evidence,
+        is_anonim,
+      };
+      await insertReport(report);
       dispatch(createReportActionCreator(report));
     } catch (error) {
+      dispatch(setNotificationActionCreator(error.message));
       alert(error.message);
     }
     dispatch(hideLoading());
@@ -57,7 +60,7 @@ function asyncReceiveReports() {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const reports = await getReports();
+      const reports = await getReportById();
       dispatch(receiveReportsActionCreator(reports));
     } catch (error) {
       alert(error.message);

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 function Input({
   divClassName,
   labelAndId,
-  labelClassName = "form-profile-label",
+  labelClassName = "form-blue-label",
   children,
   type,
   inputClassName = "form-control",

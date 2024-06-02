@@ -1,5 +1,9 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { getOwnProfile, login, putAccessToken } from "../../utils/api";
+import {
+  asyncSetNotification,
+  setNotificationActionCreator,
+} from "../notification/action";
 
 const ActionType = {
   SET_AUTH_USER: "SET_AUTH_USER",
@@ -34,7 +38,7 @@ function asyncSetAuthUser({ username, password }) {
       const authUser = await getOwnProfile();
       dispatch(setAuthUserActionCreator(authUser));
     } catch (error) {
-      alert(error);
+      await dispatch(asyncSetNotification(error.message));
     }
     dispatch(hideLoading());
   };
