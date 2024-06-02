@@ -1,5 +1,5 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar";
-import { getReportDetail } from "../../utils/api";
+import { getReportById } from "../../utils/api";
 
 const ActionType = {
   RECEIVE_REPORT_DETAIL: "RECEIVE_REPORT_DETAIL",
@@ -18,7 +18,7 @@ function asyncReceiveReportDetail(reportId) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const reportDetail = await getReportDetail(reportId);
+      const reportDetail = await getReportById(reportId);
       dispatch(receiveReportDetailActionCreator(reportDetail));
     } catch (error) {
       alert(error.message);

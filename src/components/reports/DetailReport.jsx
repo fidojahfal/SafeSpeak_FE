@@ -17,8 +17,7 @@ function DetailReport({
   description,
   evidence,
   is_anonim,
-  name,
-  nim,
+  user_id,
   isEdit,
 }) {
   const formattedDate = formatDate(date_report);
@@ -38,7 +37,7 @@ function DetailReport({
                 type="radio"
                 id="kekerasanSeksual"
                 name="type"
-                checked={type === "Kekerasan Seksual"}
+                checked={type === 0}
                 disabled
               />
               <label htmlFor="kekerasanSeksual">Kekerasan Seksual</label>
@@ -49,7 +48,7 @@ function DetailReport({
                 type="radio"
                 id="bullying"
                 name="type"
-                checked={type === "Bullying"}
+                checked={type === 1}
                 disabled
               />
               <label htmlFor="bullying" className="fst-italic">
@@ -73,7 +72,7 @@ function DetailReport({
               type="text"
               className="form-control"
               id="name"
-              value={name}
+              value={user_id ? user_id.name : ""}
               disabled
             />
             <label htmlFor="nim" className="mt-2">
@@ -83,7 +82,7 @@ function DetailReport({
               type="text"
               className="form-control"
               id="nim"
-              value={nim}
+              value={user_id ? user_id.nim : ""}
               disabled
             />
           </div>
@@ -146,14 +145,15 @@ DetailReport.propTypes = {
   description: PropTypes.string.isRequired,
   evidence: PropTypes.string.isRequired,
   is_anonim: PropTypes.bool.isRequired,
-  name: PropTypes.string,
-  nim: PropTypes.string,
+  user_id: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    nim: PropTypes.number.isRequired,
+  }),
   isEdit: PropTypes.bool,
 };
 
 DetailReport.defaultProps = {
-  name: "",
-  nim: "",
+  user_id: null,
   isEdit: false,
 };
 

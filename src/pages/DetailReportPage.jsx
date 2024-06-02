@@ -31,6 +31,8 @@ function DetailReportPage() {
     navigate(`/reports/${reportId}/update`); // Path ke halaman UpdateReport dengan ID laporan
   };
 
+  const isDosen = authUser.role === 1;
+
   if (!reportDetail) {
     return <p>Loading...</p>;
   }
@@ -44,46 +46,73 @@ function DetailReportPage() {
         <div className="card p-3">
           <div className="col-md-13">
             <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
-              <Button
-                marginClass="btn btn-secondary d-flex align-items-center"
-                onClick={handleEditClick}
-              >
-                <IconContext.Provider value={{ size: "25px" }}>
-                  <div>
-                    <MdEdit />
-                  </div>
-                </IconContext.Provider>
-                <p className="m-0 ms-2">Update</p>
-              </Button>
-              <Button
-                marginClass="btn btn-danger d-flex align-items-center"
-                target="#deleteModal"
-              >
-                <IconContext.Provider value={{ size: "25px" }}>
-                  <div>
-                    <MdDeleteForever />
-                  </div>
-                </IconContext.Provider>
-                <p className="m-0 ms-2">Delete</p>
-              </Button>
+              {isDosen && (
+                <p
+                  className={`badge rounded-pill fs-6 ${
+                    reportDetail.status === 0
+                      ? "bg-warning text-dark"
+                      : reportDetail.status === 1
+                      ? "text-bg-primary"
+                      : reportDetail.status === 2
+                      ? "text-bg-success"
+                      : "text-bg-danger"
+                  }`}
+                >
+                  {reportDetail.status === 0
+                    ? "Diterima"
+                    : reportDetail.status === 1
+                    ? "Ditindaklanjuti"
+                    : reportDetail.status === 2
+                    ? "Selesai"
+                    : "Ditolak"}
+                </p>
+              )}
+              {!isDosen && (
+                <Button
+                  marginClass="btn btn-secondary d-flex align-items-center"
+                  onClick={handleEditClick}
+                >
+                  <IconContext.Provider value={{ size: "25px" }}>
+                    <div>
+                      <MdEdit />
+                    </div>
+                  </IconContext.Provider>
+                  <p className="m-0 ms-2">Update</p>
+                </Button>
+              )}
+              {!isDosen && (
+                <Button
+                  marginClass="btn btn-danger d-flex align-items-center"
+                  target="#deleteModal"
+                >
+                  <IconContext.Provider value={{ size: "25px" }}>
+                    <div>
+                      <MdDeleteForever />
+                    </div>
+                  </IconContext.Provider>
+                  <p className="m-0 ms-2">Delete</p>
+                </Button>
+              )}
             </div>
             <div className="card-body">
               <DetailReport {...reportDetail} authUser={authUser.id} />
             </div>
           </div>
         </div>
-        <div className="card p-3 mt-4">
-          <div className="col-md-13">
-            <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
-              <div className="card-body">
-                <StatusReport
-                  status={reportDetail.status}
-                  alasanDitolak={reportDetail.alasanDitolak}
-                />
+        {!isDosen && (
+          <div className="card p-3 mt-4">
+            <div className="col-md-13">
+              <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
+                <div className="card-body">
+                  <StatusReport
+                    status={reportDetail.status}
+                    alasanDitolak={reportDetail.alasanDitolak}
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
       <Modal id="deleteModal" />
     </section>

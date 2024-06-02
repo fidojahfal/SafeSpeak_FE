@@ -6,113 +6,85 @@ import PropTypes from "prop-types";
 import "../../styles/status.css";
 
 const StatusReport = ({ status, alasanDitolak }) => {
+  const renderStatusIcon = (currentStatus) => {
+    switch (currentStatus) {
+      case 0:
+        return <FaCheckCircle size={30} />;
+      case 1:
+        return <BsPersonWorkspace size={30} />;
+      case 2:
+      case 3:
+        return currentStatus === 2 ? (
+          <BiLike size={30} />
+        ) : (
+          <BiDislike size={30} />
+        );
+      default:
+        return null;
+    }
+  };
+
+  const renderStatusText = (currentStatus) => {
+    switch (currentStatus) {
+      case 0:
+        return "Diterima";
+      case 1:
+        return "Ditindaklanjuti";
+      case 2:
+      case 3:
+        return currentStatus === 2 ? "Selesai" : "Ditolak";
+      default:
+        return "Selesai";
+    }
+  };
+
+  const renderStatusInfo = (currentStatus) => {
+    switch (currentStatus) {
+      case 0:
+        return "Laporan kamu sudah masuk ke dalam sistem.";
+      case 1:
+        return "Dosen akan mereview laporan dan mengontak anda via email/nomor telepon untuk penindaklanjutan.";
+      case 2:
+      case 3:
+        return currentStatus === 2
+          ? "Laporan ditandakan selesai. Jika anda merasa ini adalah kesalahan, silahkan kontak safespeak@gmail."
+          : `Lihat alasan penolakan dibawah. Jika anda merasa ini adalah kesalahan, silahkan kontak safespeak@gmail. Alasan Ditolak: ${alasanDitolak}`;
+      default:
+        return "";
+    }
+  };
+
   return (
     <div className="stepper">
       <div className="steps-container">
         <div className="steps">
-          <div className=
-          {`step ${status >= 1 ? "active" : ""}`} id="1">
-            <div className="step-title">
-              <span className="step-number">01</span>
-              <div className="step-text">Diterima</div>
-            </div>
-            <div className={`icon ${status >= 1 ? "active" : ""}`}>
-              <FaCheckCircle size={30} />
-            </div>
-          </div>
-          <div className={`step ${status >= 2 ? "active" : ""}`} id="2">
-            <div className="step-title">
-              <span className="step-number">02</span>
-              <div className="step-text">Ditindaklanjuti</div>
-            </div>
-            <div className={`icon ${status >= 2 ? "active" : ""}`}>
-              <BsPersonWorkspace size={30} />
-            </div>
-          </div>
-          <div
-            className={`step ${
-              status === 3 ? "completed" : status === 4 ? "rejected" : ""
-            }`}
-            id="3"
-          >
-            <div className="step-title">
-              <span className="step-number">03</span>
-              <div className="step-text">
-                {status === 3
-                  ? "Selesai"
-                  : status === 4
-                  ? "Ditolak"
-                  : "Selesai/Ditolak"}
+          {[0, 1, 2].map((step) => (
+            <React.Fragment key={step}>
+              <div
+                className={`step me-2 ms-2 ${status >= step ? "active" : ""}`}
+                id={step}
+              >
+                <div className={`icon ${status >= step ? "active" : ""}`}>
+                  {renderStatusIcon(step)}
+                </div>
+                <div className="step-title">
+                  <div className="step-text">{renderStatusText(step)}</div>
+                </div>
               </div>
-            </div>
-            <div
-              className={`icon ${
-                status === 3 ? "completed" : status === 4 ? "rejected" : ""
-              }`}
-            >
-              {status === 3 ? (
-                <BiLike size={30} />
-              ) : status === 4 ? (
-                <BiDislike size={30} />
-              ) : (
-                <BiLike size={30} />
+              {step < 2 && (
+                <div
+                  className={`step-bar ${status >= step + 1 ? "active" : ""}`}
+                ></div>
               )}
-            </div>
-          </div>
+            </React.Fragment>
+          ))}
         </div>
       </div>
       <div className="stepper-content-container">
-        <div className="stepper-content fade-in" stepper-label="1">
-          {status >= 1 && (
-            <div className="info">Laporan kamu sudah masuk ke dalam sistem</div>
-          )}
-        </div>
-        <div className="stepper-content fade-in" stepper-label="2">
-          {status < 2 ? (
-            <div className="info">
-              Dosen akan mereview laporan dan mengontak anda via email/nomor
-              telepon untuk penindaklanjutan
-            </div>
-          ) : status === 2 ? (
-            <>
-              <div className="info">Dosen sudah memproses laporan</div>
-              {status < 3 && status < 4 && (
-                <div className="info">
-                  Hubungi safespeak@gmail jika belum dikontak untuk
-                  penindaklanjutan
-                </div>
-              )}
-            </>
-          ) : null}
-        </div>
-        <div className="stepper-content fade-in" stepper-label="3">
-          {status < 3 && status < 4 ? (
-            <div className="info">
-              akan menandakan laporan selesai ditindaklanjuti atau ditolak
-              dengan alasan
-            </div>
-          ) : status === 3 ? (
-            <div className="info">
-              Laporan ditandakan selesai
-              <br />
-              Jika anda merasa ini adalah kesalahan, silahkan kontak
-              safespeak@gmail
-            </div>
-          ) : status === 4 ? (
-            <div className="info">
-              Lihat alasan penolakan dibawah
-              <br />
-              Jika anda merasa ini adalah kesalahan, silahkan kontak
-              safespeak@gmail
-            </div>
-          ) : null}
+        <div className="stepper-content fade-in">
+          {renderStatusInfo(status)}
         </div>
       </div>
-      {status === 4 && (
-        <div className="alert alert-danger mt-3">
-          <strong>Alasan Ditolak:</strong> {alasanDitolak}
-        </div>
-      )}
     </div>
   );
 };

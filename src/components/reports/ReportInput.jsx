@@ -18,11 +18,11 @@ function ReportInput({
   submitHandler,
 }) {
   const [titleInput, onTitleInputChange] = useInput(title);
-  const [typeInput, onTypeInputChange] = useInput(type);
+  const [typeInput, onTypeInputChange] = useInput(type ? type.toString() : "");
   const [placeInput, onPlaceInputChange] = useInput(place_report);
   const [dateInput, onDateInputChange] = useInput(date_report);
   const [descriptionInput, onDescriptionInputChange] = useInput(description);
-  const [anonimInput, onAnonimInputChange] = useInput(is_anonim || 0);
+  const [anonimInput, onAnonimInputChange] = useInput(is_anonim ? 1 : 0);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -52,8 +52,8 @@ function ReportInput({
               inputClassName="form-check-input"
               name="type"
               required
-              value="Kekerasan Seksual"
-              checked={typeInput === "Kekerasan Seksual"}
+              value="0"
+              checked={typeInput === "0"}
               onChangeHandler={onTypeInputChange}
             >
               Kekerasan Seksual
@@ -65,8 +65,8 @@ function ReportInput({
               type="radio"
               inputClassName="form-check-input"
               name="type"
-              value="Bullying"
-              checked={typeInput === "Bullying"}
+              value="1"
+              checked={typeInput === "1"}
               onChangeHandler={onTypeInputChange}
             >
               Bullying
@@ -81,7 +81,7 @@ function ReportInput({
             labelClassName=""
             type="checkbox"
             inputClassName="form-check-input"
-            checked={anonimInput}
+            checked={anonimInput === 1}
             onChangeHandler={onAnonimInputChange}
           >
             Anonim

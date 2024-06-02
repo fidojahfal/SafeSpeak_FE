@@ -1,5 +1,5 @@
 import React from "react";
-import {  , useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ProfileView from "../components/profile/ProfileView";
 import ProfileInput from "../components/profile/ProfileInput";
 import Alert from "../components/form/Alert";

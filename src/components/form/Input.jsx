@@ -32,6 +32,7 @@ function Input({
           className={inputClassName}
           onChange={onChangeHandler}
           required={required}
+          value={value}
         ></textarea>
       ) : (
         <input

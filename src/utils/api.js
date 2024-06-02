@@ -180,7 +180,9 @@ export async function insertReport({
 }
 
 export async function getReportById(id) {
-  const response = await fetchWithToken(`${BASE_URL}/reports/${id}`);
+  const response = await fetchWithToken(
+    `http://localhost:3000/v1/reports/${id}`
+  );
   const responseJson = await response.json();
   const {
     message,

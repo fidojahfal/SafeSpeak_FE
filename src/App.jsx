@@ -13,7 +13,7 @@ import HomePage from "./pages/HomePage";
 import Footer from "./components/footer/Footer";
 import AboutPage from "./pages/AboutPage";
 import DetailReportPage from "./pages/DetailReportPage";
-import UpdateReport from "./components/reports/UpdateReports";
+import UpdateReportPage from "./pages/UpdateReportPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Alert from "./components/form/Alert";
 import ReportPage from "./pages/ReportPage";
@@ -79,7 +79,7 @@ function App() {
           ></Route>
           <Route
             path="/reports/:id/update"
-            element={<ProtectedRoute element={<UpdateReport />} />}
+            element={<ProtectedRoute element={<UpdateReportPage />} />}
           ></Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
