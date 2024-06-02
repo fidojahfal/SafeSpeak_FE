@@ -293,7 +293,7 @@ export async function getAllArticles() {
 }
 
 export async function insertArticle({ title, content, image }) {
-  const response = await fetchWithToken(`${BASE_URL}/articles`, {
+  const response = await fetchWithToken(`http://localhost:3000/v1/articles`, {
     method: "POST",
     body: JSON.stringify({ title, content, image }),
     headers: {
