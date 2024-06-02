@@ -1,10 +1,14 @@
-import { insertReport } from "../../utils/api";
-import { hideLoading, showLoading } from "react-redux-loading-bar";
-import { setNotificationActionCreator } from "../notification/action";
+import {
+  getAllreports,
+  getReportsByUserId,
+  insertReport,
+} from '../../utils/api';
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
+import { setNotificationActionCreator } from '../notification/action';
 
 const ActionType = {
-  RECEIVE_REPORTS: "RECEIVE_REPORTS",
-  CREATE_REPORT: "CREATE_REPORT",
+  RECEIVE_REPORTS: 'RECEIVE_REPORTS',
+  CREATE_REPORT: 'CREATE_REPORT',
 };
 
 function receiveReportsActionCreator(reports) {
@@ -22,6 +26,25 @@ function createReportActionCreator(report) {
     payload: {
       report,
     },
+  };
+}
+
+function asyncReceiveReports() {
+  return async (dispatch, getState) => {
+    const { authUser } = getState();
+    dispatch(showLoading());
+    try {
+      let reports;
+      if (authUser.role) {
+        reports = await getAllreports();
+      } else {
+        reports = await getReportsByUserId(authUser._id);
+      }
+      dispatch(receiveReportsActionCreator(reports));
+    } catch (error) {
+      dispatch(setNotificationActionCreator(error.message));
+    }
+    dispatch(hideLoading());
   };
 }
 
@@ -56,4 +79,9 @@ function asyncCreateReport({
   };
 }
 
-export { ActionType, receiveReportsActionCreator, asyncCreateReport };
+export {
+  ActionType,
+  receiveReportsActionCreator,
+  asyncCreateReport,
+  asyncReceiveReports,
+};

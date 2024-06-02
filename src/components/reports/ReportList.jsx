@@ -2,7 +2,7 @@ import React from 'react';
 import ReportItem from './ReportItem';
 import Button from '../form/Button';
 
-function ReportList({ reports, user, onCreate }) {
+function ReportList({ reports, user, onCreate, onDetail }) {
   return (
     <div className="px-xl-5">
       <h3 className="text-primary fw-bold text-center mb-5 mt-3">
@@ -31,7 +31,9 @@ function ReportList({ reports, user, onCreate }) {
         </thead>
         <tbody>
           {reports.length !== 0 ? (
-            reports.map((report) => <ReportItem key={1} {...report} />)
+            reports.map((report) => (
+              <ReportItem key={1} onDetail={onDetail} {...report} />
+            ))
           ) : (
             <tr>
               <td className="text-center" colSpan={3}>
