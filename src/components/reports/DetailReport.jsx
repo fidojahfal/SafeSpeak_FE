@@ -17,6 +17,8 @@ function DetailReport({
   description,
   evidence,
   is_anonim,
+  name,
+  nim,
   isEdit,
 }) {
   const formattedDate = formatDate(date_report);
@@ -24,8 +26,7 @@ function DetailReport({
   return (
     <>
       <h5 className="mb-3">
-        {" "}
-        {title} - <p>{formattedDate}</p>{" "}
+        {title} - <span>{formattedDate}</span>
       </h5>
       <div className="row gy-3 gx-4">
         <div className="col-md-4">
@@ -63,6 +64,30 @@ function DetailReport({
           </label>
           <input type="checkbox" id="anonim" checked={is_anonim} disabled />
         </div>
+        {!is_anonim && (
+          <div className="col-12">
+            <label htmlFor="name" className="">
+              Nama Pengguna
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              value={name}
+              disabled
+            />
+            <label htmlFor="nim" className="mt-2">
+              NIM Pengguna
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="nim"
+              value={nim}
+              disabled
+            />
+          </div>
+        )}
         <div className="col-md-6">
           <label htmlFor="place_report" className="">
             Tempat Kejadian
@@ -80,10 +105,10 @@ function DetailReport({
             Tanggal Kejadian
           </label>
           <input
-            type="date"
+            type="text"
             className="form-control"
             id="date_report"
-            value={date_report}
+            value={formattedDate}
             disabled
           />
         </div>
@@ -121,7 +146,15 @@ DetailReport.propTypes = {
   description: PropTypes.string.isRequired,
   evidence: PropTypes.string.isRequired,
   is_anonim: PropTypes.bool.isRequired,
+  name: PropTypes.string,
+  nim: PropTypes.string,
   isEdit: PropTypes.bool,
+};
+
+DetailReport.defaultProps = {
+  name: "",
+  nim: "",
+  isEdit: false,
 };
 
 export default DetailReport;

@@ -1,30 +1,30 @@
-// import { hideLoading, showLoading } from "react-redux-loading-bar";
-// import api from "../../utils/api";
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { getReportDetail } from "../../utils/api";
 
-// const ActionType = {
-//   RECEIVE_REPORT_DETAIL: "RECEIVE_REPORT_DETAIL",
-// };
+const ActionType = {
+  RECEIVE_REPORT_DETAIL: "RECEIVE_REPORT_DETAIL",
+};
 
-// function receiveReportDetailActionCreator(reportDetail) {
-//   return {
-//     type: ActionType.RECEIVE_REPORT_DETAIL,
-//     payload: {
-//       reportDetail,
-//     },
-//   };
-// }
+function receiveReportDetailActionCreator(reportDetail) {
+  return {
+    type: ActionType.RECEIVE_REPORT_DETAIL,
+    payload: {
+      reportDetail,
+    },
+  };
+}
 
-// function asyncReceiveReportDetail(reportId) {
-//   return async (dispatch) => {
-//     dispatch(showLoading());
-//     try {
-//       const reportDetail = await api.getReportDetail(reportId);
-//       dispatch(receiveReportDetailActionCreator(reportDetail));
-//     } catch (error) {
-//       alert(error.message);
-//     }
-//     dispatch(hideLoading());
-//   };
-// }
+function asyncReceiveReportDetail(reportId) {
+  return async (dispatch) => {
+    dispatch(showLoading());
+    try {
+      const reportDetail = await getReportDetail(reportId);
+      dispatch(receiveReportDetailActionCreator(reportDetail));
+    } catch (error) {
+      alert(error.message);
+    }
+    dispatch(hideLoading());
+  };
+}
 
-// export { ActionType, asyncReceiveReportDetail };
+export { ActionType, asyncReceiveReportDetail };

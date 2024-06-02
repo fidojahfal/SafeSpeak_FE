@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import RegisterInput from "../components/Register Components/RegisterInput";
+import RegisterInput from "../components/register/RegisterInput";
 import { useDispatch } from "react-redux";
 import { asyncRegisterUser } from "../states/user/action.js";
 import { Link } from "react-router-dom";

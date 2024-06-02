@@ -1,44 +1,39 @@
+import React, { useEffect } from "react";
 import Button from "../components/form/Button";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import { IconContext } from "react-icons";
-import { useNavigate } from "react-router-dom";
-// Report Styling
-import "../styles/report.css";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncReceiveReportDetail } from "../states/reportDetail/action";
 import DetailReport from "../components/reports/DetailReport";
-// import React, { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useParams } from "react-router-dom";
-// import { asyncReceiveReportDetail } from "../states/threadDetail/action";
-import "../styles/report.css";
+import StatusReport from "../components/reports/StatusReport";
 import Modal from "../components/form/Modal";
+import "../styles/report.css";
 
 function DetailReportPage() {
   const navigate = useNavigate();
-  // const { reportId } = useParams();
-  // const { reportDetail = null, authUser } = useSelector((states) => states);
+  const { id: reportId } = useParams();
+  const { reportDetail, authUser } = useSelector((states) => ({
+    reportDetail: states.reportDetail,
+    authUser: states.authUser,
+  }));
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(asyncReceiveReportDetail(reportId));
-  // }, [reportId, dispatch]);
+  useEffect(() => {
+    if (reportId) {
+      console.log(`Fetching report details for ID: ${reportId}`);
+      dispatch(asyncReceiveReportDetail(reportId));
+    }
+  }, [reportId, dispatch]);
 
   const handleEditClick = () => {
-    navigate("/reports/detail/update"); // Path ke halaman UpdateReport
+    navigate(`/reports/${reportId}/update`); // Path ke halaman UpdateReport dengan ID laporan
   };
 
-  const formatDate = (date) => {
-    const d = new Date(date);
-    const day = String(d.getDate()).padStart(2, "0");
-    const month = String(d.getMonth() + 1).padStart(2, "0");
-    const year = d.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
-
-  // Contoh tanggal dan file
-  const reportDate = new Date();
-  const formattedDate = formatDate(reportDate);
-  const uploadedFile = "foto_pesan_pelaku.pdf";
+  if (!reportDetail) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <section className="bg-yellow-100 p-4 position-relative">
@@ -73,22 +68,24 @@ function DetailReportPage() {
               </Button>
             </div>
             <div className="card-body">
-              <DetailReport />
-              {/* {...reportDetail}
-              authUser = {authUser.id}
-              /> */}
+              <DetailReport {...reportDetail} authUser={authUser.id} />
+            </div>
+          </div>
+        </div>
+        <div className="card p-3 mt-4">
+          <div className="col-md-13">
+            <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
+              <div className="card-body">
+                <StatusReport
+                  status={reportDetail.status}
+                  alasanDitolak={reportDetail.alasanDitolak}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <Modal
-        body="Apakah anda yakin ingin menghapus laporan ini? Anda tidak dapat memulihkan laporan."
-        title="Konfirmasi Hapus Laporan"
-        cancel="Batal"
-        confirm="Hapus"
-        onConfirm={() => {}}
-        variant="btn-danger"
-      />
+      <Modal id="deleteModal" />
     </section>
   );
 }
