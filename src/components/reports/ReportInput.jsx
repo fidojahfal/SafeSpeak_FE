@@ -26,9 +26,18 @@ function ReportInput({
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    console.log({
+      title: titleInput,
+      type: Number(typeInput),
+      place_report: placeInput,
+      date_report: dateInput,
+      description: descriptionInput,
+      evidence: "temporary",
+      is_anonim: anonimInput,
+    });
     submitHandler({
       title: titleInput,
-      type: typeInput,
+      type: Number(typeInput),
       place_report: placeInput,
       date_report: dateInput,
       description: descriptionInput,
@@ -42,7 +51,7 @@ function ReportInput({
       <h5 className="mb-3">{isEdit ? "Ubah Laporan" : "Buat Laporan"}</h5>
       <div className="row gy-3 gx-4">
         <div className="col-md-4">
-          <p className="mb-2">Jenis Kejadian</p>
+          <p className="mb-2 form-blue-label-semibold">Jenis Kejadian</p>
           <div className="d-flex">
             <Input
               divClassName="form-check me-4"
@@ -74,7 +83,7 @@ function ReportInput({
           </div>
         </div>
         <div className="col-md-8">
-          <p className="mb-2">Kirim Secara Anonim*</p>
+          <p className="mb-2 form-blue-label-semibold">Kirim Secara Anonim*</p>
           <Input
             divClassName="form-check"
             labelAndId="anonim"
@@ -90,7 +99,6 @@ function ReportInput({
         <Input
           divClassName="col-md-4"
           labelAndId="judul"
-          labelClassName=""
           type="text"
           value={titleInput}
           onChangeHandler={onTitleInputChange}
@@ -101,7 +109,6 @@ function ReportInput({
         <Input
           divClassName="col-md-4"
           labelAndId="place_report"
-          labelClassName=""
           type="text"
           value={placeInput}
           onChangeHandler={onPlaceInputChange}
@@ -112,7 +119,6 @@ function ReportInput({
         <Input
           divClassName="col-md-4"
           labelAndId="date_report"
-          labelClassName=""
           type="date"
           value={dateInput}
           onChangeHandler={onDateInputChange}
@@ -123,7 +129,6 @@ function ReportInput({
         <Input
           divClassName="col-12"
           labelAndId="deskripsi"
-          labelClassName=""
           type="textarea"
           inputClassName="form-control deskripsi"
           value={descriptionInput}
@@ -133,7 +138,7 @@ function ReportInput({
           Deskripsi Kejadian
         </Input>
         <div className="col-12">
-          <p className="mb-2">Bukti</p>
+          <p className="mb-2 form-blue-label-semibold">Bukti</p>
           <Button marginClass="d-flex align-items-center">
             <IconContext.Provider value={{ size: "25px" }}>
               <div>

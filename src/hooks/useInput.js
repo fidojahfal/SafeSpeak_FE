@@ -13,6 +13,8 @@ export function useInput(defaultValue = "") {
       const date = new Date(event.target.value);
       const formattedDate = moment(date).format("YYYY-MM-DD");
       setValue(formattedDate);
+    } else if (event.target.type === "file") {
+      setValue(event.target.files[0]);
     } else {
       setValue(event.target.value);
     }

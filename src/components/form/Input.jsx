@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 function Input({
   divClassName,
   labelAndId,
-  labelClassName = "form-blue-label",
+  labelClassName = "form-blue-label-semibold",
   children,
   type,
   inputClassName = "form-control",
@@ -40,9 +40,11 @@ function Input({
           className={inputClassName}
           id={labelAndId}
           placeholder={
-            type !== "checkbox" && type !== "radio" ? placeholder : undefined
+            type !== "checkbox" && type !== "radio" && type !== "file"
+              ? placeholder
+              : undefined
           }
-          value={type !== "checkbox" ? value : undefined}
+          value={type !== "checkbox" && type !== "file" ? value : undefined}
           onChange={onChangeHandler}
           disabled={disabled}
           checked={

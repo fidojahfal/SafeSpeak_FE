@@ -15,8 +15,8 @@ import AboutPage from "./pages/AboutPage";
 import DetailReportPage from "./pages/DetailReportPage";
 import UpdateReportPage from "./pages/UpdateReportPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Alert from "./components/form/Alert";
 import ReportPage from "./pages/ReportPage";
+import CreateArticlePage from "./pages/CreateArticlePage";
 
 function App() {
   const { authUser, isPreload } = useSelector((states) => states);
@@ -52,7 +52,6 @@ function App() {
         </header>
       )}
       <Loading />
-      <Alert />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -80,6 +79,10 @@ function App() {
           <Route
             path="/reports/:id/update"
             element={<ProtectedRoute element={<UpdateReportPage />} />}
+          ></Route>
+          <Route
+            path="/articles/create"
+            element={<ProtectedRoute element={<CreateArticlePage />} />}
           ></Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />

@@ -21,15 +21,8 @@ function unsetNotificationActionCreator() {
   };
 }
 
-function asyncSetNotification(message) {
-  return async (dispatch) => {
-    await dispatch(setNotificationActionCreator(message));
-  };
-}
-
 export {
   ActionType,
   setNotificationActionCreator,
   unsetNotificationActionCreator,
-  asyncSetNotification,
 };

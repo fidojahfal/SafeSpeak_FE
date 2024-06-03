@@ -11,7 +11,7 @@ const ProtectedRoute = ({ element }) => {
   return authUser ? (
     element
   ) : (
-    <Navigate to="/login" state={{ prevLocation: location }} replace />
+    <Navigate to="/login" state={{ from: location }} replace />
   );
 };
 

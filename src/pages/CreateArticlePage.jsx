@@ -1,45 +1,35 @@
-import React from "react";
+// Article Styling
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import ReportInput from "../components/reports/ReportInput";
-import { asyncCreateReport } from "../states/reports/action";
+import "../styles/article.css";
 import Alert from "../components/form/Alert";
+import ArticleInput from "../components/articles/ArticleInput";
+import { useDispatch } from "react-redux";
+import { asyncCreateArticle } from "../states/articles/action";
 
-// Report Styling
-import "../styles/report.css";
-
-function CreateReportPage() {
+function CreateArticlePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onCreateReport = async ({
-    title,
-    type,
-    place_report,
-    date_report,
-    description,
-    evidence,
-    is_anonim,
-  }) => {
+  const onCreateArticle = async ({ title, content, image }) => {
+    console.log({
+      title,
+      content,
+      image,
+    });
     const success = await dispatch(
-      asyncCreateReport({
+      asyncCreateArticle({
         title,
-        type,
-        place_report,
-        date_report,
-        description,
-        evidence,
-        is_anonim,
+        content,
+        image,
       })
     );
-    console.log(success);
     if (success) {
       navigate("/");
     }
   };
 
   return (
-    <section className="bg-yellow-100 p-4">
+    <section className="bg-blue-100 p-4">
       <div className="row">
         <div className="col-lg-auto mx-2 mb-4 mt-1">
           <Link onClick={() => navigate(-1)}>
@@ -50,7 +40,7 @@ function CreateReportPage() {
           <Alert />
           <div className="col-lg card p-3">
             <div className="card-body">
-              <ReportInput submitHandler={onCreateReport} />
+              <ArticleInput submitHandler={onCreateArticle} />
             </div>
           </div>
         </div>
@@ -59,4 +49,4 @@ function CreateReportPage() {
   );
 }
 
-export default CreateReportPage;
+export default CreateArticlePage;

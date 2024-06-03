@@ -7,6 +7,7 @@ import reportsReducer from "./reports/reducer";
 import notificationReducer from "./notification/reducer";
 import reportDetailReducer from "./reportDetail/reducer";
 import updateReportReducer from "./updateReport/reducer";
+import articlesReducer from "./articles/reducer";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     notification: notificationReducer,
     reportDetail: reportDetailReducer,
     updateReport: updateReportReducer,
+    articles: articlesReducer,
   },
 });
 
