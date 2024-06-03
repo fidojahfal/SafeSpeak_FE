@@ -18,7 +18,9 @@ function ReportInput({
   submitHandler,
 }) {
   const [titleInput, onTitleInputChange] = useInput(title);
-  const [typeInput, onTypeInputChange] = useInput(type ? type.toString() : "");
+  const [typeInput, onTypeInputChange] = useInput(
+    type !== undefined ? type.toString() : ""
+  );
   const [placeInput, onPlaceInputChange] = useInput(place_report);
   const [dateInput, onDateInputChange] = useInput(date_report);
   const [descriptionInput, onDescriptionInputChange] = useInput(description);

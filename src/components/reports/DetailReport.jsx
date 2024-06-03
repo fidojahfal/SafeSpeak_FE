@@ -58,10 +58,21 @@ function DetailReport({
           </div>
         </div>
         <div className="col-md-4">
-          <label className="form-check-label" htmlFor="anonim">
-            Anonim
-          </label>
-          <input type="checkbox" id="anonim" checked={is_anonim} disabled />
+          <p className="mb-2">Jenis Kejadian</p>
+          <div className="d-flex">
+            <div className="form-check me-4">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="anonim"
+                checked={is_anonim}
+                disabled
+              />
+              <label className="form-check-label" htmlFor="anonim">
+                Anonim
+              </label>
+            </div>
+          </div>
         </div>
         {!is_anonim && (
           <div className="col-12">

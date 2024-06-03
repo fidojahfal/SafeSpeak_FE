@@ -34,7 +34,7 @@ function DetailReportPage() {
   const isDosen = authUser.role === 1;
 
   if (!reportDetail) {
-    return <p>Loading...</p>;
+    return null;
   }
 
   return (
