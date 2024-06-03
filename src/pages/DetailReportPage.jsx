@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Button from "../components/form/Button";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import { IconContext } from "react-icons";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncReceiveReportDetail } from "../states/reportDetail/action";
 import DetailReport from "../components/reports/DetailReport";
@@ -38,10 +38,12 @@ function DetailReportPage() {
   }
 
   return (
-    <section className="bg-yellow-100 p-4 position-relative">
+    <section className="bg-yellow-100 p-4">
       <div className="row">
-        <div className="col-md-auto mx-2 mb-4 mt-1">
-          <img src="/icons/arrow-left-circle-fill.svg" alt="arrow-left" />
+        <div className="col-lg-auto mx-2 mb-4 mt-1">
+          <Link onClick={() => navigate(-1)}>
+            <img src="/icons/arrow-left-circle-fill.svg" alt="arrow-left" />
+          </Link>
         </div>
         <div className="card p-3">
           <div className="col-md-13">
@@ -99,6 +101,35 @@ function DetailReportPage() {
             </div>
           </div>
         </div>
+        {isDosen && (
+          <div className="dropdown d-flex justify-content-center mt-4">
+            <button
+              className="btn btn-primary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Ubah Status
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <a className="dropdown-item" href="#">
+                  Action
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Another action
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Something else here
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
         {!isDosen && (
           <div className="card p-3 mt-4">
             <div className="col-md-13">
