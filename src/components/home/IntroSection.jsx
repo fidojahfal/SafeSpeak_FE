@@ -1,6 +1,13 @@
 import Button from "../form/Button";
+import { useNavigate } from "react-router-dom";
 
 function IntroSection({ role }) {
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    role ? navigate("/") : navigate("/reports/create");
+  };
+
   return (
     <section>
       <div className="row" style={{ "--bs-gutter-x": "0" }}>
@@ -19,7 +26,11 @@ function IntroSection({ role }) {
                 ? "Baca dan tindak lanjuti laporan mengenai kekerasan seksual atau bullying yang dialami siswa seputar kampus."
                 : "Dosen dan pihak penanganan kekerasan seksual dan bullying kampus siap mendengarkan dan menindaklanjuti laporanmu."}
             </p>
-            <Button type="submit" marginClass="fw-semibold">
+            <Button
+              type="submit"
+              marginClass="fw-semibold"
+              onClickHandler={onClick}
+            >
               {role ? "Lihat Laporan" : "Buat Laporan"}
             </Button>
           </div>
