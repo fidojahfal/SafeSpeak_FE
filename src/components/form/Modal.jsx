@@ -34,6 +34,7 @@ function Modal({ title, body, confirm, cancel, onConfirm, variant }) {
             <button
               type="button"
               className={`btn ${variant}`}
+              data-bs-dismiss="modal"
               onClick={onConfirm}
             >
               {confirm}
