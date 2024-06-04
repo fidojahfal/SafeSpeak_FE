@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../form/Button';
 import ReportStatus from './ReportStatus';
 
-function ReportItem({ title, id, status, onDetail }) {
+function ReportItem({ title, _id, status, onDetail }) {
   return (
     <tr>
       <td>{title}</td>
@@ -10,7 +10,10 @@ function ReportItem({ title, id, status, onDetail }) {
         <ReportStatus status={status} />
       </td>
       <td>
-        <Button primaryOrOutline="secondary" onClickHandler={onDetail}>
+        <Button
+          primaryOrOutline="secondary"
+          onClickHandler={() => onDetail(_id)}
+        >
           Detail
         </Button>
       </td>
