@@ -1,27 +1,31 @@
-import FooterSection from "./FooterSection";
+import { useSelector } from 'react-redux';
+import FooterSection from './FooterSection';
 
-function Footer() {
+function Footer({ onLoading }) {
+  if (onLoading) {
+    return null;
+  }
   const mapGithub = new Map([
-    ["Github Frontend", "#"],
-    ["Github Backend", "#"],
+    ['Github Frontend', '#'],
+    ['Github Backend', '#'],
   ]);
 
   const mapResources = new Map([
-    ["Icons8", "#"],
-    ["Bootstrap", "#"],
-    ["React", "#"],
+    ['Icons8', '#'],
+    ['Bootstrap', '#'],
+    ['React', '#'],
   ]);
 
   const mapDevelopers = new Map([
-    ["Fido Jahfal Prayoga", "#"],
-    ["Giovillando", "#"],
-    ["Shabrina Nurmalitasari", "#"],
+    ['Fido Jahfal Prayoga', '#'],
+    ['Giovillando', '#'],
+    ['Shabrina Nurmalitasari', '#'],
   ]);
 
   return (
     <footer
       className="row p-5 footer-box-shadow"
-      style={{ "--bs-gutter-x": "0" }}
+      style={{ '--bs-gutter-x': '0' }}
     >
       <div className="col-lg-7 mb-3">
         <div className="d-flex align-items-center pe-2">
