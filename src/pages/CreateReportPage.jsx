@@ -34,7 +34,7 @@ function CreateReportPage() {
     );
     console.log(success);
     if (success) {
-      navigate("/");
+      navigate("/reports");
     }
   };
 
