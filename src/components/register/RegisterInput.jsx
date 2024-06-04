@@ -31,48 +31,38 @@ function RegisterInput({ register }) {
       }
     >
       <Input
-        labelAndId="username"
-        labelClassName="form-blue-label"
-        type="text"
-        value={username}
-        onChangeHandler={onUsernameChange}
-        placeholder="Username"
-        required
-        minLength="5"
-      >
-        Username
-      </Input>
-      <Input
-        labelAndId="password"
-        labelClassName="form-blue-label"
-        type="password"
-        value={password}
-        onChangeHandler={onPasswordChange}
-        placeholder="Password"
-        required
-        minLength="8"
-      >
-        Password
-      </Input>
-      <Input
         labelAndId="name"
         labelClassName="form-blue-label"
         type="text"
         value={name}
         onChangeHandler={onNameChange}
-        placeholder="Name"
+        placeholder="Masukkan nama lengkap kamu"
         required
         minLength="5"
       >
-        Name
+        Nama Lengkap
       </Input>
+
+      <Input
+        labelAndId="username"
+        labelClassName="form-blue-label"
+        type="text"
+        value={username}
+        onChangeHandler={onUsernameChange}
+        placeholder="Masukkan username yang diinginkan"
+        required
+        minLength="5"
+      >
+        Username
+      </Input>
+
       <Input
         labelAndId="nim"
         labelClassName="form-blue-label"
         type="number"
         value={nim}
         onChangeHandler={onNimChange}
-        placeholder="nim"
+        placeholder="Masukkan NIM kamu"
         min="0"
         max="999999999999"
         required
@@ -86,7 +76,7 @@ function RegisterInput({ register }) {
         type="email"
         value={email}
         onChangeHandler={onEmailChange}
-        placeholder="Email"
+        placeholder="Masukkan email kamu"
         required
       >
         Email
@@ -98,7 +88,7 @@ function RegisterInput({ register }) {
         type="text"
         value={jurusan}
         onChangeHandler={onJurusanChange}
-        placeholder="Jurusan"
+        placeholder="Masukkan jurusan kamu"
         required
         minLength="5"
       >
@@ -111,13 +101,27 @@ function RegisterInput({ register }) {
         type="text"
         value={telepon}
         onChangeHandler={onTeleponChange}
-        placeholder="Telepon"
+        placeholder="Masukkan nomor telepon kamu"
         required
         minLength="10"
         maxLength="13"
       >
-        Telepon
+        Nomor Telepon
       </Input>
+
+      <Input
+        labelAndId="password"
+        labelClassName="form-blue-label"
+        type="password"
+        value={password}
+        onChangeHandler={onPasswordChange}
+        placeholder="Masukkan password kamu"
+        required
+        minLength="8"
+      >
+        Password
+      </Input>
+
       <Button type="submit" marginClass="mt-3 w-100">
         Register
       </Button>
