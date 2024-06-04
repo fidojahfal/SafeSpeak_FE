@@ -1,9 +1,9 @@
-import { IconContext } from "react-icons";
-import Button from "../form/Button";
-import Input from "../form/Input";
-import { MdOutlineFileUpload } from "react-icons/md";
-import { useInput } from "../../hooks/useInput";
-import { uploadImage } from "../../utils/api";
+import { IconContext } from 'react-icons';
+import Button from '../form/Button';
+import Input from '../form/Input';
+import { MdOutlineFileUpload } from 'react-icons/md';
+import { useInput } from '../../hooks/useInput';
+// import { uploadImage } from "../../utils/api";
 
 function ArticleInput({ title, content, image, isEdit, submitHandler }) {
   const [titleInput, onTitleInputChange] = useInput(title);
@@ -21,7 +21,7 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <h5 className="mb-3">{isEdit ? "Ubah Artikel" : "Buat Artikel"}</h5>
+      <h5 className="mb-3">{isEdit ? 'Ubah Artikel' : 'Buat Artikel'}</h5>
       <div className="row gy-3 gx-4">
         <Input
           divClassName="col-12"
