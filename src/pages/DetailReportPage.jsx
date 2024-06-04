@@ -9,6 +9,7 @@ import DetailReport from "../components/reports/DetailReport";
 import StatusReport from "../components/reports/StatusReport";
 import Modal from "../components/form/Modal";
 import "../styles/report.css";
+import StatusDropdown from "../components/reports/StatusDropdown";
 
 function DetailReportPage() {
   const navigate = useNavigate();
@@ -102,33 +103,7 @@ function DetailReportPage() {
           </div>
         </div>
         {isDosen && (
-          <div className="dropdown d-flex justify-content-center mt-4">
-            <button
-              className="btn btn-primary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Ubah Status
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </li>
-            </ul>
-          </div>
+          <StatusDropdown status={reportDetail.status} id={reportId} />
         )}
         {!isDosen && (
           <div className="card p-3 mt-4">

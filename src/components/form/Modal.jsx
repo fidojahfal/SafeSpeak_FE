@@ -1,10 +1,18 @@
-import React from 'react';
+import React from "react";
 
-function Modal({ title, body, confirm, cancel, onConfirm, variant }) {
+function Modal({
+  id = "deleteModal",
+  title,
+  body,
+  confirm,
+  cancel,
+  onConfirm,
+  variant,
+}) {
   return (
     <div
       className="modal fade"
-      id="deleteModal"
+      id={id}
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -35,6 +43,7 @@ function Modal({ title, body, confirm, cancel, onConfirm, variant }) {
               type="button"
               className={`btn ${variant}`}
               onClick={onConfirm}
+              data-bs-dismiss="modal"
             >
               {confirm}
             </button>

@@ -1,10 +1,12 @@
 // states/updateReport/action.js
 import { hideLoading, showLoading } from "react-redux-loading-bar";
-import { getReportById, updateReport } from "../../utils/api";
+import { getReportById, updateReport, updateStatus } from "../../utils/api";
+import { setNotificationActionCreator } from "../notification/action";
 
 const ActionType = {
   RECEIVE_UPDATE_REPORT_DETAIL: "RECEIVE_UPDATE_REPORT_DETAIL",
   UPDATE_REPORT: "UPDATE_REPORT",
+  UPDATE_STATUS_REPORT: "UPDATE_STATUS_REPORT",
 };
 
 function receiveUpdateReportDetailActionCreator(reportDetail) {
@@ -21,6 +23,16 @@ function updateReportActionCreator(reportDetail) {
     type: ActionType.UPDATE_REPORT,
     payload: {
       reportDetail,
+    },
+  };
+}
+
+function updateStatusReportActionCreator({ status, reason }) {
+  return {
+    type: ActionType.UPDATE_STATUS_REPORT,
+    payload: {
+      status,
+      reason,
     },
   };
 }
@@ -53,4 +65,22 @@ function asyncUpdateReport(report) {
   };
 }
 
-export { ActionType, asyncReceiveUpdateReportDetail, asyncUpdateReport };
+function asyncUpdateReportStatus(id, status, reason) {
+  return async (dispatch) => {
+    dispatch(showLoading());
+    try {
+      await updateStatus({ id, status, reason });
+      dispatch(updateStatusReportActionCreator({ status, reason }));
+    } catch (error) {
+      dispatch(setNotificationActionCreator(error.message));
+    }
+    dispatch(hideLoading());
+  };
+}
+
+export {
+  ActionType,
+  asyncReceiveUpdateReportDetail,
+  asyncUpdateReport,
+  asyncUpdateReportStatus,
+};
