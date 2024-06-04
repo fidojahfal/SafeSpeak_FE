@@ -5,23 +5,17 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function StatusDropdown({ id, status }) {
+function StatusDropdown({ id, status, onChangeStatus }) {
   console.log(id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [selectedNextStatus, setSelectedNextStatus] = useState();
 
-  console.log(selectedNextStatus);
+  // console.log(selectedNextStatus);
 
   const onSelectNextStatus = (nextStatus) => {
     setSelectedNextStatus(nextStatus);
-  };
-
-  const onChangeStatus = (nextStatus, reason) => {
-    console.log("nextStatus", nextStatus);
-    dispatch(asyncUpdateReportStatus(id, nextStatus, reason));
-    navigate(`/reports/${id}/detail`);
   };
 
   return (
@@ -40,8 +34,7 @@ function StatusDropdown({ id, status }) {
             <li>
               <Button
                 marginClass="dropdown-item"
-                target="#updateStatusModal"
-                onClickHandler={() => onSelectNextStatus("1")}
+                onClickHandler={() => onChangeStatus(1)}
               >
                 Ditindaklanjuti
               </Button>
@@ -53,7 +46,7 @@ function StatusDropdown({ id, status }) {
                 <Button
                   marginClass="dropdown-item"
                   target="#updateStatusModal"
-                  onClickHandler={() => onSelectNextStatus("2")}
+                  onClickHandler={() => onSelectNextStatus(2)}
                 >
                   Selesai
                 </Button>
@@ -62,7 +55,7 @@ function StatusDropdown({ id, status }) {
                 <Button
                   marginClass="dropdown-item"
                   target="#updateStatusModal"
-                  onClickHandler={() => onSelectNextStatus("3")}
+                  onClickHandler={() => onSelectNextStatus(3)}
                 >
                   Ditolak
                 </Button>

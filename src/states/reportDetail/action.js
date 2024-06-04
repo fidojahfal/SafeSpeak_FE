@@ -43,8 +43,8 @@ function asyncUpdateReportStatus(id, status, reason) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      console.log("in asyncUpdateReportStatus");
-      await updateStatus({ id, status, reason });
+      console.log(id);
+      await updateStatus({ id, status });
       dispatch(updateStatusReportActionCreator({ status, reason }));
     } catch (error) {
       dispatch(setNotificationActionCreator(error.message));

@@ -5,7 +5,6 @@ import { getReportById, updateReport } from "../../utils/api";
 const ActionType = {
   RECEIVE_UPDATE_REPORT_DETAIL: "RECEIVE_UPDATE_REPORT_DETAIL",
   UPDATE_REPORT: "UPDATE_REPORT",
-  UPDATE_STATUS_REPORT: "UPDATE_STATUS_REPORT",
 };
 
 function receiveUpdateReportDetailActionCreator(reportDetail) {

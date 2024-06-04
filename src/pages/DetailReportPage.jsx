@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveReportDetail } from "../states/reportDetail/action";
+import {
+  asyncReceiveReportDetail,
+  asyncUpdateReportStatus,
+} from "../states/reportDetail/action";
 import DetailReport from "../components/reports/DetailReport";
 import StatusReport from "../components/reports/StatusReport";
 import Modal from "../components/form/Modal";
@@ -14,10 +17,7 @@ import StatusDropdown from "../components/reports/StatusDropdown";
 function DetailReportPage() {
   const navigate = useNavigate();
   const { id: reportId } = useParams();
-  const { reportDetail, authUser } = useSelector((states) => ({
-    reportDetail: states.reportDetail,
-    authUser: states.authUser,
-  }));
+  const { reportDetail = null, authUser } = useSelector((states) => states);
 
   const dispatch = useDispatch();
 
@@ -36,6 +36,12 @@ function DetailReportPage() {
   const onDeleteHandler = () => {
     dispatch(asyncDeleteReport(reportId));
     navigate("/reports");
+  };
+
+  const onChangeStatusHandler = (nextStatus, reason = "") => {
+    console.log("nextStatus", nextStatus);
+    dispatch(asyncUpdateReportStatus(reportId, nextStatus, reason));
+    navigate(`/reports/${reportId}/detail`);
   };
 
   const isDosen = authUser.role === 1;
@@ -65,7 +71,11 @@ function DetailReportPage() {
             </div>
           </div>
           {isDosen && (
-            <StatusDropdown status={reportDetail.status} id={reportId} />
+            <StatusDropdown
+              status={reportDetail.status}
+              id={reportId}
+              onChangeStatus={onChangeStatusHandler}
+            />
           )}
           {!isDosen && (
             <div className="card p-3 mt-4">
