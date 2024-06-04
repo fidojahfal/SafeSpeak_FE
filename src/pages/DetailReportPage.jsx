@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
-import Button from "../components/form/Button";
-import { MdEdit, MdDeleteForever } from "react-icons/md";
-import { IconContext } from "react-icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncReceiveReportDetail } from "../states/reportDetail/action";
 import DetailReport from "../components/reports/DetailReport";
 import StatusReport from "../components/reports/StatusReport";
 import Modal from "../components/form/Modal";
+import AlasanDitolak from "../components/reports/AlasanDitolak";
 import "../styles/report.css";
 import StatusDropdown from "../components/reports/StatusDropdown";
+import Alert from "../components/form/Alert";
 
 function DetailReportPage() {
   const navigate = useNavigate();
@@ -30,6 +29,7 @@ function DetailReportPage() {
 
   const handleEditClick = () => {
     navigate(`/reports/${reportId}/update`); // Path ke halaman UpdateReport dengan ID laporan
+    console.log(`Navigating to update page for report ID: ${reportId}`);
   };
 
   const isDosen = authUser.role === 1;
@@ -46,79 +46,47 @@ function DetailReportPage() {
             <img src="/icons/arrow-left-circle-fill.svg" alt="arrow-left" />
           </Link>
         </div>
-        <div className="card p-3">
-          <div className="col-md-13">
-            <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
-              {isDosen && (
-                <p
-                  className={`badge rounded-pill fs-6 ${
-                    reportDetail.status === 0
-                      ? "bg-warning text-dark"
-                      : reportDetail.status === 1
-                      ? "text-bg-primary"
-                      : reportDetail.status === 2
-                      ? "text-bg-success"
-                      : "text-bg-danger"
-                  }`}
-                >
-                  {reportDetail.status === 0
-                    ? "Diterima"
-                    : reportDetail.status === 1
-                    ? "Ditindaklanjuti"
-                    : reportDetail.status === 2
-                    ? "Selesai"
-                    : "Ditolak"}
-                </p>
-              )}
-              {!isDosen && (
-                <Button
-                  marginClass="btn btn-secondary d-flex align-items-center"
-                  onClick={handleEditClick}
-                >
-                  <IconContext.Provider value={{ size: "25px" }}>
-                    <div>
-                      <MdEdit />
-                    </div>
-                  </IconContext.Provider>
-                  <p className="m-0 ms-2">Update</p>
-                </Button>
-              )}
-              {!isDosen && (
-                <Button
-                  marginClass="btn btn-danger d-flex align-items-center"
-                  target="#deleteModal"
-                >
-                  <IconContext.Provider value={{ size: "25px" }}>
-                    <div>
-                      <MdDeleteForever />
-                    </div>
-                  </IconContext.Provider>
-                  <p className="m-0 ms-2">Delete</p>
-                </Button>
-              )}
-            </div>
+        <div className="col-lg-11">
+          <Alert />
+          <div className="col-lg card p-3">
             <div className="card-body">
-              <DetailReport {...reportDetail} authUser={authUser.id} />
+              <DetailReport
+                {...reportDetail}
+                authUser={authUser.id}
+                isDosen={isDosen}
+                handleEditClick={handleEditClick}
+              />
             </div>
           </div>
-        </div>
-        {isDosen && (
-          <StatusDropdown status={reportDetail.status} id={reportId} />
-        )}
-        {!isDosen && (
-          <div className="card p-3 mt-4">
-            <div className="col-md-13">
-              <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
-                <div className="card-body">
-                  <StatusReport
-                    status={reportDetail.status}
-                    alasanDitolak={reportDetail.alasanDitolak}
-                  />
+          {isDosen && (
+            <StatusDropdown status={reportDetail.status} id={reportId} />
+          )}
+          {!isDosen && (
+            <div className="card p-3 mt-4">
+              <div className="col-md-13">
+                <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
+                  <div className="card-body">
+                    <StatusReport status={reportDetail.status} />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+          {!isDosen && reportDetail.status === 3 && (
+            <div className="card p-3 mt-4">
+              <div className="col-md-13">
+                <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
+                  <div className="card-body">
+                    <AlasanDitolak
+                      status={reportDetail.status}
+                      alasanDitolak={reportDetail.alasanDitolak}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <Modal id="deleteModal" />
     </section>
