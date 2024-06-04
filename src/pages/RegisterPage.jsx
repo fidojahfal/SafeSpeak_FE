@@ -29,7 +29,7 @@ function RegisterPage() {
         telepon,
       })
     );
-    navigate("/");
+    navigate("/login");
   };
 
   return (

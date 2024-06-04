@@ -3,7 +3,6 @@ import Button from '../form/Button';
 import Input from '../form/Input';
 import { MdOutlineFileUpload } from 'react-icons/md';
 import { useInput } from '../../hooks/useInput';
-// import { uploadImage } from "../../utils/api";
 
 function ArticleInput({ title, content, image, isEdit, submitHandler }) {
   const [titleInput, onTitleInputChange] = useInput(title);
