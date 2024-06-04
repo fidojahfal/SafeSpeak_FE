@@ -1,5 +1,6 @@
 :root {
   --blue-500: #0d6efd;
+  --blue-100: #cfe2ff;
   --yellow-500: #ffc107;
   --yellow-100: #fff3cd;
   --gray: #828282;
@@ -11,7 +12,7 @@
 
 .bg-yellow-100 {
   background-color: var(--yellow-100);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .color-yellow {
@@ -30,13 +31,13 @@
   font-weight: bold;
 }
 
-.profile-card {
-  height: 90%;
+.form-blue-label {
+  font-weight: bold;
+  color: var(--blue-500);
 }
 
-.form-profile-label {
-  font-size: 20px;
-  font-weight: bold;
+.form-blue-label-semibold {
+  font-weight: 500;
   color: var(--blue-500);
 }
 
@@ -49,7 +50,7 @@
   display: block;
   width: 100%;
   padding: 12px 8px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   border-radius: 8px; /* Mengatur border radius */
   border: 2px solid var(--blue-500);
@@ -105,16 +106,16 @@
 }
 
 .register-page__main {
-    text-align: left;
-    padding-left: 64px;
-    padding-right: 64px;
-    padding-bottom: 64px;
-    margin-top: 5vh;
+  text-align: left;
+  padding-left: 64px;
+  padding-right: 64px;
+  padding-bottom: 64px;
+  margin-top: 5vh;
 }
 
 .login-page__main h2,
 .register-page__main h2 {
-    text-align: center;
+  text-align: center;
   font-weight: 500;
   font-size: 30px;
   color: #0d6efd;
@@ -142,7 +143,7 @@
   width: 100%;
   padding: 12px 8px;
   margin: 8px 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   border-radius: 4px;
 }
@@ -153,11 +154,120 @@
   border-color: var(--yellow-500);
 }
 
+.Login-image {
+  background-color: #fff3cd;
+  width: 100%; /* Ensures the background covers the full width */
+  height: 100%; /* Ensures the background covers the full height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-image {
+  width: 100%; /* Ensures the background covers the full width */
+  height: 100%; /* Ensures the background covers the full height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: skyblue;
+}
+
+.position-fixed {
+  height: 100vh;
+}
+
+.custom-img-size {
+  max-width: 50%; /* Adjust the value to make the image smaller */
+  height: auto; /* Maintain aspect ratio */
+}
+
 .dropdown-item a {
-    text-decoration: none;
-    color: var(--gray);
+  text-decoration: none;
+  color: var(--gray);
 }
 
 .link-login-register-group a {
-    text-decoration-color: var(--gray);
+  text-decoration-color: var(--gray);
+}
+
+.Mahasiswa-page {
+  padding: 0;
+  width: 100vw; /* Full width of the viewport */
+  margin: 0; /* Remove default margin */
+  overflow-x: hidden; /* Add padding to the top and bottom */
+}
+
+.Mahasiswa-page .row {
+  margin-left: 0; /* Remove row margin */
+}
+
+.Mahasiswa-page h1 {
+  font-size: 2.5rem; /* Increase the font size of the headings */
+  font-weight: bold; /* Make the headings bold */
+  color: #0d6efd; /* Add space below the headings */
+}
+
+.Mahasiswa-page p {
+  font-size: 1.125rem; /* Increase the font size of the paragraph */
+  margin-bottom: 0; /* Add space below the paragraph */
+  color: #333;
+  font-weight: 400; /* Darker color for better readability */
+}
+
+.beranda-page__hero img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 0;
+}
+
+.image-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* Align the image to the left */
+}
+
+.laporan-jumlah-section p,
+.laporan-jumlah-section h1 {
+  text-align: center; /* Center align text */
+  margin-bottom: 1rem;
+  margin-left: 10px;
+  margin-right: 10px; /* Add margin below text */
+}
+
+/* .mt-3 {
+  margin-top: 1rem !important;
+} */
+
+.w-100 {
+  width: 100% !important;
+}
+
+.footer-box-shadow {
+  box-shadow: 0 -0.1em 0.3em rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .Mahasiswa-page h1 {
+    font-size: 1.75rem;
+  }
+
+  .Mahasiswa-page p {
+    font-size: 1rem;
+  }
+  .beranda-page__hero img {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .Mahasiswa-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .Mahasiswa-page p {
+    font-size: 0.875rem;
+  }
+  .beranda-page__hero img {
+    margin-top: 1rem;
+  }
 }

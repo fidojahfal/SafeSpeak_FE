@@ -7,7 +7,21 @@ function Button({
   marginClass = '',
   children,
   onClickHandler = () => {},
+  target,
 }) {
+  if (target) {
+    return (
+      <button
+        type={type}
+        className={`btn btn-${primaryOrOutline} ${marginClass}`}
+        onClick={onClickHandler}
+        data-bs-toggle="modal"
+        data-bs-target={target}
+      >
+        {children}
+      </button>
+    );
+  }
   return (
     <button
       type={type}

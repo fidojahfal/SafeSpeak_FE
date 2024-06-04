@@ -1,9 +1,9 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import RegisterInput from '../components/Register Components/RegisterInput';
-import { useDispatch } from 'react-redux';
-import { asyncRegisterUser } from '../states/user/action.js';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import RegisterInput from "../components/register/RegisterInput";
+import { useDispatch } from "react-redux";
+import { asyncRegisterUser } from "../states/user/action.js";
+import { Link } from "react-router-dom";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -29,42 +29,47 @@ function RegisterPage() {
         telepon,
       })
     );
-    navigate('/');
+    navigate("/login");
   };
 
   return (
-    <section className="register-page">
-      <div className="register-page__left">
-        <div className="d-flex align-items-center pe-2 ms-3">
-          <img
-            src="/logo/SafeSpeak-Logo.svg"
-            alt="SafeSpeak Logo"
-            className="nav-logo pe-2"
-          />
-          <p className="fs-5 fw-bold m-0 text-primary">SafeSpeak</p>
-        </div>
-        <article className="register-page__main">
-          <h2>
-            <strong>Sign Up</strong>
-          </h2>
-          <h3>Silahkan daftar untuk bisa mengakses fitur Lapor</h3>
-          <RegisterInput register={onRegister} />
-          <div className="d-flex align-items-center mt-4 link-login-register-group">
-            <p className="m-0 text-secondary">Sudah memiliki akun?</p>
-            <Link to="/" className="ms-1">
-              <p className="m-0 text-secondary fw-bold">Login</p>
-            </Link>
+    <div className="container-fluid min-vh-100 d-flex flex-column">
+      <div className="row flex-grow-1 align-items-center">
+        <div className="col-lg-6 d-flex flex-column justify-content-center p-5 position-relative mb-5">
+          <div className="d-flex align-items-center ps-2 position-absolute top-0 start-0 mt-3 ms-3 mb-5">
+            <img
+              src="/logo/SafeSpeak-Logo.svg"
+              alt="SafeSpeak Logo"
+              className="me-2"
+              style={{ width: "35px" }}
+            />
+            <p className="fs-5 fw-bold text-primary m-0">SafeSpeak</p>
           </div>
-        </article>
+          <div className="py-5">
+            <h4 className="text-center text-primary fw-bold">Sign Up</h4>
+            <p className="text-center text-primary">
+              Silahkan daftar untuk bisa mengakses fitur Lapor
+            </p>
+            <RegisterInput register={onRegister} />
+            <div className="d-flex align-items-center mt-4 justify-content-center">
+              <p className="m-0 text-secondary">Sudah memiliki akun?</p>
+              <Link to="/login" className="ms-1 text-secondary fw-bold">
+                Login
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-6 d-none d-lg-flex justify-content-center align-items-center bg-light-custom position-fixed top-0 end-0 min-vh-100 gx-0">
+          <div className="register-image container w-125 h-125 d-flex justify-content-center align-items-center">
+            <img
+              src="/img/SignIn.png"
+              className="custom-img-size"
+              alt="Register"
+            />
+          </div>
+        </div>
       </div>
-      <div className="register-page__right">
-        <header className="register-page__hero">
-          <h1>
-            <img src="/img/SignIn.png" width="415" height="380"></img>
-          </h1>
-        </header>
-      </div>
-    </section>
+    </div>
   );
 }
 

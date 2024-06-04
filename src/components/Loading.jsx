@@ -1,10 +1,10 @@
-import React from 'react';
-import LoadingBar from 'react-redux-loading-bar';
+import React from "react";
+import LoadingBar from "react-redux-loading-bar";
 
 function Loading() {
   return (
     <div className="loading" color="black">
-      <LoadingBar />
+      <LoadingBar style={{ backgroundColor: "#FFCD39" }} />
     </div>
   );
 }

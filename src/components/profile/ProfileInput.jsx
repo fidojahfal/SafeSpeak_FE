@@ -32,55 +32,65 @@ function ProfileInput({
     <form onSubmit={onSubmitHandler}>
       <div className="row gy-3 gx-5">
         <Input
-          colsize="5"
+          divClassName="col-md-5"
           labelAndId="name"
           type="text"
-          val={nameInput}
+          value={nameInput}
           onChangeHandler={onNameInputChange}
+          required
         >
           Nama
         </Input>
         <Input
-          colsize="5"
+          divClassName="col-md-5"
           labelAndId="jurusan"
           type="text"
-          val={jurusanInput}
+          value={jurusanInput}
           onChangeHandler={onJurusanInputChange}
+          required
         >
           Jurusan
         </Input>
         <Input
-          colsize="5"
+          divClassName="col-md-5"
           labelAndId="username"
           type="text"
-          val={user_id.username}
+          value={user_id.username}
           disabled
         >
           Username
         </Input>
         <Input
-          colsize="5"
+          divClassName="col-md-5"
           labelAndId="nomor-telp"
           type="text"
-          val={teleponInput}
+          value={teleponInput}
           onChangeHandler={onTeleponInputChange}
+          required
         >
           Nomor Telepon
         </Input>
         <Input
-          colsize="5"
+          divClassName="col-md-5"
           labelAndId="email"
           type="email"
-          val={emailInput}
+          value={emailInput}
           onChangeHandler={onEmailInputChange}
+          required
         >
           Email
         </Input>
-        <Input colsize="5" labelAndId="NIM" type="text" val={nim} disabled>
+        <Input
+          divClassName="col-md-5"
+          labelAndId="NIM"
+          type="text"
+          value={nim}
+          disabled
+        >
           NIM
         </Input>
       </div>
-      <div className="d-flex justify-content-center mt-5">
+      <div className="d-flex flex-column flex-sm-row justify-content-center align-items-center mt-5 gap-3">
         <Button
           type="button"
           primaryOrOutline="outline-warning"

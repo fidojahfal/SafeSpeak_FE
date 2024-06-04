@@ -1,12 +1,13 @@
-import React from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import ProfileView from '../components/profile/ProfileView';
-import ProfileInput from '../components/profile/ProfileInput';
+import React from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import ProfileView from "../components/profile/ProfileView";
+import ProfileInput from "../components/profile/ProfileInput";
+import Alert from "../components/form/Alert";
 
 // Profile Styling
-import '../styles/profile-style.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { asyncReceiveUser, asyncUpdateUser } from '../states/user/action';
+import "../styles/profile-style.css";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncReceiveUser, asyncUpdateUser } from "../states/user/action";
 
 function ProfilePage() {
   const { user = null } = useSelector((states) => states);
@@ -53,15 +54,17 @@ function ProfilePage() {
   // };
 
   // conditional to show ProfileView or ProfileInput based on URL path
-  const isEditing = location.pathname.includes('/edit');
+  const isEditing = location.pathname.includes("/edit");
 
   return (
     <section className="bg-yellow-100 p-3">
       {/* <Alert onClose={handleCloseAlert} /> */}
-      <div className="card profile-card">
-        <div className="card-body p-5">
-          <div className="d-flex align-items-center justify-content-between mb-3">
-            <h3 className="fw-bold color-yellow">Profil</h3>
+      <div className="card">
+        <div className="card-body p-5 profile-card">
+          <div className="d-flex flex-column flex-sm-row align-items-center justify-content-between mb-3">
+            <h3 className="fw-bold color-yellow">
+              {!loading && (isEditing ? "Edit Profil" : "Profil")}
+            </h3>
             {!loading && isEditing && (
               <img
                 src={user.user_id.avatar}

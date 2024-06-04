@@ -2,8 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import Button from "./form/Button";
+import { useNavigate } from "react-router-dom";
 
-function Navigation({ onLogout, profile_id }) {
+function Navigation({ onLogout, authUser }) {
+  const navigate = useNavigate();
+  const goToLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg shadow-sm">
       <div className="container-fluid">
@@ -30,30 +37,92 @@ function Navigation({ onLogout, profile_id }) {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav d-flex w-100 align-items-center">
-            <Link className="nav-link">Beranda</Link>
-            <Link className="nav-link">Laporan</Link>
-            <Link className="nav-link">Artikel</Link>
-            <Link className="nav-link">Tentang</Link>
-            <a
-              className="nav-link ms-auto"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-            >
-              <IconContext.Provider value={{ color: "#ffc107", size: "35px" }}>
-                <div>
-                  <BsPersonCircle />
-                </div>
-              </IconContext.Provider>
-            </a>
-            <ul className="dropdown-menu dropdown-menu-end">
-              <li className="dropdown-item">
-                <Link to={`/profile/${profile_id}`}>Detail</Link>
+            <Link to="/" className="nav-link">
+              Beranda
+            </Link>
+            {authUser && authUser.role === 0 ? (
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Laporan
+                </a>
+                <ul className="dropdown-menu">
+                  <Link className="dropdown-item" to="/reports/create">
+                    Buat Laporan
+                  </Link>
+                  <Link className="dropdown-item" to="/reports">
+                    Lihat Semua Laporan
+                  </Link>
+                </ul>
               </li>
-              <li className="dropdown-item">
-                <Link onClick={() => onLogout()}>Log out</Link>
+            ) : (
+              <Link className="nav-link" to="/reports">
+                Laporan
+              </Link>
+            )}
+            {authUser && authUser.role === 1 ? (
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Artikel
+                </a>
+                <ul className="dropdown-menu">
+                  <Link className="dropdown-item" to="/articles/create">
+                    Buat Artikel
+                  </Link>
+                  <Link className="dropdown-item" to="/articles">
+                    Lihat Semua Artikel
+                  </Link>
+                </ul>
               </li>
-            </ul>
+            ) : (
+              <Link className="nav-link" to="/articles">
+                Artikel
+              </Link>
+            )}
+            <Link className="nav-link" to="/about">
+              Tentang
+            </Link>
+            {authUser ? (
+              <>
+                <a
+                  className="nav-link ms-lg-auto"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  <IconContext.Provider
+                    value={{ color: "#ffc107", size: "35px" }}
+                  >
+                    <div>
+                      <BsPersonCircle />
+                    </div>
+                  </IconContext.Provider>
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end">
+                  <li className="dropdown-item">
+                    {<Link to={`/profile/${authUser._id}`}>Detail</Link>}
+                  </li>
+                  <li className="dropdown-item">
+                    <Link onClick={() => onLogout()}>Log out</Link>
+                  </li>
+                </ul>
+              </>
+            ) : (
+              <Button marginClass="ms-lg-auto" onClickHandler={goToLogin}>
+                Log In
+              </Button>
+            )}
           </div>
         </div>
       </div>

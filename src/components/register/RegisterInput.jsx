@@ -1,9 +1,10 @@
 // RegisterInput.jsx
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import useInput from "../hooks/useInput";
+import { useInput } from "../../hooks/useInput";
 import Input from "../form/Input";
 import Button from "../form/Button";
+import { useInputStringNumberValidation } from "../../hooks/useInputStringNumber";
 
 function RegisterInput({ register }) {
   const [username, onUsernameChange] = useInput("");
@@ -12,7 +13,7 @@ function RegisterInput({ register }) {
   const [nim, onNimChange] = useInput("");
   const [email, onEmailChange] = useInput("");
   const [jurusan, onJurusanChange] = useInput("");
-  const [telepon, onTeleponChange] = useInput("");
+  const [telepon, onTeleponChange] = useInputStringNumberValidation("");
 
   return (
     <form
@@ -30,56 +31,52 @@ function RegisterInput({ register }) {
       }
     >
       <Input
-        labelAndId="username"
+        labelAndId="name"
+        labelClassName="form-blue-label"
         type="text"
-        val={username}
-        onChangeHandler={onUsernameChange}
-        placeholder="Username"
+        value={name}
+        onChangeHandler={onNameChange}
+        placeholder="Masukkan nama lengkap kamu"
         required
-        min="5"
+        minLength="5"
+      >
+        Nama Lengkap
+      </Input>
+
+      <Input
+        labelAndId="username"
+        labelClassName="form-blue-label"
+        type="text"
+        value={username}
+        onChangeHandler={onUsernameChange}
+        placeholder="Masukkan username yang diinginkan"
+        required
+        minLength="5"
       >
         Username
       </Input>
-      <Input
-        labelAndId="password"
-        type="password"
-        val={password}
-        onChangeHandler={onPasswordChange}
-        placeholder="Password"
-        required
-        min="8"
-      >
-        Password
-      </Input>
-      <Input
-        labelAndId="name"
-        type="text"
-        val={name}
-        onChangeHandler={onNameChange}
-        placeholder="Name"
-        required
-        min="5"
-      >
-        Name
-      </Input>
+
       <Input
         labelAndId="nim"
+        labelClassName="form-blue-label"
         type="number"
-        val={nim}
+        value={nim}
         onChangeHandler={onNimChange}
-        placeholder="nim"
-        required
+        placeholder="Masukkan NIM kamu"
         min="0"
+        max="999999999999"
+        required
       >
         NIM
       </Input>
 
       <Input
         labelAndId="email"
+        labelClassName="form-blue-label"
         type="email"
-        val={email}
+        value={email}
         onChangeHandler={onEmailChange}
-        placeholder="Email"
+        placeholder="Masukkan email kamu"
         required
       >
         Email
@@ -87,28 +84,44 @@ function RegisterInput({ register }) {
 
       <Input
         labelAndId="jurusan"
+        labelClassName="form-blue-label"
         type="text"
-        val={jurusan}
+        value={jurusan}
         onChangeHandler={onJurusanChange}
-        placeholder="Jurusan"
+        placeholder="Masukkan jurusan kamu"
         required
-        min="5"
+        minLength="5"
       >
         Jurusan
       </Input>
 
       <Input
         labelAndId="telepon"
+        labelClassName="form-blue-label"
         type="text"
-        val={telepon}
+        value={telepon}
         onChangeHandler={onTeleponChange}
-        placeholder="Telepon"
+        placeholder="Masukkan nomor telepon kamu"
         required
-        min="10"
-        max="13"
+        minLength="10"
+        maxLength="13"
       >
-        Telepon
+        Nomor Telepon
       </Input>
+
+      <Input
+        labelAndId="password"
+        labelClassName="form-blue-label"
+        type="password"
+        value={password}
+        onChangeHandler={onPasswordChange}
+        placeholder="Masukkan password kamu"
+        required
+        minLength="8"
+      >
+        Password
+      </Input>
+
       <Button type="submit" marginClass="mt-3 w-100">
         Register
       </Button>

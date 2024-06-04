@@ -1,8 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit';
-import authUserReducer from './authUser/reducer';
-import userReducer from './user/reducer';
-import isPreloadReducer from './isPreload/reducer';
-import { loadingBarReducer } from 'react-redux-loading-bar';
+import { configureStore } from "@reduxjs/toolkit";
+import authUserReducer from "./authUser/reducer";
+import userReducer from "./user/reducer";
+import isPreloadReducer from "./isPreload/reducer";
+import { loadingBarReducer } from "react-redux-loading-bar";
+import reportsReducer from "./reports/reducer";
+import notificationReducer from "./notification/reducer";
+import reportDetailReducer from "./reportDetail/reducer";
+import updateReportReducer from "./updateReport/reducer";
+import articlesReducer from "./articles/reducer";
+import reportArticleReducer from "./articleDetail/reducer";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +16,12 @@ const store = configureStore({
     user: userReducer,
     isPreload: isPreloadReducer,
     loadingBar: loadingBarReducer,
+    reports: reportsReducer,
+    notification: notificationReducer,
+    reportDetail: reportDetailReducer,
+    updateReport: updateReportReducer,
+    articles: articlesReducer,
+    articleDetail: reportArticleReducer,
   },
 });
 

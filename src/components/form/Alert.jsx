@@ -2,23 +2,32 @@ import React from "react";
 import { IoWarning } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import { PropTypes } from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { unsetNotificationActionCreator } from "../../states/notification/action";
 
-function Alert({
-  message = "A simple warning alert—check it out!",
-  onClose = () => {},
-}) {
+function Alert() {
+  const dispatch = useDispatch();
+  const { notification } = useSelector((state) => state);
+
+  if (!notification) {
+    return null;
+  }
+
+  const onClose = () => {
+    dispatch(unsetNotificationActionCreator());
+  };
+
   return (
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <div className="alert alert-danger d-flex align-items-center" role="alert">
       <IconContext.Provider value={{ color: "#58151C", size: "25px" }}>
         <div className="me-2">
           <IoWarning />
         </div>
       </IconContext.Provider>
-      {message}
+      {notification}
       <button
         type="button"
         className="btn-close ms-auto"
-        data-bs-dismiss="alert"
         aria-label="Close"
         onClick={onClose}
       ></button>

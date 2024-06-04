@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
@@ -8,9 +8,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { asyncIsPreloadProcess } from './states/isPreload/action';
 import { asyncUnsetAuthUser } from './states/authUser/action';
 import Loading from './components/Loading';
+import CreateReportPage from './pages/CreateReportPage';
+import HomePage from './pages/HomePage';
+import Footer from './components/footer/Footer';
+import AboutPage from './pages/AboutPage';
+import DetailReportPage from './pages/DetailReportPage';
+import UpdateReportPage from './pages/UpdateReportPage';
+import ProtectedRoute from './components/ProtectedRoute';
+import ReportPage from './pages/ReportPage';
+import CreateArticlePage from './pages/CreateArticlePage';
 
 function App() {
-  const { authUser, isPreload } = useSelector((states) => states);
+  const { authUser, isPreload, loadingBar } = useSelector((states) => states);
   const dispatch = useDispatch();
   //
   useEffect(() => {
@@ -21,36 +30,65 @@ function App() {
     dispatch(asyncUnsetAuthUser());
   }
 
+  const location = useLocation();
+
+  const showNavbarFooter = !(
+    location.pathname.includes('/login') ||
+    location.pathname.includes('/register')
+  );
+
   if (isPreload) {
     return null;
   }
 
   return (
     <>
-      {!authUser && (
-        <>
-          <main>
-            <Routes>
-              <Route path="/*" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-            </Routes>
-          </main>
-        </>
+      {showNavbarFooter && (
+        <header>
+          <Navigation onLogout={onLogoutHandler} authUser={authUser} />
+        </header>
       )}
-      {authUser && (
-        <>
-          <header>
-            <Navigation onLogout={onLogoutHandler} profile_id={authUser._id} />
-          </header>
-          <Loading />
-          <main>
-            <Routes>
-              <Route path="/profile/:id/edit" element={<ProfilePage />} />
-              <Route path="/profile/:id" element={<ProfilePage />} />
-            </Routes>
-          </main>
-        </>
-      )}
+      <Loading />
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage role={authUser ? authUser.role : 0} />}
+          />
+          <Route path="/about" element={<AboutPage />} />
+          <Route
+            path="/profile/:id/edit"
+            element={<ProtectedRoute element={<ProfilePage />} />}
+          />
+          <Route
+            path="/profile/:id"
+            element={<ProtectedRoute element={<ProfilePage />} />}
+          />
+          <Route
+            path="/reports"
+            element={<ProtectedRoute element={<ReportPage />} />}
+          ></Route>
+          <Route
+            path="/reports/create"
+            element={<ProtectedRoute element={<CreateReportPage />} />}
+          ></Route>
+          <Route
+            path="/reports/:id/detail"
+            element={<ProtectedRoute element={<DetailReportPage />} />}
+          ></Route>
+          <Route
+            path="/reports/:id/update"
+            element={<ProtectedRoute element={<UpdateReportPage />} />}
+          ></Route>
+          <Route
+            path="/articles/create"
+            element={<ProtectedRoute element={<CreateArticlePage />} />}
+          ></Route>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </main>
+      {showNavbarFooter && <Footer onLoading={loadingBar.default} />}
     </>
   );
 }

@@ -1,52 +1,89 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 function Input({
-  colsize,
+  divClassName,
   labelAndId,
-  type,
-  placeholder = '',
-  val = '',
-  onChangeHandler = () => {},
+  labelClassName = "form-blue-label-semibold",
   children,
+  type,
+  inputClassName = "form-control",
+  placeholder = "",
+  value = "",
+  onChangeHandler = () => {},
   disabled,
+  checked,
   required,
+  minLength,
+  maxLength,
   min,
   max,
+  name,
 }) {
   return (
-    <div className={`col-${colsize}`}>
-      <label htmlFor={labelAndId} className="form-profile-label">
+    <div className={divClassName}>
+      <label htmlFor={labelAndId} className={labelClassName}>
         {children}
       </label>
-      <input
-        type={type}
-        className="form-control"
-        id={labelAndId}
-        placeholder={placeholder}
-        value={val}
-        onChange={onChangeHandler}
-        disabled={disabled}
-        min={min}
-        required
-        max={max}
-      />
+      {type === "textarea" ? (
+        <textarea
+          id={labelAndId}
+          placeholder={placeholder}
+          className={inputClassName}
+          onChange={onChangeHandler}
+          required={required}
+          value={value}
+        ></textarea>
+      ) : (
+        <input
+          type={type}
+          className={inputClassName}
+          id={labelAndId}
+          placeholder={
+            type !== "checkbox" && type !== "radio" && type !== "file"
+              ? placeholder
+              : undefined
+          }
+          value={type !== "checkbox" && type !== "file" ? value : undefined}
+          onChange={onChangeHandler}
+          disabled={disabled}
+          checked={
+            type === "checkbox" || type === "radio" ? checked : undefined
+          }
+          required={required}
+          minLength={
+            type !== "checkbox" && type !== "radio" ? minLength : undefined
+          }
+          maxLength={
+            type !== "checkbox" && type !== "radio" ? maxLength : undefined
+          }
+          name={type === "radio" ? name : undefined}
+          min={type === "number" ? min : undefined}
+          max={type === "number" ? max : undefined}
+        />
+      )}
     </div>
   );
 }
 
 Input.propTypes = {
-  colsize: PropTypes.string,
+  divClassName: PropTypes.string,
   labelAndId: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  val: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  onChangeHandler: PropTypes.func,
+  labelClassName: PropTypes.string,
   children: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  inputClassName: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChangeHandler: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  required: PropTypes.bool,
+  checked: PropTypes.bool,
+  required: PropTypes.bool.isRequired,
+  minLength: PropTypes.string,
+  maxLength: PropTypes.string,
   min: PropTypes.string,
   max: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default Input;

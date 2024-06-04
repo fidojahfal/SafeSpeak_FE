@@ -1,8 +1,10 @@
-import { getOwnProfile, login, putAccessToken } from '../../utils/api';
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { getOwnProfile, login, putAccessToken } from "../../utils/api";
+import { setNotificationActionCreator } from "../notification/action";
 
 const ActionType = {
-  SET_AUTH_USER: 'SET_AUTH_USER',
-  UNSET_AUTH_USER: 'UNSET_AUTH_USER',
+  SET_AUTH_USER: "SET_AUTH_USER",
+  UNSET_AUTH_USER: "UNSET_AUTH_USER",
 };
 
 function setAuthUserActionCreator(authUser) {
@@ -25,14 +27,19 @@ function unsetAuthUserActionCreator() {
 
 function asyncSetAuthUser({ username, password }) {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const token = await login({ username, password });
       putAccessToken(token);
 
       const authUser = await getOwnProfile();
       dispatch(setAuthUserActionCreator(authUser));
+      return true;
     } catch (error) {
-      alert(error);
+      dispatch(setNotificationActionCreator(error.message));
+      return false;
+    } finally {
+      dispatch(hideLoading());
     }
   };
 }
@@ -40,7 +47,7 @@ function asyncSetAuthUser({ username, password }) {
 function asyncUnsetAuthUser() {
   return async (dispatch) => {
     dispatch(unsetAuthUserActionCreator());
-    putAccessToken('');
+    putAccessToken("");
   };
 }
 
