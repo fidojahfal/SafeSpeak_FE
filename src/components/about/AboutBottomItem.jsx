@@ -14,7 +14,7 @@ function AboutBottomItem({ name, github, linkedin, src, jobdesk }) {
     >
       <img
         className="rounded-circle card-img-top align-self-center mt-5 mb-3"
-        src="/img/LogIn.png"
+        src={`/img/${src}`}
         style={{ width: '100px' }}
       />
       <div className="card-body">
@@ -25,11 +25,15 @@ function AboutBottomItem({ name, github, linkedin, src, jobdesk }) {
         <div className="d-flex flex-column gap-3 align-items-center">
           <div className="d-flex flex-row gap-2">
             <FaGithub size={30} color="#0d6efd" />{' '}
-            <a href="">github/giovillando</a>
+            <a href={`${github.link}`} target="_blank">
+              github/{github.name}
+            </a>
           </div>
           <div className="d-flex flex-row gap-2">
             <FaLinkedin size={30} color="#0d6efd" />{' '}
-            <a href="">linkedin/giovillando</a>
+            <a href={linkedin.link} target="_blank">
+              linkedin/{linkedin.name}
+            </a>
           </div>
         </div>
       </div>

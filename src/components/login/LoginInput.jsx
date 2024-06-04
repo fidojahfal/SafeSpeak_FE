@@ -26,7 +26,7 @@ function LoginInput({ login }) {
         type="text"
         value={username}
         onChangeHandler={onUsernameChange}
-        placeholder="Username"
+        placeholder="Masukkan username kamu"
         required
         minLength="5"
       >
@@ -39,7 +39,7 @@ function LoginInput({ login }) {
         type="password"
         value={password}
         onChangeHandler={onPasswordChange}
-        placeholder="Password"
+        placeholder="Masukkan password kamu"
         required
         minLength="8"
       >

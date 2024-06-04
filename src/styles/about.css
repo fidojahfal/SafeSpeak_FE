@@ -15,7 +15,14 @@
 @media (min-width: 576px) {
   .about-top-text {
     padding-left: 100px !important;
-    padding-top: 150px !important;
+    padding-top: 50px !important;
+    padding-right: 170px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .about-top-text {
+    padding-left: 100px !important;
     padding-right: 170px !important;
   }
 }

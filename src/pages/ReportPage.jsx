@@ -18,13 +18,10 @@ function ReportPage() {
     navigate('/reports/create');
   }
 
-  function onDetailReportHandler() {
-    navigate(`/reports/${authUser._id}/detail`);
+  function onDetailReportHandler(report_id) {
+    navigate(`/reports/${report_id}/detail`);
   }
 
-  if (reports.length === 0) {
-    return null;
-  }
   return (
     <section className="bg-yellow-100-report p-4 position-relative">
       <div className="card">

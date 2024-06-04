@@ -42,7 +42,7 @@ function UpdateReportPage() {
     };
     console.log("report:", { report });
     dispatch(asyncUpdateReport(report));
-    navigate("/");
+    navigate(`/reports/${reportId}/detail`);
   };
 
   if (!reportDetail) {

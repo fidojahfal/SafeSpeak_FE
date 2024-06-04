@@ -42,6 +42,7 @@ function Modal({
             <button
               type="button"
               className={`btn ${variant}`}
+              data-bs-dismiss="modal"
               onClick={onConfirm}
               data-bs-dismiss="modal"
             >

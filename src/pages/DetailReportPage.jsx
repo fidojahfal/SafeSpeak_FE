@@ -7,8 +7,9 @@ import StatusReport from "../components/reports/StatusReport";
 import Modal from "../components/form/Modal";
 import AlasanDitolak from "../components/reports/AlasanDitolak";
 import "../styles/report.css";
-import StatusDropdown from "../components/reports/StatusDropdown";
 import Alert from "../components/form/Alert";
+import { asyncDeleteReport } from "../states/reports/action";
+import StatusDropdown from "../components/reports/StatusDropdown";
 
 function DetailReportPage() {
   const navigate = useNavigate();
@@ -30,6 +31,11 @@ function DetailReportPage() {
   const handleEditClick = () => {
     navigate(`/reports/${reportId}/update`); // Path ke halaman UpdateReport dengan ID laporan
     console.log(`Navigating to update page for report ID: ${reportId}`);
+  };
+
+  const onDeleteHandler = () => {
+    dispatch(asyncDeleteReport(reportId));
+    navigate("/reports");
   };
 
   const isDosen = authUser.role === 1;
@@ -88,7 +94,15 @@ function DetailReportPage() {
           )}
         </div>
       </div>
-      <Modal id="deleteModal" />
+      <Modal
+        id="deleteModal"
+        body="Apakah anda yakin ingin menghapus laporan ini? Anda tidak dapat memulihkan laporan."
+        title="Konfirmasi Hapus Laporan"
+        cancel="Batal"
+        confirm="Hapus"
+        onConfirm={onDeleteHandler}
+        variant="btn-danger"
+      />
     </section>
   );
 }
