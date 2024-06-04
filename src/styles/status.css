@@ -77,6 +77,10 @@
   animation: fadeIn 0.5s ease-in-out;
 }
 
+.step-info {
+  font-size: smaller;
+}
+
 .step-bar {
   top: 30px; /* Adjust top to be vertically centered */
   left: calc(50% - 20px); /* Adjust left to be horizontally centered */
@@ -88,6 +92,10 @@
 
 .step-bar.active {
   background-color: #007bff; /* Change this color to fit your theme */
+}
+
+.step-text.active {
+  color: #007bff;
 }
 
 @keyframes fadeIn {

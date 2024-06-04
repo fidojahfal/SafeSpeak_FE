@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "../form/Button";
+import { MdEdit, MdDeleteForever } from "react-icons/md";
+import { IconContext } from "react-icons";
 
 const formatDate = (date) => {
   const d = new Date(date);
@@ -18,18 +21,71 @@ function DetailReport({
   evidence,
   is_anonim,
   user_id,
-  isEdit,
+  isDosen,
+  handleEditClick,
+  status,
 }) {
   const formattedDate = formatDate(date_report);
 
   return (
     <>
-      <h5 className="mb-3">
-        {title} - <span>{formattedDate}</span>
-      </h5>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h5>
+          {title} - <span>{formattedDate}</span>
+        </h5>
+        <div className="d-flex align-items-center gap-3">
+          {isDosen && (
+            <p
+              className={`badge rounded-pill fs-6 ${
+                status === 0
+                  ? "bg-warning text-brown"
+                  : status === 1
+                  ? "bg-primary text-white"
+                  : status === 2
+                  ? "text-bg-success"
+                  : "text-bg-danger"
+              }`}
+            >
+              {status === 0
+                ? "Diterima"
+                : status === 1
+                ? "Ditindaklanjuti"
+                : status === 2
+                ? "Selesai"
+                : "Ditolak"}
+            </p>
+          )}
+          {!isDosen && (
+            <>
+              <Button
+                marginClass="btn btn-secondary d-flex align-items-center"
+                onClickHandler={handleEditClick}
+              >
+                <IconContext.Provider value={{ size: "25px" }}>
+                  <div>
+                    <MdEdit />
+                  </div>
+                </IconContext.Provider>
+                <p className="m-0 ms-2">Update</p>
+              </Button>
+              <Button
+                marginClass="btn btn-danger d-flex align-items-center"
+                target="#deleteModal"
+              >
+                <IconContext.Provider value={{ size: "25px" }}>
+                  <div>
+                    <MdDeleteForever />
+                  </div>
+                </IconContext.Provider>
+                <p className="m-0 ms-2">Delete</p>
+              </Button>
+            </>
+          )}
+        </div>
+      </div>
       <div className="row gy-3 gx-4">
         <div className="col-md-4">
-          <p className="mb-2">Jenis Kejadian</p>
+          <p className="mb-2 fw-bold text-primary">Jenis Kejadian</p>
           <div className="d-flex">
             <div className="form-check me-4">
               <input
@@ -58,7 +114,7 @@ function DetailReport({
           </div>
         </div>
         <div className="col-md-4">
-          <p className="mb-2">Jenis Kejadian</p>
+          <p className="mb-2 fw-bold text-primary">Kirim secara anonim?*</p>
           <div className="d-flex">
             <div className="form-check me-4">
               <input
@@ -76,7 +132,7 @@ function DetailReport({
         </div>
         {!is_anonim && (
           <div className="col-12">
-            <label htmlFor="name" className="">
+            <label htmlFor="name" className="fw-bold text-primary">
               Nama Pengguna
             </label>
             <input
@@ -86,7 +142,7 @@ function DetailReport({
               value={user_id ? user_id.name : ""}
               disabled
             />
-            <label htmlFor="nim" className="mt-2">
+            <label htmlFor="nim" className="mt-2 fw-bold text-primary">
               NIM Pengguna
             </label>
             <input
@@ -99,7 +155,7 @@ function DetailReport({
           </div>
         )}
         <div className="col-md-6">
-          <label htmlFor="place_report" className="">
+          <label htmlFor="place_report" className="fw-bold text-primary">
             Tempat Kejadian
           </label>
           <input
@@ -111,7 +167,7 @@ function DetailReport({
           />
         </div>
         <div className="col-md-6">
-          <label htmlFor="date_report" className="">
+          <label htmlFor="date_report" className="fw-bold text-primary">
             Tanggal Kejadian
           </label>
           <input
@@ -123,7 +179,7 @@ function DetailReport({
           />
         </div>
         <div className="col-12">
-          <label htmlFor="deskripsi" className="">
+          <label htmlFor="deskripsi" className="fw-bold text-primary">
             Deskripsi Kejadian
           </label>
           <textarea
@@ -133,7 +189,7 @@ function DetailReport({
             disabled
           />
         </div>
-        <div className="col-12">
+        <div className="col-12 fw-bold text-primary">
           <p>Bukti</p>
           <a
             href={`/uploads/${evidence}`}
@@ -160,12 +216,13 @@ DetailReport.propTypes = {
     name: PropTypes.string.isRequired,
     nim: PropTypes.number.isRequired,
   }),
-  isEdit: PropTypes.bool,
+  isDosen: PropTypes.bool.isRequired,
+  handleEditClick: PropTypes.func.isRequired,
+  status: PropTypes.number.isRequired,
 };
 
 DetailReport.defaultProps = {
   user_id: null,
-  isEdit: false,
 };
 
 export default DetailReport;

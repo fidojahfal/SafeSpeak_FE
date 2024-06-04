@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ReportInput from "../components/reports/ReportInput";
 import {
@@ -55,7 +55,9 @@ function UpdateReportPage() {
     <section className="bg-yellow-100 p-4 position-relative">
       <div className="row">
         <div className="col-lg-auto mx-2 mb-4 mt-1">
-          <img src="/icons/arrow-left-circle-fill.svg" alt="arrow-left" />
+          <Link onClick={() => navigate(-1)}>
+            <img src="/icons/arrow-left-circle-fill.svg" alt="arrow-left" />
+          </Link>
         </div>
         <div className="col-lg-11 card p-3">
           <div className="col-md-13">
