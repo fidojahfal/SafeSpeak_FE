@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveArticleDetail } from "../states/reportDetail/action";
-import DetailArticle from "../components/reports/DetailArticle";
+import { asyncReceiveArticleDetail } from "../states/articleDetail/action";
+import DetailArticle from "../components/articles/DetailArticle";
 import Modal from "../components/form/Modal";
 import "../styles/article.css";
 import Alert from "../components/form/Alert";

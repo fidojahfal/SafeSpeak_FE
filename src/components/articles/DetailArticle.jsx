@@ -24,11 +24,11 @@ function DetailArticle({
 
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h5>
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
+        <h5 className="mb-2 mb-md-0">
           {title} - <span>{formattedDate}</span>
         </h5>
-        <div className="d-flex align-items-center gap-3">
+        <div className="d-flex flex-column flex-md-row align-items-center gap-2 gap-md-3">
           {isDosen && (
             <>
               <Button
@@ -58,19 +58,21 @@ function DetailArticle({
         </div>
       </div>
       <div className="row gy-3 gx-4">
-        <div className="col-12 fw-bold text-primary">
-          <img src={`/uploads/${image}`} alt="article" className="img-fluid" />
+        <div className="col-12 d-flex align-items-center fw-bold text-primary">
+          <div className="img-container">
+            <img
+              src={image}
+              alt="article"
+              className="img-fluid responsive-img"
+            />
+          </div>
         </div>
         <div className="col-12">
-          <label htmlFor="content" className="fw-bold text-primary">
-            Content
-          </label>
-          <textarea
-            id="content"
-            className="form-control deskripsi"
-            value={content}
-            disabled
-          />
+          <div id="content" className="deskripsi">
+            {content.split("\n").map((content, index) => (
+              <p key={index}>{content}</p>
+            ))}
+          </div>
         </div>
       </div>
     </>

@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import ProfilePage from './pages/ProfilePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import { useDispatch, useSelector } from 'react-redux';
-import { asyncIsPreloadProcess } from './states/isPreload/action';
-import { asyncUnsetAuthUser } from './states/authUser/action';
-import Loading from './components/Loading';
-import CreateReportPage from './pages/CreateReportPage';
-import HomePage from './pages/HomePage';
-import Footer from './components/footer/Footer';
-import AboutPage from './pages/AboutPage';
-import DetailReportPage from './pages/DetailReportPage';
-import UpdateReportPage from './pages/UpdateReportPage';
-import ProtectedRoute from './components/ProtectedRoute';
-import ReportPage from './pages/ReportPage';
-import CreateArticlePage from './pages/CreateArticlePage';
-
+import React, { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import ProfilePage from "./pages/ProfilePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncIsPreloadProcess } from "./states/isPreload/action";
+import { asyncUnsetAuthUser } from "./states/authUser/action";
+import Loading from "./components/Loading";
+import CreateReportPage from "./pages/CreateReportPage";
+import HomePage from "./pages/HomePage";
+import Footer from "./components/footer/Footer";
+import AboutPage from "./pages/AboutPage";
+import DetailReportPage from "./pages/DetailReportPage";
+import UpdateReportPage from "./pages/UpdateReportPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import ReportPage from "./pages/ReportPage";
+import CreateArticlePage from "./pages/CreateArticlePage";
+import DetailArticlePage from "./pages/DetailArticlePage";
 function App() {
   const { authUser, isPreload, loadingBar } = useSelector((states) => states);
   const dispatch = useDispatch();
@@ -33,8 +33,8 @@ function App() {
   const location = useLocation();
 
   const showNavbarFooter = !(
-    location.pathname.includes('/login') ||
-    location.pathname.includes('/register')
+    location.pathname.includes("/login") ||
+    location.pathname.includes("/register")
   );
 
   if (isPreload) {
@@ -83,6 +83,10 @@ function App() {
           <Route
             path="/articles/create"
             element={<ProtectedRoute element={<CreateArticlePage />} />}
+          ></Route>
+          <Route
+            path="/articles/:id/detail"
+            element={<ProtectedRoute element={<DetailArticlePage />} />}
           ></Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
