@@ -113,20 +113,6 @@ function DetailReportPage() {
               </div>
             </div>
           )}
-          {/* {!isDosen && reportDetail.status === 3 && (
-            <div className="card p-3 mt-4">
-              <div className="col-md-13">
-                <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
-                  <div className="card-body">
-                    <AlasanDitolak
-                      status={reportDetail.status}
-                      alasanDitolak={reportDetail.alasanDitolak}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          )} */}
           {showReasonInput && (
             <ReasonInput
               submitHandler={onChangeStatusHandler}
