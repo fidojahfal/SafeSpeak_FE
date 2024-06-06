@@ -58,12 +58,16 @@ function DetailArticle({
         </div>
       </div>
       <div className="row gy-3 gx-4">
-        <div className="col-12 d-flex align-items-center fw-bold text-primary">
-          <div className="img-container">
+        <div className="col-12">
+          <div
+            className="d-flex justify-content-center"
+            style={{ height: "500px" }}
+          >
             <img
               src={image}
               alt="article"
-              className="img-fluid responsive-img"
+              className="img-fluid"
+              style={{ maxHeight: "100%", maxWidth: "100%" }}
             />
           </div>
         </div>
