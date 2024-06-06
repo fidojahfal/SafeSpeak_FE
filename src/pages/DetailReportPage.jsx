@@ -20,6 +20,7 @@ function DetailReportPage() {
   const { id: reportId } = useParams();
   const { reportDetail, authUser } = useSelector((states) => states);
   const [showReasonInput, setShowReasonInput] = useState(false);
+  console.log(showReasonInput);
 
   const dispatch = useDispatch();
 
@@ -64,6 +65,8 @@ function DetailReportPage() {
   useEffect(() => {
     if (reportDetail && reportDetail.status === 3) {
       setShowReasonInput(true);
+    } else {
+      setShowReasonInput(false);
     }
   }, [reportDetail]);
 
