@@ -38,7 +38,7 @@ const StatusReport = ({ status }) => {
           icon: <BiDislike size={30} />,
           text: "Ditolak",
           info: [
-            `Lihat alasan penolakan dibawah. Jika anda merasa ini adalah kesalahan, silahkan kontak safespeak@gmail.`,
+            "Lihat alasan penolakan dibawah. Jika anda merasa ini adalah kesalahan, silahkan kontak safespeak@gmail.",
           ],
           color: "danger",
         };
@@ -63,21 +63,68 @@ const StatusReport = ({ status }) => {
             {[0, 1, 2].map((step) => (
               <React.Fragment key={step}>
                 <div
-                  className={`step me-1 ms-2 ${status >= step ? "active" : ""}`}
+                  className={`step me-1 ms-2 ${
+                    status >= step
+                      ? step === 2 && status === 3
+                        ? "danger"
+                        : step === 2 && status === 2
+                        ? "success"
+                        : "active"
+                      : ""
+                  }`}
                   id={step}
                 >
-                  <div className={`icon ${status >= step ? "active" : ""}`}>
-                    {renderStatusContent(step).icon}
+                  <div
+                    className={`icon ${
+                      status >= step
+                        ? step === 2 && status === 3
+                          ? "danger"
+                          : step === 2 && status === 2
+                          ? "success"
+                          : "active"
+                        : ""
+                    }`}
+                  >
+                    {
+                      renderStatusContent(
+                        step === 2 && (status === 3 || status === 2)
+                          ? status
+                          : step
+                      ).icon
+                    }
                   </div>
                   <div className="step-title">
-                    <div className="step-text me-2 ms-2">
-                      {renderStatusContent(step).text}
+                    <div
+                      className={`step-text me-2 ms-2 ${
+                        status >= step
+                          ? step === 2 && status === 3
+                            ? "text-danger"
+                            : step === 2 && status === 2
+                            ? "text-success"
+                            : ""
+                          : ""
+                      }`}
+                    >
+                      {
+                        renderStatusContent(
+                          step === 2 && (status === 3 || status === 2)
+                            ? status
+                            : step
+                        ).text
+                      }
                     </div>
-                    {status === step && (
+                    {status === step ||
+                    (step === 2 && (status === 3 || status === 2)) ? (
                       <div className="step-info mt-2">
-                        {renderStatusContent(step).info}
+                        {
+                          renderStatusContent(
+                            step === 2 && (status === 3 || status === 2)
+                              ? status
+                              : step
+                          ).info
+                        }
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 </div>
                 {step < 2 && (

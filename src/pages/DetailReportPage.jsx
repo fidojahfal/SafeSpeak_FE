@@ -8,7 +8,6 @@ import {
 import DetailReport from "../components/reports/DetailReport";
 import StatusReport from "../components/reports/StatusReport";
 import Modal from "../components/form/Modal";
-import AlasanDitolak from "../components/reports/AlasanDitolak";
 import "../styles/report.css";
 import Alert from "../components/form/Alert";
 import { asyncDeleteReport } from "../states/reports/action";
