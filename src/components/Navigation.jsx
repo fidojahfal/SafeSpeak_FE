@@ -110,9 +110,11 @@ function Navigation({ onLogout, authUser }) {
                   </IconContext.Provider>
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
-                  <li className="dropdown-item">
-                    {<Link to={`/profile/${authUser._id}`}>Detail</Link>}
-                  </li>
+                  {authUser.role === 0 && (
+                    <li className="dropdown-item">
+                      <Link to={`/profile/${authUser._id}`}>Detail</Link>
+                    </li>
+                  )}
                   <li className="dropdown-item">
                     <Link onClick={() => onLogout()}>Log out</Link>
                   </li>

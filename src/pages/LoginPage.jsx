@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LoginInput from "../components/login/LoginInput";
 import Button from "../components/form/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,11 +11,14 @@ import Alert from "../components/form/Alert";
 function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const onLogin = async ({ username, password }) => {
     const success = await dispatch(asyncSetAuthUser({ username, password }));
     if (success) {
-      navigate("/");
+      navigate(from, { replace: true });
     }
   };
 
