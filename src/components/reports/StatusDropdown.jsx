@@ -1,21 +1,20 @@
 import Modal from "../form/Modal";
 import Button from "../form/Button";
-import { asyncUpdateReportStatus } from "../../states/reportDetail/action";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import ReasonInput from "./ReasonInput";
 
 function StatusDropdown({ id, status, onChangeStatus }) {
-  console.log(id);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const [selectedNextStatus, setSelectedNextStatus] = useState();
-
-  // console.log(selectedNextStatus);
+  const [showReasonInput, setShowReasonInput] = useState(false);
+  const disableButton = status === 2 || status === 3;
 
   const onSelectNextStatus = (nextStatus) => {
     setSelectedNextStatus(nextStatus);
+    setShowReasonInput(false);
+  };
+
+  const changeShowReasonInput = () => {
+    setShowReasonInput(true);
   };
 
   return (
@@ -26,6 +25,7 @@ function StatusDropdown({ id, status, onChangeStatus }) {
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
+          disabled={disableButton}
         >
           Ubah Status
         </button>
@@ -34,7 +34,8 @@ function StatusDropdown({ id, status, onChangeStatus }) {
             <li>
               <Button
                 marginClass="dropdown-item"
-                onClickHandler={() => onChangeStatus(1)}
+                target="#updateStatusModal"
+                onClickHandler={() => onSelectNextStatus(1)}
               >
                 Ditindaklanjuti
               </Button>
@@ -54,8 +55,7 @@ function StatusDropdown({ id, status, onChangeStatus }) {
               <li>
                 <Button
                   marginClass="dropdown-item"
-                  target="#updateStatusModal"
-                  onClickHandler={() => onSelectNextStatus(3)}
+                  onClickHandler={changeShowReasonInput}
                 >
                   Ditolak
                 </Button>
@@ -64,6 +64,12 @@ function StatusDropdown({ id, status, onChangeStatus }) {
           )}
         </ul>
       </div>
+      {showReasonInput && (
+        <ReasonInput
+          submitHandler={onChangeStatus}
+          nextStatus={selectedNextStatus}
+        />
+      )}
       <Modal
         id="updateStatusModal"
         title="Konfirmasi Ubah Status"
@@ -71,7 +77,7 @@ function StatusDropdown({ id, status, onChangeStatus }) {
         cancel="Batal"
         confirm="Ubah"
         variant="btn-danger"
-        onConfirm={() => onChangeStatus(selectedNextStatus)}
+        onConfirm={() => onChangeStatus({ status: selectedNextStatus })}
       />
     </>
   );

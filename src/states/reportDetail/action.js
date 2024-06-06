@@ -39,12 +39,12 @@ function asyncReceiveReportDetail(reportId) {
   };
 }
 
-function asyncUpdateReportStatus(id, status, reason) {
+function asyncUpdateReportStatus({ id, status, reason }) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
       console.log(id);
-      await updateStatus({ id, status });
+      await updateStatus({ id, status, reason });
       dispatch(updateStatusReportActionCreator({ status, reason }));
     } catch (error) {
       dispatch(setNotificationActionCreator(error.message));

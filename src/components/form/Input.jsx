@@ -33,6 +33,7 @@ function Input({
           onChange={onChangeHandler}
           required={required}
           value={value}
+          disabled={disabled}
         ></textarea>
       ) : (
         <input

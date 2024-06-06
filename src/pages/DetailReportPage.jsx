@@ -38,10 +38,17 @@ function DetailReportPage() {
     navigate("/reports");
   };
 
-  const onChangeStatusHandler = (nextStatus, reason = "") => {
-    console.log("nextStatus", nextStatus);
-    dispatch(asyncUpdateReportStatus(reportId, nextStatus, reason));
-    navigate(`/reports/${reportId}/detail`);
+  const onChangeStatusHandler = ({ status, reason }) => {
+    console.log("status", status);
+    console.log("reason", reason);
+    dispatch(
+      asyncUpdateReportStatus({
+        id: reportId,
+        status,
+        reason,
+      })
+    );
+    // navigate(`/reports/${reportId}/detail`);
   };
 
   const isDosen = authUser.role === 1;

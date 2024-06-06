@@ -8,6 +8,7 @@ function Modal({
   cancel,
   onConfirm,
   variant,
+  confirmButtonType = "button",
 }) {
   return (
     <div
@@ -40,11 +41,10 @@ function Modal({
               {cancel}
             </button>
             <button
-              type="button"
+              type={confirmButtonType}
               className={`btn ${variant}`}
               data-bs-dismiss="modal"
               onClick={onConfirm}
-              data-bs-dismiss="modal"
             >
               {confirm}
             </button>
