@@ -4,9 +4,9 @@ import Button from "../form/Button";
 import Input from "../form/Input";
 import Modal from "../form/Modal";
 
-function ReasonInput({ submitHandler }) {
-  const [reasonInput, onReasonInputChange] = useInput("");
-  const [disableInput, setDisableInput] = useState(false);
+function ReasonInput({ submitHandler, reasonValue }) {
+  const [reasonInput, onReasonInputChange] = useInput(reasonValue || "");
+  console.log(reasonValue ? true : false);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -18,8 +18,6 @@ function ReasonInput({ submitHandler }) {
       status: 3,
       reason: reasonInput,
     });
-    setDisableInput(true);
-    console.log(disableInput);
   };
 
   return (
@@ -35,10 +33,13 @@ function ReasonInput({ submitHandler }) {
             value={reasonInput}
             onChangeHandler={onReasonInputChange}
             required
-            disabled={disableInput}
+            disabled={reasonValue ? true : false}
           ></Input>
           <div className="d-flex justify-content-center mt-3">
-            <Button target="#updateStatusModalDitolak" disabled={disableInput}>
+            <Button
+              target="#updateStatusModalDitolak"
+              disabled={reasonValue ? true : false}
+            >
               Simpan
             </Button>
           </div>

@@ -1,20 +1,13 @@
 import Modal from "../form/Modal";
 import Button from "../form/Button";
 import { useState } from "react";
-import ReasonInput from "./ReasonInput";
 
-function StatusDropdown({ id, status, onChangeStatus }) {
+function StatusDropdown({ id, status, onChangeStatus, onShowReasonInput }) {
   const [selectedNextStatus, setSelectedNextStatus] = useState();
-  const [showReasonInput, setShowReasonInput] = useState(false);
   const disableButton = status === 2 || status === 3;
 
   const onSelectNextStatus = (nextStatus) => {
     setSelectedNextStatus(nextStatus);
-    setShowReasonInput(false);
-  };
-
-  const changeShowReasonInput = () => {
-    setShowReasonInput(true);
   };
 
   return (
@@ -55,7 +48,7 @@ function StatusDropdown({ id, status, onChangeStatus }) {
               <li>
                 <Button
                   marginClass="dropdown-item"
-                  onClickHandler={changeShowReasonInput}
+                  onClickHandler={onShowReasonInput}
                 >
                   Ditolak
                 </Button>
@@ -64,12 +57,6 @@ function StatusDropdown({ id, status, onChangeStatus }) {
           )}
         </ul>
       </div>
-      {showReasonInput && (
-        <ReasonInput
-          submitHandler={onChangeStatus}
-          nextStatus={selectedNextStatus}
-        />
-      )}
       <Modal
         id="updateStatusModal"
         title="Konfirmasi Ubah Status"

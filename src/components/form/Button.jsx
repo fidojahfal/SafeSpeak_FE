@@ -1,13 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 function Button({
-  type = 'button',
-  primaryOrOutline = 'primary',
-  marginClass = '',
+  type = "button",
+  primaryOrOutline = "primary",
+  marginClass = "",
   children,
   onClickHandler = () => {},
   target,
+  disabled,
 }) {
   if (target) {
     return (
@@ -17,6 +18,7 @@ function Button({
         onClick={onClickHandler}
         data-bs-toggle="modal"
         data-bs-target={target}
+        disabled={disabled}
       >
         {children}
       </button>

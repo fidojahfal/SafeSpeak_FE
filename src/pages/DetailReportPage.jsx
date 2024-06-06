@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,11 +13,13 @@ import "../styles/report.css";
 import Alert from "../components/form/Alert";
 import { asyncDeleteReport } from "../states/reports/action";
 import StatusDropdown from "../components/reports/StatusDropdown";
+import ReasonInput from "../components/reports/ReasonInput";
 
 function DetailReportPage() {
   const navigate = useNavigate();
   const { id: reportId } = useParams();
-  const { reportDetail = null, authUser } = useSelector((states) => states);
+  const { reportDetail, authUser } = useSelector((states) => states);
+  const [showReasonInput, setShowReasonInput] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -48,10 +50,22 @@ function DetailReportPage() {
         reason,
       })
     );
-    // navigate(`/reports/${reportId}/detail`);
+    if (status != 3) {
+      setShowReasonInput(false);
+    }
+  };
+
+  const onShowReasonInputHandler = () => {
+    setShowReasonInput(true);
   };
 
   const isDosen = authUser.role === 1;
+
+  useEffect(() => {
+    if (reportDetail && reportDetail.status === 3) {
+      setShowReasonInput(true);
+    }
+  }, [reportDetail]);
 
   if (!reportDetail) {
     return null;
@@ -82,6 +96,7 @@ function DetailReportPage() {
               status={reportDetail.status}
               id={reportId}
               onChangeStatus={onChangeStatusHandler}
+              onShowReasonInput={onShowReasonInputHandler}
             />
           )}
           {!isDosen && (
@@ -95,7 +110,7 @@ function DetailReportPage() {
               </div>
             </div>
           )}
-          {!isDosen && reportDetail.status === 3 && (
+          {/* {!isDosen && reportDetail.status === 3 && (
             <div className="card p-3 mt-4">
               <div className="col-md-13">
                 <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
@@ -108,6 +123,12 @@ function DetailReportPage() {
                 </div>
               </div>
             </div>
+          )} */}
+          {showReasonInput && (
+            <ReasonInput
+              submitHandler={onChangeStatusHandler}
+              reasonValue={reportDetail.reason || null}
+            />
           )}
         </div>
       </div>
