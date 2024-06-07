@@ -44,7 +44,7 @@ function DetailArticle({
               </Button>
               <Button
                 marginClass="btn btn-danger d-flex align-items-center"
-                target="#deleteModal"
+                target="#deleteArticleModal"
               >
                 <IconContext.Provider value={{ size: "25px" }}>
                   <div>

@@ -24,7 +24,7 @@ function CreateArticlePage() {
       })
     );
     if (success) {
-      navigate("/");
+      navigate("/articles");
     }
   };
 
