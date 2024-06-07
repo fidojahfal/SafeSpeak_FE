@@ -8,7 +8,7 @@ import notificationReducer from "./notification/reducer";
 import reportDetailReducer from "./reportDetail/reducer";
 import updateReportReducer from "./updateReport/reducer";
 import articlesReducer from "./articles/reducer";
-import reportArticleReducer from "./articleDetail/reducer";
+import detailArticleReducer from "./articleDetail/reducer";
 
 const store = configureStore({
   reducer: {
@@ -21,7 +21,7 @@ const store = configureStore({
     reportDetail: reportDetailReducer,
     updateReport: updateReportReducer,
     articles: articlesReducer,
-    articleDetail: reportArticleReducer,
+    articleDetail: detailArticleReducer,
   },
 });
 

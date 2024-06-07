@@ -44,6 +44,14 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
           Konten Artikel
         </Input>
         <div className="col-12">
+          {isEdit && (
+            <div className="mb-2">
+              <p className="mb-2 form-blue-label-semibold inline">
+                Lampiran Gambar Sebelumnya
+              </p>
+              <a href={image}>{image}</a>
+            </div>
+          )}
           <p className="mb-2 form-blue-label-semibold">Lampiran Gambar</p>
           <Input
             type="file"
@@ -55,7 +63,9 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
           ></Input>
         </div>
         <div className="d-flex justify-content-center">
-          <Button type="submit">Buat Laporan</Button>
+          <Button type="submit">
+            {isEdit ? "Ubah Laporan" : "Buat Laporan"}
+          </Button>
         </div>
       </div>
     </form>

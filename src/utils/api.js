@@ -319,7 +319,7 @@ export async function insertArticle({ title, content, image }) {
   formData.append("content", content);
   formData.append("image", image);
 
-  const response = await fetchWithToken(`http://localhost:3000/v1/articles`, {
+  const response = await fetchWithToken(`${BASE_URL}/articles`, {
     method: "POST",
     body: formData,
   });
