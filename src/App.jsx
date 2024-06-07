@@ -19,6 +19,7 @@ import ReportPage from "./pages/ReportPage";
 import CreateArticlePage from "./pages/CreateArticlePage";
 import UpdateArticlePage from "./pages/UpdateArticlePage";
 
+import DetailArticlePage from "./pages/DetailArticlePage";
 function App() {
   const { authUser, isPreload, loadingBar } = useSelector((states) => states);
   const dispatch = useDispatch();
@@ -68,27 +69,31 @@ function App() {
           <Route
             path="/reports"
             element={<ProtectedRoute element={<ReportPage />} />}
-          ></Route>
+          />
           <Route
             path="/reports/create"
             element={<ProtectedRoute element={<CreateReportPage />} />}
-          ></Route>
+          />
           <Route
             path="/reports/:id/detail"
             element={<ProtectedRoute element={<DetailReportPage />} />}
-          ></Route>
+          />
           <Route
             path="/reports/:id/update"
             element={<ProtectedRoute element={<UpdateReportPage />} />}
-          ></Route>
+          />
           <Route
             path="/articles/create"
             element={<ProtectedRoute element={<CreateArticlePage />} />}
-          ></Route>
+          />
           <Route
             path="/articles/:id/update"
             element={<ProtectedRoute element={<UpdateArticlePage />} />}
-          ></Route>
+          />
+          <Route
+            path="/articles/:id/detail"
+            element={<ProtectedRoute element={<DetailArticlePage />} />}
+          />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>

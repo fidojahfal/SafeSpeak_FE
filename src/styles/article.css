@@ -55,3 +55,24 @@ input[type="file"]::file-selector-button:hover {
 input[type="file"]::file-selector-button:active {
   background-color: #e5e7eb;
 }
+
+.deskripsi {
+  border: none;
+  padding: 0.75rem;
+  background-color: #fff;
+}
+
+.img-container {
+  max-width: auto;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: auto;
+  height: auto;
+}
+
+.card {
+  max-height: auto; /* Adjust the max height as needed */
+  overflow-y: auto; /* Add vertical scrollbar if content is too long */
+}
