@@ -41,6 +41,7 @@ function ArticleSection({ role, articles, onDetail }) {
                 key={article._id}
                 {...article}
                 onDetail={onDetail}
+                height="12rem"
               />
             ))
         ) : (
