@@ -335,14 +335,17 @@ export async function insertArticle({ title, content, image }) {
   return article;
 }
 
-export async function updateArticle({ title, content, id }) {
+export async function updateArticle({ title, content, image, id }) {
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("content", content);
+  formData.append("image", image);
+
   const response = await fetchWithToken(`${BASE_URL}/articles/${id}`, {
     method: "PUT",
-    body: JSON.stringify({ title, content }),
-    headers: {
-      "Content-Type": "application/json",
-    },
+    body: formData,
   });
+
   const responseJson = await response.json();
   const { message } = responseJson;
 
