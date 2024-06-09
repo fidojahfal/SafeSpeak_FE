@@ -24,7 +24,10 @@ function ArticlePage() {
 
   return (
     <section className="bg-articles" style={{ '--bs-gutter-x': '0' }}>
-      <ArticleHead role={authUser.role} onCreate={onCreateHandler} />
+      <ArticleHead
+        role={authUser ? authUser.role : 0}
+        onCreate={onCreateHandler}
+      />
       <ArticleBody articles={articles} onDetail={onDetailArticleHandler} />
     </section>
   );
