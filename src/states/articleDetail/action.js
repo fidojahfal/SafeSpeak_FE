@@ -38,11 +38,11 @@ function asyncReceiveArticleDetail(articleId) {
   };
 }
 
-function asyncUpdateArticleDetail({ title, content, id }) {
+function asyncUpdateArticleDetail({ title, content, image, id }) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      await updateArticle({ title, content, id });
+      await updateArticle({ title, content, image, id });
       const updatedArticleDetail = await getArticleById(id);
       dispatch(updateArticleDetailActionCreator(updatedArticleDetail));
       return true;

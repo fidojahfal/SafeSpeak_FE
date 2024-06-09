@@ -64,7 +64,7 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
             labelClassName="custom-file-button"
             inputClassName=""
             onChangeHandler={onImageInputChange}
-            required
+            required={!isEdit}
           ></Input>
         </div>
         <div className="d-flex justify-content-center">

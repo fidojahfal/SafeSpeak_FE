@@ -21,8 +21,13 @@ function UpdateArticlePage() {
     }
   }, [articleId, dispatch]);
 
-  const onUpdateArticleHandler = ({ title, content }) => {
-    dispatch(asyncUpdateArticleDetail({ id: articleId, title, content }));
+  const onUpdateArticleHandler = async ({ title, content, image }) => {
+    const success = await dispatch(
+      asyncUpdateArticleDetail({ id: articleId, title, content, image })
+    );
+    if (success) {
+      navigate(`/articles/${articleId}/detail`);
+    }
   };
 
   if (!articleDetail) {

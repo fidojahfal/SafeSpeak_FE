@@ -341,13 +341,19 @@ export async function updateArticle({ title, content, image, id }) {
   formData.append("content", content);
   formData.append("image", image);
 
-  const response = await fetchWithToken(`${BASE_URL}/articles/${id}`, {
-    method: "PUT",
-    body: formData,
-  });
+  console.log("in updateArticle API", { image, title, id, content });
+
+  const response = await fetchWithToken(
+    `http://localhost:3000/v1/articles/${id}`,
+    {
+      method: "PUT",
+      body: formData,
+    }
+  );
 
   const responseJson = await response.json();
   const { message } = responseJson;
+  console.log("in updateArticle API", message);
 
   if (message !== "Success") throw new Error(message);
 
