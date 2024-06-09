@@ -1,9 +1,9 @@
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import { getUser, register, updateUser } from '../../utils/api';
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { getUser, register, updateUser } from "../../utils/api";
 
 const ActionType = {
-  RECEIVE_USER: 'RECEIVE_USER',
-  UPDATE_USER: 'UPDATE_USER',
+  RECEIVE_USER: "RECEIVE_USER",
+  UPDATE_USER: "UPDATE_USER",
 };
 
 function receiveUserActionCreator(user) {
@@ -55,6 +55,7 @@ function asyncRegisterUser({
 
 function asyncReceiveUser(id) {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const user = await getUser(id);
       dispatch(receiveUserActionCreator(user));
@@ -62,6 +63,7 @@ function asyncReceiveUser(id) {
     } catch (error) {
       alert(error);
     }
+    dispatch(hideLoading());
   };
 }
 

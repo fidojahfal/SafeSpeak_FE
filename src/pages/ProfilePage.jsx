@@ -12,8 +12,6 @@ import { asyncReceiveUser, asyncUpdateUser } from "../states/user/action";
 function ProfilePage() {
   const { user = null } = useSelector((states) => states);
   const dispatch = useDispatch();
-  // state
-  const [loading, setLoading] = React.useState(true);
 
   // get path param
   const { id } = useParams();
@@ -25,7 +23,6 @@ function ProfilePage() {
   // get user by id
   React.useEffect(() => {
     dispatch(asyncReceiveUser(id));
-    setLoading(false);
   }, [dispatch, id]);
 
   // handle navigate to edit page
@@ -48,24 +45,19 @@ function ProfilePage() {
     return null;
   }
 
-  // test handle on close
-  // const handleCloseAlert = () => {
-  //   setShowAlert(false);
-  // };
-
   // conditional to show ProfileView or ProfileInput based on URL path
   const isEditing = location.pathname.includes("/edit");
 
   return (
     <section className="bg-yellow-100 p-3">
-      {/* <Alert onClose={handleCloseAlert} /> */}
+      <Alert />
       <div className="card">
         <div className="card-body p-5 profile-card">
           <div className="d-flex flex-column flex-sm-row align-items-center justify-content-between mb-3">
             <h3 className="fw-bold color-yellow">
-              {!loading && (isEditing ? "Edit Profil" : "Profil")}
+              {isEditing ? "Edit Profil" : "Profil"}
             </h3>
-            {!loading && isEditing && (
+            {isEditing && (
               <img
                 src={user.user_id.avatar}
                 alt="User Avatar"
@@ -73,14 +65,14 @@ function ProfilePage() {
               />
             )}
           </div>
-          {!loading && !isEditing && (
+          {!isEditing && (
             <ProfileView
               {...user}
               toEdit={toEditHandler}
               src={user.user_id.avatar}
             />
           )}
-          {!loading && isEditing && (
+          {isEditing && (
             <ProfileInput
               {...user}
               updateHandler={onUpdateHandler}
