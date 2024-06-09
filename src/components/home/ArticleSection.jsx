@@ -1,7 +1,7 @@
 import Button from "../form/Button";
 import ArticleMiniCard from "./ArticleMiniCard";
 
-function ArticleSection({ role }) {
+function ArticleSection({ role, articles, onDetail }) {
   return (
     <section className="mb-5">
       <div className="row" style={{ "--bs-gutter-x": "0" }}>
@@ -33,9 +33,19 @@ function ArticleSection({ role }) {
         className="d-flex justify-content-center align-items-center flex-sm-column flex-md-row flex-wrap"
         style={{ gap: "3rem" }}
       >
-        <ArticleMiniCard />
-        <ArticleMiniCard />
-        <ArticleMiniCard />
+        {articles.length !== 0 ? (
+          articles
+            .slice(0, 3)
+            .map((article) => (
+              <ArticleMiniCard
+                key={article._id}
+                {...article}
+                onDetail={onDetail}
+              />
+            ))
+        ) : (
+          <p>Belum ada artikel</p>
+        )}
       </div>
     </section>
   );
