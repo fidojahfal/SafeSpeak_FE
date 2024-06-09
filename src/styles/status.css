@@ -1,3 +1,4 @@
+/* General Stepper Styles */
 .stepper {
   width: 100%;
   max-width: 800px;
@@ -98,11 +99,11 @@
   color: #007bff;
 }
 
-
 .deskripsi {
   word-wrap: break-word;
 }
 
+/* Responsive Styles */
 @media (max-width: 767.98px) {
   .detail-article-title {
     text-align: center;
@@ -154,11 +155,13 @@
   }
 
   .step-bar {
-    transform: rotate(90deg);
+    display: none;
   }
 
   .steps {
     flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 
   .step {
