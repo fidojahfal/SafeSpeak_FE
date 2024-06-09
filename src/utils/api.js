@@ -164,7 +164,7 @@ export async function insertReport({
   formData.append("evidence", evidence);
   formData.append("is_anonim", is_anonim);
 
-  const response = await fetchWithToken(`http://localhost:3000/v1/reports`, {
+  const response = await fetchWithToken(`${BASE_URL}/reports`, {
     method: "POST",
     body: formData,
   });
@@ -341,13 +341,10 @@ export async function updateArticle({ title, content, image, id }) {
 
   console.log("in updateArticle API", { image, title, id, content });
 
-  const response = await fetchWithToken(
-    `http://localhost:3000/v1/articles/${id}`,
-    {
-      method: "PUT",
-      body: formData,
-    }
-  );
+  const response = await fetchWithToken(`${BASE_URL}/articles/${id}`, {
+    method: "PUT",
+    body: formData,
+  });
 
   const responseJson = await response.json();
   const { message } = responseJson;
