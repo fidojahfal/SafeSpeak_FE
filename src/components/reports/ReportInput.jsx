@@ -144,12 +144,12 @@ function ReportInput({
           {isEdit && (
             <div className="mb-2">
               <p className="mb-2 form-blue-label-semibold inline">
-                Lampiran Gambar Sebelumnya
+                Bukti Sebelumnya
               </p>
               <a href={evidence}>{evidence}</a>
             </div>
           )}
-          <p className="mb-2 form-blue-label-semibold">Bukti</p>
+          <p className="mb-2 form-blue-label-semibold">Bukti PDF</p>
           <Input
             type="file"
             labelAndId="image"
@@ -157,6 +157,7 @@ function ReportInput({
             inputClassName=""
             onChangeHandler={onEvidenceInputChange}
             required={!isEdit}
+            accept=".pdf"
           ></Input>
         </div>
         <p className="text-primary">

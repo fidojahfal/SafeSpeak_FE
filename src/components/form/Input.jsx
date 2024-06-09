@@ -19,6 +19,7 @@ function Input({
   min,
   max,
   name,
+  accept,
 }) {
   return (
     <div className={divClassName}>
@@ -61,6 +62,7 @@ function Input({
           name={type === "radio" ? name : undefined}
           min={type === "number" ? min : undefined}
           max={type === "number" ? max : undefined}
+          accept={type === "file" ? accept : undefined}
         />
       )}
     </div>
