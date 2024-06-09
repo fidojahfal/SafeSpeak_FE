@@ -155,20 +155,18 @@ export async function insertReport({
   evidence,
   is_anonim,
 }) {
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("type", type);
+  formData.append("place_report", place_report);
+  formData.append("date_report", date_report);
+  formData.append("description", description);
+  formData.append("evidence", evidence);
+  formData.append("is_anonim", is_anonim);
+
   const response = await fetchWithToken(`${BASE_URL}/reports`, {
     method: "POST",
-    body: JSON.stringify({
-      title,
-      type,
-      place_report,
-      date_report,
-      description,
-      evidence,
-      is_anonim,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
+    body: formData,
   });
 
   const responseJson = await response.json();
@@ -343,13 +341,10 @@ export async function updateArticle({ title, content, image, id }) {
 
   console.log("in updateArticle API", { image, title, id, content });
 
-  const response = await fetchWithToken(
-    `http://localhost:3000/v1/articles/${id}`,
-    {
-      method: "PUT",
-      body: formData,
-    }
-  );
+  const response = await fetchWithToken(`${BASE_URL}/articles/${id}`, {
+    method: "PUT",
+    body: formData,
+  });
 
   const responseJson = await response.json();
   const { message } = responseJson;

@@ -55,8 +55,9 @@ function asyncReceiveReports() {
       dispatch(receiveReportsActionCreator(reports));
     } catch (error) {
       dispatch(setNotificationActionCreator(error.message));
+    } finally {
+      dispatch(hideLoading());
     }
-    dispatch(hideLoading());
   };
 }
 

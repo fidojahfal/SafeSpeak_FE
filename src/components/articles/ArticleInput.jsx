@@ -65,11 +65,12 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
             inputClassName=""
             onChangeHandler={onImageInputChange}
             required={!isEdit}
+            accept=".png, .jpg, .jpeg"
           ></Input>
         </div>
         <div className="d-flex justify-content-center">
           <Button type="submit">
-            {isEdit ? "Ubah Laporan" : "Buat Laporan"}
+            {isEdit ? "Ubah Artikel" : "Buat Artikel"}
           </Button>
         </div>
       </div>
