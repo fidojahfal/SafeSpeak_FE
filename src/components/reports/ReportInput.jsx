@@ -25,6 +25,7 @@ function ReportInput({
   const [dateInput, onDateInputChange] = useInput(date_report);
   const [descriptionInput, onDescriptionInputChange] = useInput(description);
   const [anonimInput, onAnonimInputChange] = useInput(is_anonim ? 1 : 0);
+  const [evidenceInput, onEvidenceInputChange] = useInput(evidence);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -34,7 +35,7 @@ function ReportInput({
       place_report: placeInput,
       date_report: dateInput,
       description: descriptionInput,
-      evidence: "temporary",
+      evidence: evidenceInput,
       is_anonim: anonimInput,
     });
     submitHandler({
@@ -43,7 +44,7 @@ function ReportInput({
       place_report: placeInput,
       date_report: dateInput,
       description: descriptionInput,
-      evidence: "temporary",
+      evidence: evidenceInput,
       is_anonim: anonimInput,
     });
   };
@@ -140,15 +141,24 @@ function ReportInput({
           Deskripsi Kejadian
         </Input>
         <div className="col-12">
-          <p className="mb-2 form-blue-label-semibold">Bukti</p>
-          <Button marginClass="d-flex align-items-center">
-            <IconContext.Provider value={{ size: "25px" }}>
-              <div>
-                <MdOutlineFileUpload />
-              </div>
-            </IconContext.Provider>
-            <p className="m-0 ms-2">Telusuri File</p>
-          </Button>
+          {isEdit && (
+            <div className="mb-2">
+              <p className="mb-2 form-blue-label-semibold inline">
+                Bukti Sebelumnya
+              </p>
+              <a href={evidence}>{evidence}</a>
+            </div>
+          )}
+          <p className="mb-2 form-blue-label-semibold">Bukti PDF</p>
+          <Input
+            type="file"
+            labelAndId="image"
+            labelClassName="custom-file-button"
+            inputClassName=""
+            onChangeHandler={onEvidenceInputChange}
+            required={!isEdit}
+            accept=".pdf"
+          ></Input>
         </div>
         <p className="text-primary">
           *Dosen atau pihak penanganan kampus tetap akan mengontak kamu via
