@@ -9,6 +9,7 @@ import reportDetailReducer from "./reportDetail/reducer";
 import updateReportReducer from "./updateReport/reducer";
 import articlesReducer from "./articles/reducer";
 import detailArticleReducer from "./articleDetail/reducer";
+import countReportReducer from "./countReport/reducer";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     updateReport: updateReportReducer,
     articles: articlesReducer,
     articleDetail: detailArticleReducer,
+    countReport: countReportReducer,
   },
 });
 
