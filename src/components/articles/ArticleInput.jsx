@@ -70,7 +70,7 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
         </div>
         <div className="d-flex justify-content-center">
           <Button type="submit">
-            {isEdit ? "Ubah Laporan" : "Buat Laporan"}
+            {isEdit ? "Ubah Artikel" : "Buat Artikel"}
           </Button>
         </div>
       </div>
