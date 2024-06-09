@@ -5,6 +5,7 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import { IconContext } from "react-icons";
 import { useInput } from "../../hooks/useInput";
 import Input from "../form/Input";
+import moment from "moment";
 
 function ReportInput({
   title,
@@ -125,6 +126,7 @@ function ReportInput({
           type="date"
           value={dateInput}
           onChangeHandler={onDateInputChange}
+          max={moment(new Date()).format("YYYY-MM-DD")}
           required
         >
           Tanggal Kejadian

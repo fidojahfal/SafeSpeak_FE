@@ -60,8 +60,8 @@ function Input({
             type !== "checkbox" && type !== "radio" ? maxLength : undefined
           }
           name={type === "radio" ? name : undefined}
-          min={type === "number" ? min : undefined}
-          max={type === "number" ? max : undefined}
+          min={type === "number" || type === "date" ? min : undefined}
+          max={type === "number" || type === "date" ? max : undefined}
           accept={type === "file" ? accept : undefined}
         />
       )}
