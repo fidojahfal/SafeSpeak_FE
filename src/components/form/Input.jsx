@@ -1,15 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Input({
   divClassName,
   labelAndId,
-  labelClassName = "form-blue-label-semibold",
+  labelClassName = 'form-blue-label-semibold',
   children,
   type,
-  inputClassName = "form-control",
-  placeholder = "",
-  value = "",
+  inputClassName = 'form-control',
+  placeholder = '',
+  value = '',
   onChangeHandler = () => {},
   disabled,
   checked,
@@ -19,13 +19,14 @@ function Input({
   min,
   max,
   name,
+  accept,
 }) {
   return (
     <div className={divClassName}>
       <label htmlFor={labelAndId} className={labelClassName}>
         {children}
       </label>
-      {type === "textarea" ? (
+      {type === 'textarea' ? (
         <textarea
           id={labelAndId}
           placeholder={placeholder}
@@ -33,6 +34,7 @@ function Input({
           onChange={onChangeHandler}
           required={required}
           value={value}
+          disabled={disabled}
         ></textarea>
       ) : (
         <input
@@ -40,26 +42,27 @@ function Input({
           className={inputClassName}
           id={labelAndId}
           placeholder={
-            type !== "checkbox" && type !== "radio" && type !== "file"
+            type !== 'checkbox' && type !== 'radio' && type !== 'file'
               ? placeholder
               : undefined
           }
-          value={type !== "checkbox" && type !== "file" ? value : undefined}
+          value={type !== 'checkbox' && type !== 'file' ? value : undefined}
           onChange={onChangeHandler}
           disabled={disabled}
           checked={
-            type === "checkbox" || type === "radio" ? checked : undefined
+            type === 'checkbox' || type === 'radio' ? checked : undefined
           }
           required={required}
           minLength={
-            type !== "checkbox" && type !== "radio" ? minLength : undefined
+            type !== 'checkbox' && type !== 'radio' ? minLength : undefined
           }
           maxLength={
-            type !== "checkbox" && type !== "radio" ? maxLength : undefined
+            type !== 'checkbox' && type !== 'radio' ? maxLength : undefined
           }
-          name={type === "radio" ? name : undefined}
-          min={type === "number" ? min : undefined}
-          max={type === "number" ? max : undefined}
+          name={type === 'radio' ? name : undefined}
+          min={type === 'number' || type === 'date' ? min : undefined}
+          max={type === 'number' || type === 'date' ? max : undefined}
+          accept={type === 'file' ? accept : undefined}
         />
       )}
     </div>

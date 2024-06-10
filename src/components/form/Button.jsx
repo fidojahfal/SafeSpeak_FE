@@ -8,6 +8,7 @@ function Button({
   children,
   onClickHandler = () => {},
   target,
+  disabled,
 }) {
   if (target) {
     return (
@@ -17,6 +18,7 @@ function Button({
         onClick={onClickHandler}
         data-bs-toggle="modal"
         data-bs-target={target}
+        disabled={disabled}
       >
         {children}
       </button>

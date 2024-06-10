@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Button from "../form/Button";
-import { MdEdit, MdDeleteForever } from "react-icons/md";
-import { IconContext } from "react-icons";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '../form/Button';
+import { MdEdit, MdDeleteForever } from 'react-icons/md';
+import { IconContext } from 'react-icons';
 
 const formatDate = (date) => {
   const d = new Date(date);
-  const day = String(d.getDate()).padStart(2, "0");
-  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
   const year = d.getFullYear();
   return `${day}/${month}/${year}`;
 };
@@ -24,53 +24,59 @@ function DetailArticle({
 
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h5>
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
+        <h5 className="mb-2 mb-md-0">
           {title} - <span>{formattedDate}</span>
         </h5>
-        <div className="d-flex align-items-center gap-3">
+        <div className="d-flex flex-column flex-md-row align-items-center gap-2 gap-md-3">
           {isDosen && (
-            <>
+            <div className="d-flex gap-2 flex-wrap">
               <Button
                 marginClass="btn btn-secondary d-flex align-items-center"
                 onClickHandler={handleEditClick}
               >
-                <IconContext.Provider value={{ size: "25px" }}>
-                  <div>
-                    <MdEdit />
-                  </div>
+                <IconContext.Provider value={{ size: '20px' }}>
+                  <MdEdit />
                 </IconContext.Provider>
-                <p className="m-0 ms-2">Update</p>
+                <span className="ms-2">Update</span>
               </Button>
               <Button
                 marginClass="btn btn-danger d-flex align-items-center"
                 target="#deleteModal"
               >
-                <IconContext.Provider value={{ size: "25px" }}>
-                  <div>
-                    <MdDeleteForever />
-                  </div>
+                <IconContext.Provider value={{ size: '20px' }}>
+                  <MdDeleteForever />
                 </IconContext.Provider>
-                <p className="m-0 ms-2">Delete</p>
+                <span className="ms-2">Delete</span>
               </Button>
-            </>
+            </div>
           )}
         </div>
       </div>
       <div className="row gy-3 gx-4">
-        <div className="col-12 fw-bold text-primary">
-          <img src={`/uploads/${image}`} alt="article" className="img-fluid" />
+        <div className="col-12">
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{
+              minHeight: '300px',
+              maxHeight: '50vh',
+              overflow: 'hidden',
+            }}
+          >
+            <img
+              src={image}
+              alt="article"
+              className="img-fluid"
+              style={{ maxWidth: '100%', objectFit: 'cover' }}
+            />
+          </div>
         </div>
         <div className="col-12">
-          <label htmlFor="content" className="fw-bold text-primary">
-            Content
-          </label>
-          <textarea
-            id="content"
-            className="form-control deskripsi"
-            value={content}
-            disabled
-          />
+          <div id="content" className="deskripsi">
+            {content.split('\n').map((content, index) => (
+              <p key={index}>{content}</p>
+            ))}
+          </div>
         </div>
       </div>
     </>

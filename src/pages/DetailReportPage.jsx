@@ -1,23 +1,25 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   asyncReceiveReportDetail,
   asyncUpdateReportStatus,
-} from "../states/reportDetail/action";
-import DetailReport from "../components/reports/DetailReport";
-import StatusReport from "../components/reports/StatusReport";
-import Modal from "../components/form/Modal";
-import AlasanDitolak from "../components/reports/AlasanDitolak";
-import "../styles/report.css";
-import Alert from "../components/form/Alert";
-import { asyncDeleteReport } from "../states/reports/action";
-import StatusDropdown from "../components/reports/StatusDropdown";
+} from '../states/reportDetail/action';
+import DetailReport from '../components/reports/DetailReport';
+import StatusReport from '../components/reports/StatusReport';
+import Modal from '../components/form/Modal';
+import '../styles/report.css';
+import Alert from '../components/form/Alert';
+import { asyncDeleteReport } from '../states/reports/action';
+import StatusDropdown from '../components/reports/StatusDropdown';
+import ReasonInput from '../components/reports/ReasonInput';
 
 function DetailReportPage() {
   const navigate = useNavigate();
   const { id: reportId } = useParams();
-  const { reportDetail = null, authUser } = useSelector((states) => states);
+  const { reportDetail, authUser } = useSelector((states) => states);
+  const [showReasonInput, setShowReasonInput] = useState(false);
+  console.log(showReasonInput);
 
   const dispatch = useDispatch();
 
@@ -35,16 +37,37 @@ function DetailReportPage() {
 
   const onDeleteHandler = () => {
     dispatch(asyncDeleteReport(reportId));
-    navigate("/reports");
+    navigate('/reports');
   };
 
-  const onChangeStatusHandler = (nextStatus, reason = "") => {
-    console.log("nextStatus", nextStatus);
-    dispatch(asyncUpdateReportStatus(reportId, nextStatus, reason));
-    navigate(`/reports/${reportId}/detail`);
+  const onChangeStatusHandler = ({ status, reason }) => {
+    console.log('status', status);
+    console.log('reason', reason);
+    dispatch(
+      asyncUpdateReportStatus({
+        id: reportId,
+        status,
+        reason,
+      })
+    );
+    if (status != 3) {
+      setShowReasonInput(false);
+    }
+  };
+
+  const onShowReasonInputHandler = () => {
+    setShowReasonInput(true);
   };
 
   const isDosen = authUser.role === 1;
+
+  useEffect(() => {
+    if (reportDetail && reportDetail.status === 3) {
+      setShowReasonInput(true);
+    } else {
+      setShowReasonInput(false);
+    }
+  }, [reportDetail]);
 
   if (!reportDetail) {
     return null;
@@ -75,6 +98,7 @@ function DetailReportPage() {
               status={reportDetail.status}
               id={reportId}
               onChangeStatus={onChangeStatusHandler}
+              onShowReasonInput={onShowReasonInputHandler}
             />
           )}
           {!isDosen && (
@@ -88,19 +112,11 @@ function DetailReportPage() {
               </div>
             </div>
           )}
-          {!isDosen && reportDetail.status === 3 && (
-            <div className="card p-3 mt-4">
-              <div className="col-md-13">
-                <div className="d-flex justify-content-end align-items-center mb-1 gap-3">
-                  <div className="card-body">
-                    <AlasanDitolak
-                      status={reportDetail.status}
-                      alasanDitolak={reportDetail.alasanDitolak}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+          {showReasonInput && (
+            <ReasonInput
+              submitHandler={onChangeStatusHandler}
+              reasonValue={reportDetail.reason || null}
+            />
           )}
         </div>
       </div>

@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveArticleDetail } from "../states/reportDetail/action";
-import DetailArticle from "../components/reports/DetailArticle";
-import Modal from "../components/form/Modal";
-import "../styles/article.css";
-import Alert from "../components/form/Alert";
+import React, { useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncReceiveArticleDetail } from '../states/articleDetail/action';
+import DetailArticle from '../components/articles/DetailArticle';
+import Modal from '../components/form/Modal';
+import '../styles/article.css';
+import Alert from '../components/form/Alert';
+import { asyncDeleteArticle } from '../states/articles/action';
 
 function DetailArticlePage() {
   const navigate = useNavigate();
@@ -27,6 +28,13 @@ function DetailArticlePage() {
   const handleEditClick = () => {
     navigate(`/articles/${articleId}/update`); // Path ke halaman UpdateReport dengan ID laporan
     console.log(`Navigating to update page for article ID: ${articleId}`);
+  };
+
+  const onDeleteHandler = async () => {
+    const success = await dispatch(asyncDeleteArticle(articleId));
+    if (success) {
+      navigate('/articles');
+    }
   };
 
   const isDosen = authUser.role === 1;
@@ -57,7 +65,15 @@ function DetailArticlePage() {
           </div>
         </div>
       </div>
-      <Modal id="deleteModal" />
+      <Modal
+        id="deleteArticleModal"
+        body="Apakah anda yakin ingin menghapus artikel ini? Anda tidak dapat memulihkan artikel."
+        title="Konfirmasi Hapus Artikel"
+        cancel="Batal"
+        confirm="Hapus"
+        onConfirm={onDeleteHandler}
+        variant="btn-danger"
+      />
     </section>
   );
 }

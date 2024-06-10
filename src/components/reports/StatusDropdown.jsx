@@ -1,18 +1,10 @@
-import Modal from "../form/Modal";
-import Button from "../form/Button";
-import { asyncUpdateReportStatus } from "../../states/reportDetail/action";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Modal from '../form/Modal';
+import Button from '../form/Button';
+import { useState } from 'react';
 
-function StatusDropdown({ id, status, onChangeStatus }) {
-  console.log(id);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+function StatusDropdown({ id, status, onChangeStatus, onShowReasonInput }) {
   const [selectedNextStatus, setSelectedNextStatus] = useState();
-
-  // console.log(selectedNextStatus);
+  const disableButton = status === 2 || status === 3;
 
   const onSelectNextStatus = (nextStatus) => {
     setSelectedNextStatus(nextStatus);
@@ -26,6 +18,7 @@ function StatusDropdown({ id, status, onChangeStatus }) {
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
+          disabled={disableButton}
         >
           Ubah Status
         </button>
@@ -34,7 +27,8 @@ function StatusDropdown({ id, status, onChangeStatus }) {
             <li>
               <Button
                 marginClass="dropdown-item"
-                onClickHandler={() => onChangeStatus(1)}
+                target="#updateStatusModal"
+                onClickHandler={() => onSelectNextStatus(1)}
               >
                 Ditindaklanjuti
               </Button>
@@ -54,8 +48,7 @@ function StatusDropdown({ id, status, onChangeStatus }) {
               <li>
                 <Button
                   marginClass="dropdown-item"
-                  target="#updateStatusModal"
-                  onClickHandler={() => onSelectNextStatus(3)}
+                  onClickHandler={onShowReasonInput}
                 >
                   Ditolak
                 </Button>
@@ -71,7 +64,7 @@ function StatusDropdown({ id, status, onChangeStatus }) {
         cancel="Batal"
         confirm="Ubah"
         variant="btn-danger"
-        onConfirm={() => onChangeStatus(selectedNextStatus)}
+        onConfirm={() => onChangeStatus({ status: selectedNextStatus })}
       />
     </>
   );

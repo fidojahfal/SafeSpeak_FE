@@ -1,8 +1,8 @@
-import { IconContext } from "react-icons";
-import Button from "../form/Button";
-import Input from "../form/Input";
-import { MdOutlineFileUpload } from "react-icons/md";
-import { useInput } from "../../hooks/useInput";
+import { IconContext } from 'react-icons';
+import Button from '../form/Button';
+import Input from '../form/Input';
+import { MdOutlineFileUpload } from 'react-icons/md';
+import { useInput } from '../../hooks/useInput';
 
 function ArticleInput({ title, content, image, isEdit, submitHandler }) {
   const [titleInput, onTitleInputChange] = useInput(title);
@@ -11,6 +11,11 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    console.log({
+      title: titleInput,
+      content: contentInput,
+      image: imageInput,
+    });
     submitHandler({
       title: titleInput,
       content: contentInput,
@@ -20,7 +25,7 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <h5 className="mb-3">{isEdit ? "Ubah Artikel" : "Buat Artikel"}</h5>
+      <h5 className="mb-3">{isEdit ? 'Ubah Artikel' : 'Buat Artikel'}</h5>
       <div className="row gy-3 gx-4">
         <Input
           divClassName="col-12"
@@ -44,6 +49,14 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
           Konten Artikel
         </Input>
         <div className="col-12">
+          {isEdit && (
+            <div className="mb-2">
+              <p className="mb-2 form-blue-label-semibold inline">
+                Lampiran Gambar Sebelumnya
+              </p>
+              <a href={image}>{image}</a>
+            </div>
+          )}
           <p className="mb-2 form-blue-label-semibold">Lampiran Gambar</p>
           <Input
             type="file"
@@ -51,11 +64,14 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
             labelClassName="custom-file-button"
             inputClassName=""
             onChangeHandler={onImageInputChange}
-            required
+            required={!isEdit}
+            accept=".png, .jpg, .jpeg"
           ></Input>
         </div>
         <div className="d-flex justify-content-center">
-          <Button type="submit">Buat Laporan</Button>
+          <Button type="submit">
+            {isEdit ? 'Ubah Artikel' : 'Buat Artikel'}
+          </Button>
         </div>
       </div>
     </form>
