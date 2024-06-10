@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
 function Modal({
-  id = "deleteModal",
+  id = 'deleteModal',
   title,
   body,
   confirm,
   cancel,
   onConfirm,
   variant,
-  confirmButtonType = "button",
+  confirmButtonType = 'button',
 }) {
   return (
     <div

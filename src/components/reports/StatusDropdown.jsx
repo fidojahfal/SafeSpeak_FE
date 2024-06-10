@@ -1,6 +1,6 @@
-import Modal from "../form/Modal";
-import Button from "../form/Button";
-import { useState } from "react";
+import Modal from '../form/Modal';
+import Button from '../form/Button';
+import { useState } from 'react';
 
 function StatusDropdown({ id, status, onChangeStatus, onShowReasonInput }) {
   const [selectedNextStatus, setSelectedNextStatus] = useState();

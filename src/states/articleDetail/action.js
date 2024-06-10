@@ -1,10 +1,10 @@
-import { hideLoading, showLoading } from "react-redux-loading-bar";
-import { getArticleById, updateArticle, updateReport } from "../../utils/api";
-import { setNotificationActionCreator } from "../notification/action";
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
+import { getArticleById, updateArticle, updateReport } from '../../utils/api';
+import { setNotificationActionCreator } from '../notification/action';
 
 const ActionType = {
-  RECEIVE_ARTICLE_DETAIL: "RECEIVE_ARTICLE_DETAIL",
-  UPDATE_ARTICLE_DETAIL: "UPDATE_ARTICLE_DETAIL",
+  RECEIVE_ARTICLE_DETAIL: 'RECEIVE_ARTICLE_DETAIL',
+  UPDATE_ARTICLE_DETAIL: 'UPDATE_ARTICLE_DETAIL',
 };
 
 function receiveArticleDetailActionCreator(articleDetail) {

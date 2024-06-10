@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveReportCount } from "../../states/countReport/action";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncReceiveReportCount } from '../../states/countReport/action';
 
 function SumLaporanSection() {
   const dispatch = useDispatch();

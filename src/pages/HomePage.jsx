@@ -1,13 +1,13 @@
-import IntroSection from "../components/home/IntroSection";
-import SumLaporanSection from "../components/home/SumLaporanSection";
-import ArticleSection from "../components/home/ArticleSection";
+import IntroSection from '../components/home/IntroSection';
+import SumLaporanSection from '../components/home/SumLaporanSection';
+import ArticleSection from '../components/home/ArticleSection';
 
 // Home Styling
-import "../styles/home.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { asyncReceiveArticles } from "../states/articles/action";
-import { useNavigate } from "react-router-dom";
+import '../styles/home.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { asyncReceiveArticles } from '../states/articles/action';
+import { useNavigate } from 'react-router-dom';
 
 function HomePage({ role }) {
   const { articles } = useSelector((states) => states);

@@ -1,11 +1,11 @@
-import { showLoading, hideLoading } from "react-redux-loading-bar";
-import { deleteArticle, getAllArticles, insertArticle } from "../../utils/api";
-import { setNotificationActionCreator } from "../notification/action";
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import { deleteArticle, getAllArticles, insertArticle } from '../../utils/api';
+import { setNotificationActionCreator } from '../notification/action';
 
 const ActionType = {
-  CREATE_ARTICLE: "CREATE_ARTICLE",
-  DELETE_ARTICLE: "DELETE_ARTICLE",
-  RECEIVE_ARTICLES: "RECEIVE_ARTICLES",
+  CREATE_ARTICLE: 'CREATE_ARTICLE',
+  DELETE_ARTICLE: 'DELETE_ARTICLE',
+  RECEIVE_ARTICLES: 'RECEIVE_ARTICLES',
 };
 
 function createArticleActionCreator(article) {
