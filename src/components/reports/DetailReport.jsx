@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Button from "../form/Button";
-import { MdEdit, MdDeleteForever } from "react-icons/md";
-import { IconContext } from "react-icons";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '../form/Button';
+import { MdEdit, MdDeleteForever } from 'react-icons/md';
+import { IconContext } from 'react-icons';
 
 const formatDate = (date) => {
   const d = new Date(date);
-  const day = String(d.getDate()).padStart(2, "0");
-  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
   const year = d.getFullYear();
   return `${day}/${month}/${year}`;
 };
@@ -38,21 +38,21 @@ function DetailReport({
             <p
               className={`badge rounded-pill fs-6 ${
                 status === 0
-                  ? "bg-warning text-brown"
+                  ? 'bg-warning text-brown'
                   : status === 1
-                  ? "bg-primary text-white"
+                  ? 'bg-primary text-white'
                   : status === 2
-                  ? "text-bg-success"
-                  : "text-bg-danger"
+                  ? 'text-bg-success'
+                  : 'text-bg-danger'
               }`}
             >
               {status === 0
-                ? "Diterima"
+                ? 'Diterima'
                 : status === 1
-                ? "Ditindaklanjuti"
+                ? 'Ditindaklanjuti'
                 : status === 2
-                ? "Selesai"
-                : "Ditolak"}
+                ? 'Selesai'
+                : 'Ditolak'}
             </p>
           )}
           {!isDosen && (
@@ -61,7 +61,7 @@ function DetailReport({
                 marginClass="btn btn-secondary d-flex align-items-center"
                 onClickHandler={handleEditClick}
               >
-                <IconContext.Provider value={{ size: "25px" }}>
+                <IconContext.Provider value={{ size: '25px' }}>
                   <div>
                     <MdEdit />
                   </div>
@@ -72,7 +72,7 @@ function DetailReport({
                 marginClass="btn btn-danger d-flex align-items-center"
                 target="#deleteModal"
               >
-                <IconContext.Provider value={{ size: "25px" }}>
+                <IconContext.Provider value={{ size: '25px' }}>
                   <div>
                     <MdDeleteForever />
                   </div>
@@ -139,7 +139,7 @@ function DetailReport({
               type="text"
               className="form-control"
               id="name"
-              value={user_id ? user_id.name : ""}
+              value={user_id ? user_id.name : ''}
               disabled
             />
             <label htmlFor="nim" className="mt-2 fw-bold text-primary">
@@ -149,7 +149,7 @@ function DetailReport({
               type="text"
               className="form-control"
               id="nim"
-              value={user_id ? user_id.nim : ""}
+              value={user_id ? user_id.nim : ''}
               disabled
             />
           </div>
@@ -191,12 +191,8 @@ function DetailReport({
         </div>
         <div className="col-12 fw-bold text-primary">
           <p>Bukti</p>
-          <a
-            href={`/uploads/${evidence}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {evidence}
+          <a href={`${evidence}`} target="_blank" rel="noopener noreferrer">
+            {evidence.split('/').slice(-1)}
           </a>
         </div>
       </div>
