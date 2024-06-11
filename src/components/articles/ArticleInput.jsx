@@ -1,8 +1,9 @@
-import { IconContext } from 'react-icons';
-import Button from '../form/Button';
-import Input from '../form/Input';
-import { MdOutlineFileUpload } from 'react-icons/md';
-import { useInput } from '../../hooks/useInput';
+import { IconContext } from "react-icons";
+import Button from "../form/Button";
+import Input from "../form/Input";
+import { MdOutlineFileUpload } from "react-icons/md";
+import { useInput } from "../../hooks/useInput";
+import { getFileNameFromUrl } from "../../utils/helper";
 
 function ArticleInput({ title, content, image, isEdit, submitHandler }) {
   const [titleInput, onTitleInputChange] = useInput(title);
@@ -25,7 +26,7 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <h5 className="mb-3">{isEdit ? 'Ubah Artikel' : 'Buat Artikel'}</h5>
+      <h5 className="mb-3">{isEdit ? "Ubah Artikel" : "Buat Artikel"}</h5>
       <div className="row gy-3 gx-4">
         <Input
           divClassName="col-12"
@@ -54,7 +55,7 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
               <p className="mb-2 form-blue-label-semibold inline">
                 Lampiran Gambar Sebelumnya
               </p>
-              <a href={image}>{image}</a>
+              <a href={image}>{getFileNameFromUrl(image)}</a>
             </div>
           )}
           <p className="mb-2 form-blue-label-semibold">Lampiran Gambar</p>
@@ -70,7 +71,7 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
         </div>
         <div className="d-flex justify-content-center">
           <Button type="submit">
-            {isEdit ? 'Ubah Artikel' : 'Buat Artikel'}
+            {isEdit ? "Ubah Artikel" : "Buat Artikel"}
           </Button>
         </div>
       </div>
