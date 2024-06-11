@@ -1,17 +1,17 @@
-import React from 'react';
-import { SlMagnifier } from 'react-icons/sl';
-import Button from '../form/Button';
+import React from "react";
+import { SlMagnifier } from "react-icons/sl";
+import Button from "../form/Button";
 
 function ArticleHead({ role, onCreate }) {
   return (
     <div
       className="row d-flex flex-column-reverse flex-sm-column-reverse flex-xl-row flex-md-column-reverse "
-      style={{ '--bs-gutter-x': '0' }}
+      style={{ "--bs-gutter-x": "0" }}
     >
       <div className=" col-xl-8 ps-xl-5 py-5">
         <p
           className="fs-2 fw-bold text-center text-xl-start"
-          style={{ color: '#0d6efd' }}
+          style={{ color: "#0d6efd" }}
         >
           Cari Artikel
         </p>
@@ -44,7 +44,7 @@ function ArticleHead({ role, onCreate }) {
             alt="Image illustration of dosen"
             src="/img/Beranda-Dosen-2-flip.png"
             width="50%"
-            height="90%"
+            height="70%"
           />
         ) : (
           <img
