@@ -1,19 +1,18 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import LoginInput from '../components/login/LoginInput';
-import Button from '../components/form/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { asyncSetAuthUser } from '../states/authUser/action';
-import { Link } from 'react-router-dom';
-import { setNotificationActionCreator } from '../states/notification/action';
-import Alert from '../components/form/Alert';
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import LoginInput from "../components/login/LoginInput";
+import Button from "../components/form/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncSetAuthUser } from "../states/authUser/action";
+import { Link } from "react-router-dom";
+import Alert from "../components/form/Alert";
 
 function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
 
   const onLogin = async ({ username, password }) => {
     const success = await dispatch(asyncSetAuthUser({ username, password }));

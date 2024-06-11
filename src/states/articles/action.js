@@ -1,11 +1,11 @@
-import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { deleteArticle, getAllArticles, insertArticle } from '../../utils/api';
-import { setNotificationActionCreator } from '../notification/action';
+import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { deleteArticle, getAllArticles, insertArticle } from "../../utils/api";
+import { setNotificationDangerActionCreator } from "../notification/action";
 
 const ActionType = {
-  CREATE_ARTICLE: 'CREATE_ARTICLE',
-  DELETE_ARTICLE: 'DELETE_ARTICLE',
-  RECEIVE_ARTICLES: 'RECEIVE_ARTICLES',
+  CREATE_ARTICLE: "CREATE_ARTICLE",
+  DELETE_ARTICLE: "DELETE_ARTICLE",
+  RECEIVE_ARTICLES: "RECEIVE_ARTICLES",
 };
 
 function createArticleActionCreator(article) {
@@ -47,7 +47,7 @@ function asyncCreateArticle({ title, content, image }) {
       dispatch(createArticleActionCreator(article));
       return true;
     } catch (error) {
-      dispatch(setNotificationActionCreator(error.message));
+      dispatch(setNotificationDangerActionCreator({ message: error.message }));
       return false;
     } finally {
       dispatch(hideLoading());
@@ -63,7 +63,7 @@ function asyncDeleteArticle(id) {
       dispatch(deleteArticleActionCreator(id));
       return true;
     } catch (error) {
-      dispatch(setNotificationActionCreator(id));
+      dispatch(setNotificationDangerActionCreator({ message: error.message }));
       return false;
     } finally {
       dispatch(hideLoading());
@@ -78,7 +78,7 @@ function asyncReceiveArticles() {
       const articles = await getAllArticles();
       dispatch(receiveArticlesActionCreator(articles));
     } catch (error) {
-      dispatch(setNotificationActionCreator(error.message));
+      dispatch(setNotificationDangerActionCreator({ message: error.message }));
     }
     dispatch(hideLoading());
   };
