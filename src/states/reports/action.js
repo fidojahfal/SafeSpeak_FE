@@ -6,7 +6,10 @@ import {
   getReportById,
 } from "../../utils/api";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
-import { setNotificationDangerActionCreator } from "../notification/action";
+import {
+  setNotificationDangerActionCreator,
+  setNotificationSuccessActionCreator,
+} from "../notification/action";
 
 const ActionType = {
   RECEIVE_REPORTS: "RECEIVE_REPORTS",
@@ -87,6 +90,11 @@ function asyncCreateReport({
       if (report) {
         dispatch(createReportActionCreator(report));
       }
+      dispatch(
+        setNotificationSuccessActionCreator({
+          message: "Berhasil membuat laporan",
+        })
+      );
       return true;
     } catch (error) {
       console.log("Error", error.message);
@@ -104,6 +112,11 @@ function asyncDeleteReport(id) {
     try {
       await deleteReport(id);
       dispatch(deleteReportActionCreator(id));
+      dispatch(
+        setNotificationSuccessActionCreator({
+          message: "Berhasil menghapus laporan",
+        })
+      );
     } catch (error) {
       dispatch(setNotificationDangerActionCreator({ message: error.message }));
     }

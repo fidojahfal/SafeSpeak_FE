@@ -1,12 +1,14 @@
-import React from 'react';
-import ReportItem from './ReportItem';
-import Button from '../form/Button';
+import React from "react";
+import ReportItem from "./ReportItem";
+import Button from "../form/Button";
+import Alert from "../form/Alert";
 
 function ReportList({ reports, user, onCreate, onDetail }) {
   return (
     <div className="px-xl-5">
+      <Alert />
       <h3 className="text-primary fw-bold text-center mb-5 mt-3">
-        {user.role ? 'Daftar Laporan' : 'Laporan Saya'}
+        {user.role ? "Daftar Laporan" : "Laporan Saya"}
       </h3>
       {!user.role && (
         <div className="d-flex justify-content-end mb-3">
@@ -22,7 +24,7 @@ function ReportList({ reports, user, onCreate, onDetail }) {
       <table className="table table-striped mb-3">
         <thead>
           <tr className="table-primary">
-            <th scope="col" style={{ width: '80%' }}>
+            <th scope="col" style={{ width: "80%" }}>
               Judul Laporan
             </th>
             <th scope="col">Status</th>
