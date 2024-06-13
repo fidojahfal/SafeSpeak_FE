@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Button from "../form/Button";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import { IconContext } from "react-icons";
+import { getFileNameFromUrl } from "../../utils/helper";
 
 const formatDate = (date) => {
   const d = new Date(date);
@@ -10,10 +11,6 @@ const formatDate = (date) => {
   const month = String(d.getMonth() + 1).padStart(2, "0");
   const year = d.getFullYear();
   return `${day}/${month}/${year}`;
-};
-
-const getFileNameFromUrl = (url) => {
-  return url.substring(url.lastIndexOf("/") + 1);
 };
 
 function DetailReport({

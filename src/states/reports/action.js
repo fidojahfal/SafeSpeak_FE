@@ -4,14 +4,17 @@ import {
   getReportsByUserId,
   insertReport,
   getReportById,
-} from '../../utils/api';
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import { setNotificationActionCreator } from '../notification/action';
+} from "../../utils/api";
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import {
+  setNotificationDangerActionCreator,
+  setNotificationSuccessActionCreator,
+} from "../notification/action";
 
 const ActionType = {
-  RECEIVE_REPORTS: 'RECEIVE_REPORTS',
-  CREATE_REPORT: 'CREATE_REPORT',
-  DELETE_REPORT: 'DELETE_REPORT',
+  RECEIVE_REPORTS: "RECEIVE_REPORTS",
+  CREATE_REPORT: "CREATE_REPORT",
+  DELETE_REPORT: "DELETE_REPORT",
 };
 
 function receiveReportsActionCreator(reports) {
@@ -54,7 +57,7 @@ function asyncReceiveReports() {
       reports = await getReportsByUserId(authUser._id);
       dispatch(receiveReportsActionCreator(reports));
     } catch (error) {
-      dispatch(setNotificationActionCreator(error.message));
+      dispatch(setNotificationDangerActionCreator({ message: error.message }));
     } finally {
       dispatch(hideLoading());
     }
@@ -83,14 +86,19 @@ function asyncCreateReport({
         is_anonim,
       });
       // Add a log to verify the report object
-      console.log('Report object:', report);
+      console.log("Report object:", report);
       if (report) {
         dispatch(createReportActionCreator(report));
       }
+      dispatch(
+        setNotificationSuccessActionCreator({
+          message: "Berhasil membuat laporan",
+        })
+      );
       return true;
     } catch (error) {
-      console.log('Error', error.message);
-      dispatch(setNotificationActionCreator(error.message));
+      console.log("Error", error.message);
+      dispatch(setNotificationDangerActionCreator({ message: error.message }));
       return false;
     } finally {
       dispatch(hideLoading());
@@ -104,8 +112,13 @@ function asyncDeleteReport(id) {
     try {
       await deleteReport(id);
       dispatch(deleteReportActionCreator(id));
+      dispatch(
+        setNotificationSuccessActionCreator({
+          message: "Berhasil menghapus laporan",
+        })
+      );
     } catch (error) {
-      dispatch(setNotificationActionCreator(error.message));
+      dispatch(setNotificationDangerActionCreator({ message: error.message }));
     }
     dispatch(hideLoading());
   };

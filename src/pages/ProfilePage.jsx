@@ -1,13 +1,12 @@
-import React from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import ProfileView from '../components/profile/ProfileView';
-import ProfileInput from '../components/profile/ProfileInput';
-import Alert from '../components/form/Alert';
+import React from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Alert from "../components/form/Alert";
+import ProfileCard from "../components/profile/ProfileCard";
 
 // Profile Styling
-import '../styles/profile-style.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { asyncReceiveUser, asyncUpdateUser } from '../states/user/action';
+import "../styles/profile-style.css";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncReceiveUser, asyncUpdateUser } from "../states/user/action";
 
 function ProfilePage() {
   const { user = null } = useSelector((states) => states);
@@ -46,41 +45,18 @@ function ProfilePage() {
   }
 
   // conditional to show ProfileView or ProfileInput based on URL path
-  const isEditing = location.pathname.includes('/edit');
+  const isEditing = location.pathname.includes("/edit");
 
   return (
     <section className="bg-yellow-100 p-3">
       <Alert />
-      <div className="card">
-        <div className="card-body p-5 profile-card">
-          <div className="d-flex flex-column flex-sm-row align-items-center justify-content-between mb-3">
-            <h3 className="fw-bold color-yellow">
-              {isEditing ? 'Edit Profil' : 'Profil'}
-            </h3>
-            {isEditing && (
-              <img
-                src={user.user_id.avatar}
-                alt="User Avatar"
-                className="avatar"
-              />
-            )}
-          </div>
-          {!isEditing && (
-            <ProfileView
-              {...user}
-              toEdit={toEditHandler}
-              src={user.user_id.avatar}
-            />
-          )}
-          {isEditing && (
-            <ProfileInput
-              {...user}
-              updateHandler={onUpdateHandler}
-              toView={toViewHandler}
-            />
-          )}
-        </div>
-      </div>
+      <ProfileCard
+        isEditing={isEditing}
+        user={user}
+        toEditHandler={toEditHandler}
+        onUpdateHandler={onUpdateHandler}
+        toViewHandler={toViewHandler}
+      />
     </section>
   );
 }

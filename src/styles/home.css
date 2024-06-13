@@ -1,50 +1,58 @@
 .home-article-image {
-    width: 50%;
+  width: 50%;
 }
 
 .home-article-card {
-    width: 18rem;
+  width: 18rem;
 }
 
 .home-article-card .content {
-    height: 6rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+  height: 6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.home-article-card .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
 .laporan-section {
-    background-color: var(--blue-500);
-    color: aliceblue;
-    width: 100%;
+  background-color: var(--blue-500);
+  color: aliceblue;
+  width: 100%;
 }
 
 .laporan-sum-text {
-    font-size: 65px;
-    font-weight: bold;
+  font-size: 65px;
+  font-weight: bold;
 }
 
 .laporan-jumlah-section {
-    background-color: #ddebff;
-    color: var(--blue-500);
+  background-color: #ddebff;
+  color: var(--blue-500);
 }
 
 @media (max-width: 768px) {
-    .home-article-image {
-        width: 75%;
-    }
+  .home-article-image {
+    width: 75%;
+  }
 }
 
 @media (min-width: 992px) {
-    .title-right-padding {
-        padding-right: 7rem !important;
-    }
+  .title-right-padding {
+    padding-right: 7rem !important;
+  }
 }
 
 @media (max-width: 992px) {
-    .laporan-jumlah-section {
-        gap: 1rem;
-    }
+  .laporan-jumlah-section {
+    gap: 1rem;
+  }
 }

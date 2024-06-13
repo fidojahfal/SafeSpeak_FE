@@ -1,20 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { BsPersonCircle } from 'react-icons/bs';
-import { IconContext } from 'react-icons';
-import Button from './form/Button';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import { BsPersonCircle } from "react-icons/bs";
+import { IconContext } from "react-icons";
+import Button from "./form/Button";
+import { useNavigate } from "react-router-dom";
 
 function Navigation({ onLogout, authUser }) {
   const navigate = useNavigate();
   const goToLogin = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
     <nav className="navbar navbar-expand-lg shadow-sm">
       <div className="container-fluid">
-        <Link style={{ textDecoration: 'none' }}>
+        <Link style={{ textDecoration: "none" }}>
           <div className="d-flex align-items-center pe-2">
             <img
               src="/logo/SafeSpeak-Logo.svg"
@@ -95,20 +95,35 @@ function Navigation({ onLogout, authUser }) {
             </Link>
             {authUser ? (
               <>
-                <a
-                  className="nav-link ms-lg-auto"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                >
-                  <IconContext.Provider
-                    value={{ color: '#ffc107', size: '35px' }}
+                {authUser.role === 0 ? (
+                  <a
+                    className="nav-link ms-lg-auto"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
                   >
-                    <div>
-                      <BsPersonCircle />
-                    </div>
-                  </IconContext.Provider>
-                </a>
+                    <img
+                      src={authUser.avatar}
+                      alt="User Avatar"
+                      style={{ width: "35px" }}
+                    />
+                  </a>
+                ) : (
+                  <a
+                    className="nav-link ms-lg-auto"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                  >
+                    <IconContext.Provider
+                      value={{ color: "#ffc107", size: "35px" }}
+                    >
+                      <div>
+                        <BsPersonCircle />
+                      </div>
+                    </IconContext.Provider>
+                  </a>
+                )}
                 <ul className="dropdown-menu dropdown-menu-end">
                   {authUser.role === 0 && (
                     <li className="dropdown-item">

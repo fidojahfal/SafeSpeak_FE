@@ -3,11 +3,26 @@ const ActionType = {
   UNSET_NOTIFICATION: "UNSET_NOTIFICATION",
 };
 
-function setNotificationActionCreator(message) {
+function setNotificationDangerActionCreator({ message }) {
   return {
     type: ActionType.SET_NOTIFICATION,
     payload: {
-      message,
+      notification: {
+        message,
+        type: "danger",
+      },
+    },
+  };
+}
+
+function setNotificationSuccessActionCreator({ message }) {
+  return {
+    type: ActionType.SET_NOTIFICATION,
+    payload: {
+      notification: {
+        message,
+        type: "success",
+      },
     },
   };
 }
@@ -16,13 +31,14 @@ function unsetNotificationActionCreator() {
   return {
     type: ActionType.UNSET_NOTIFICATION,
     payload: {
-      message: null,
+      notification: null,
     },
   };
 }
 
 export {
   ActionType,
-  setNotificationActionCreator,
+  setNotificationSuccessActionCreator,
+  setNotificationDangerActionCreator,
   unsetNotificationActionCreator,
 };
