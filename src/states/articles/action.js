@@ -1,11 +1,12 @@
-import { showLoading, hideLoading } from "react-redux-loading-bar";
-import { deleteArticle, getAllArticles, insertArticle } from "../../utils/api";
-import { setNotificationDangerActionCreator } from "../notification/action";
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import { deleteArticle, getAllArticles, insertArticle } from '../../utils/api';
+import { setNotificationDangerActionCreator } from '../notification/action';
 
 const ActionType = {
-  CREATE_ARTICLE: "CREATE_ARTICLE",
-  DELETE_ARTICLE: "DELETE_ARTICLE",
-  RECEIVE_ARTICLES: "RECEIVE_ARTICLES",
+  CREATE_ARTICLE: 'CREATE_ARTICLE',
+  DELETE_ARTICLE: 'DELETE_ARTICLE',
+  RECEIVE_ARTICLES: 'RECEIVE_ARTICLES',
+  FILTER_ARTICLES: 'FILTER_ARTICLES',
 };
 
 function createArticleActionCreator(article) {
@@ -29,6 +30,15 @@ function deleteArticleActionCreator(article_id) {
 function receiveArticlesActionCreator(articles) {
   return {
     type: ActionType.RECEIVE_ARTICLES,
+    payload: {
+      articles,
+    },
+  };
+}
+
+function filterArticlesActionCreator(articles) {
+  return {
+    type: ActionType.FILTER_ARTICLES,
     payload: {
       articles,
     },
@@ -84,10 +94,28 @@ function asyncReceiveArticles() {
   };
 }
 
+function asyncFilterArticles(keyword) {
+  return async (dispatch, getStates) => {
+    let { articles } = getStates();
+    try {
+      if (!keyword) {
+        articles = await getAllArticles();
+      }
+      const filteredArticles = articles.filter((article) =>
+        article.title.toLowerCase().includes(keyword.toLowerCase())
+      );
+      dispatch(filterArticlesActionCreator(filteredArticles));
+    } catch (error) {
+      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+    }
+  };
+}
+
 export {
   ActionType,
   createArticleActionCreator,
   asyncCreateArticle,
   asyncDeleteArticle,
   asyncReceiveArticles,
+  asyncFilterArticles,
 };
