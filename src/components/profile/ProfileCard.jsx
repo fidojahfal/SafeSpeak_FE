@@ -1,6 +1,7 @@
 import React from "react";
 import ProfileView from "./ProfileView";
 import ProfileInput from "./ProfileInput";
+import PropTypes from "prop-types";
 
 function ProfileCard({
   isEditing,
@@ -42,5 +43,13 @@ function ProfileCard({
     </div>
   );
 }
+
+ProfileCard.propTypes = {
+  isEditing: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
+  toEditHandler: PropTypes.func.isRequired,
+  onUpdateHandler: PropTypes.func.isRequired,
+  toViewHandler: PropTypes.func.isRequired,
+};
 
 export default ProfileCard;
