@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '../form/Button';
-import { MdEdit, MdDeleteForever } from 'react-icons/md';
-import { IconContext } from 'react-icons';
+import React from "react";
+import PropTypes from "prop-types";
+import Button from "../form/Button";
+import { MdEdit, MdDeleteForever } from "react-icons/md";
+import { IconContext } from "react-icons";
 
 const formatDate = (date) => {
   const d = new Date(date);
-  const day = String(d.getDate()).padStart(2, '0');
-  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
   const year = d.getFullYear();
   return `${day}/${month}/${year}`;
 };
@@ -35,7 +35,7 @@ function DetailArticle({
                 marginClass="btn btn-secondary d-flex align-items-center"
                 onClickHandler={handleEditClick}
               >
-                <IconContext.Provider value={{ size: '20px' }}>
+                <IconContext.Provider value={{ size: "20px" }}>
                   <MdEdit />
                 </IconContext.Provider>
                 <span className="ms-2">Update</span>
@@ -44,7 +44,7 @@ function DetailArticle({
                 marginClass="btn btn-danger d-flex align-items-center"
                 target="#deleteModal"
               >
-                <IconContext.Provider value={{ size: '20px' }}>
+                <IconContext.Provider value={{ size: "20px" }}>
                   <MdDeleteForever />
                 </IconContext.Provider>
                 <span className="ms-2">Delete</span>
@@ -58,22 +58,22 @@ function DetailArticle({
           <div
             className="d-flex justify-content-center align-items-center"
             style={{
-              minHeight: '300px',
-              maxHeight: '50vh',
-              overflow: 'hidden',
+              minHeight: "300px",
+              maxHeight: "50vh",
+              overflow: "hidden",
             }}
           >
             <img
               src={image}
               alt="article"
               className="img-fluid"
-              style={{ maxWidth: '100%', objectFit: 'cover' }}
+              style={{ maxWidth: "100%", objectFit: "cover" }}
             />
           </div>
         </div>
         <div className="col-12">
           <div id="content" className="deskripsi">
-            {content.split('\n').map((content, index) => (
+            {content.split("\n").map((content, index) => (
               <p key={index}>{content}</p>
             ))}
           </div>

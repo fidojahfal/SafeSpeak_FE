@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { asyncReceiveArticleDetail } from '../states/articleDetail/action';
-import DetailArticle from '../components/articles/DetailArticle';
-import Modal from '../components/form/Modal';
-import '../styles/article.css';
-import Alert from '../components/form/Alert';
-import { asyncDeleteArticle } from '../states/articles/action';
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncReceiveArticleDetail } from "../states/articleDetail/action";
+import DetailArticle from "../components/articles/DetailArticle";
+import "../styles/article.css";
+import { asyncDeleteArticle } from "../states/articles/action";
+import GeneralCardDetail from "../components/shared/GeneralCardDetail";
 
 function DetailArticlePage() {
   const navigate = useNavigate();
@@ -33,48 +32,22 @@ function DetailArticlePage() {
   const onDeleteHandler = async () => {
     const success = await dispatch(asyncDeleteArticle(articleId));
     if (success) {
-      navigate('/articles');
+      navigate("/articles");
     }
   };
-
-  const isDosen = authUser.role === 1;
 
   if (!articleDetail) {
     return null;
   }
 
   return (
-    <section className="bg-yellow-100 p-4">
-      <div className="row">
-        <div className="col-lg-auto mx-2 mb-4 mt-1">
-          <Link onClick={() => navigate(-1)}>
-            <img src="/icons/arrow-left-circle-fill.svg" alt="arrow-left" />
-          </Link>
-        </div>
-        <div className="col-lg-11">
-          <Alert />
-          <div className="col-lg card p-3">
-            <div className="card-body">
-              <DetailArticle
-                {...articleDetail}
-                authUser={authUser.id}
-                isDosen={isDosen}
-                handleEditClick={handleEditClick}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <Modal
-        id="deleteArticleModal"
-        body="Apakah anda yakin ingin menghapus artikel ini? Anda tidak dapat memulihkan artikel."
-        title="Konfirmasi Hapus Artikel"
-        cancel="Batal"
-        confirm="Hapus"
-        onConfirm={onDeleteHandler}
-        variant="btn-danger"
+    <GeneralCardDetail onDeleteHandler={onDeleteHandler}>
+      <DetailArticle
+        {...articleDetail}
+        isDosen={authUser ? authUser.role === 1 : false}
+        handleEditClick={handleEditClick}
       />
-    </section>
+    </GeneralCardDetail>
   );
 }
 

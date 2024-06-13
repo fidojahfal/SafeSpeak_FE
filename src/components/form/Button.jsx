@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 function Button({
-  type = 'button',
-  primaryOrOutline = 'primary',
-  marginClass = '',
+  type = "button",
+  primaryOrOutline = "primary",
+  marginClass = "",
   children,
   onClickHandler = () => {},
   target,
@@ -29,6 +29,7 @@ function Button({
       type={type}
       className={`btn btn-${primaryOrOutline} ${marginClass}`}
       onClick={onClickHandler}
+      disabled={disabled}
     >
       {children}
     </button>
