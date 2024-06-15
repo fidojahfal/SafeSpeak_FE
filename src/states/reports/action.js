@@ -87,18 +87,12 @@ function asyncCreateReport({
       });
 
       if (report) {
-        dispatch(createReportActionCreator(report));
+        await dispatch(createReportActionCreator(report));
       }
       dispatch(setNotificationSuccess("Berhasil membuat laporan"));
       return true;
     } catch (error) {
-      console.log(error.message);
-      console.log(error.message.includes("Unexpected token"));
-      if (error.message.includes("Unexpected token")) {
-        dispatch(setNotificationDanger("Ukuran file maksimum 15MB"));
-      } else {
-        dispatch(setNotificationDanger(error.message));
-      }
+      dispatch(setNotificationDanger(error.message));
       return false;
     } finally {
       dispatch(hideLoading());

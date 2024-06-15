@@ -219,6 +219,16 @@ export async function updateReport({
   is_anonim,
   id,
 }) {
+  console.log({
+    title,
+    type,
+    place_report,
+    date_report,
+    description,
+    evidence,
+    is_anonim,
+    id,
+  });
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
     method: "PUT",
     body: JSON.stringify({

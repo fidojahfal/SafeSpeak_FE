@@ -44,7 +44,7 @@ function UpdateReportPage() {
   };
 
   if (!reportDetail) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   const formattedDate = moment(reportDetail.date_report).format("YYYY-MM-DD");
