@@ -40,8 +40,10 @@ Button.propTypes = {
   type: PropTypes.string,
   primaryOrOutline: PropTypes.string,
   marginClass: PropTypes.string,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   onClickHandler: PropTypes.func,
+  target: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default Button;

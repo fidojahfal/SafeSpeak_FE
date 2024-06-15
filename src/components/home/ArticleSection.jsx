@@ -1,5 +1,6 @@
 import Button from "../form/Button";
 import ArticleMiniCard from "./ArticleMiniCard";
+import PropTypes from "prop-types";
 
 function ArticleSection({ role, articles, onDetail, navigate }) {
   return (
@@ -56,5 +57,12 @@ function ArticleSection({ role, articles, onDetail, navigate }) {
     </section>
   );
 }
+
+ArticleSection.propTypes = {
+  role: PropTypes.number.isRequired,
+  articles: PropTypes.array.isRequired,
+  onDetail: PropTypes.func.isRequired,
+  navigate: PropTypes.func.isRequired,
+};
 
 export default ArticleSection;

@@ -73,7 +73,7 @@ Input.propTypes = {
   divClassName: PropTypes.string,
   labelAndId: PropTypes.string,
   labelClassName: PropTypes.string,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
   type: PropTypes.string.isRequired,
   inputClassName: PropTypes.string,
   placeholder: PropTypes.string,
@@ -87,6 +87,7 @@ Input.propTypes = {
   min: PropTypes.string,
   max: PropTypes.string,
   name: PropTypes.string,
+  accept: PropTypes.string,
 };
 
 export default Input;

@@ -1,4 +1,5 @@
 import Button from "../form/Button";
+import PropTypes from "prop-types";
 
 function ArticleMiniCard({ _id, title, content, onDetail, image, height }) {
   return (
@@ -24,5 +25,14 @@ function ArticleMiniCard({ _id, title, content, onDetail, image, height }) {
     </div>
   );
 }
+
+ArticleMiniCard.propTypes = {
+  _id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  onDetail: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
+};
 
 export default ArticleMiniCard;
