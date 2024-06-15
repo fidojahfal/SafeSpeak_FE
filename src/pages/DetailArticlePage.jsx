@@ -46,6 +46,7 @@ function DetailArticlePage() {
         {...articleDetail}
         isDosen={authUser ? authUser.role === 1 : false}
         handleEditClick={handleEditClick}
+        handleDeleteClick={onDeleteHandler}
       />
     </GeneralCardDetail>
   );

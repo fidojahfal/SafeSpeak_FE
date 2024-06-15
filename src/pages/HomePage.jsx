@@ -10,7 +10,7 @@ import { asyncReceiveArticles } from "../states/articles/action";
 import { useNavigate } from "react-router-dom";
 
 function HomePage({ role }) {
-  const { articles } = useSelector((states) => states);
+  const { articles = [] } = useSelector((states) => states);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,13 +22,17 @@ function HomePage({ role }) {
     navigate(`/articles/${article_id}/detail`);
   }
 
+  const sortedArticles = [...articles].sort(
+    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+  );
+
   return (
     <>
       <IntroSection role={role} />
       <SumLaporanSection />
       <ArticleSection
         role={role}
-        articles={articles}
+        articles={sortedArticles}
         onDetail={onDetailArticleHandler}
         navigate={navigate}
       />
