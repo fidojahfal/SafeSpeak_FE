@@ -1,28 +1,32 @@
-import React, { useEffect } from 'react';
-import ArticleHead from '../components/articles/ArticleHead';
-import ArticleBody from '../components/articles/ArticleBody';
-import '../styles/article.css';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import ArticleHead from "../components/articles/ArticleHead";
+import ArticleBody from "../components/articles/ArticleBody";
+import "../styles/article.css";
+import { useDispatch, useSelector } from "react-redux";
 import {
   asyncFilterArticles,
   asyncReceiveArticles,
-} from '../states/articles/action';
-import { useNavigate } from 'react-router-dom';
+} from "../states/articles/action";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ArticlePage() {
   const { articles = null, authUser } = useSelector((states) => states);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     dispatch(asyncReceiveArticles());
   }, [dispatch]);
 
   function onDetailArticleHandler(id) {
-    navigate(`/articles/${id}/detail`);
+    navigate(`/articles/${id}/detail`, {
+      state: { from: location },
+      replace: true,
+    });
   }
 
   function onCreateHandler() {
-    navigate('/articles/create');
+    navigate("/articles/create");
   }
 
   function onFilterArticlesHandler(keyword) {
@@ -34,7 +38,7 @@ function ArticlePage() {
   }
 
   return (
-    <section className="bg-articles" style={{ '--bs-gutter-x': '0' }}>
+    <section className="bg-articles" style={{ "--bs-gutter-x": "0" }}>
       <ArticleHead
         role={authUser ? authUser.role : 0}
         onCreate={onCreateHandler}

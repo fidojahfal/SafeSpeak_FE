@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Alert from "../components/form/Alert";
 import ArticleInput from "../components/articles/ArticleInput";
 import {
@@ -12,6 +12,7 @@ import GeneralCard from "../components/shared/GeneralCard";
 function UpdateArticlePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { id: articleId } = useParams();
   const { articleDetail } = useSelector((states) => states);
 
@@ -27,7 +28,10 @@ function UpdateArticlePage() {
       asyncUpdateArticleDetail({ id: articleId, title, content, image })
     );
     if (success) {
-      navigate(`/articles/${articleId}/detail`);
+      navigate(`/articles/${articleId}/detail`, {
+        state: { from: location },
+        replace: true,
+      });
     }
   };
 
