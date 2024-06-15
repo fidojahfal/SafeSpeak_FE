@@ -1,7 +1,6 @@
 import Button from "../form/Button";
 
 function ArticleMiniCard({ _id, title, content, onDetail, image, height }) {
-  console.log("in article mini card", _id);
   return (
     <div className="card home-article-card">
       <img

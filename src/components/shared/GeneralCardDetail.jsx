@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Alert from "../form/Alert";
 import Modal from "../form/Modal";
 
@@ -7,12 +7,16 @@ function GeneralCardDetail({
   sectionClassname = "bg-yellow-100 p-4",
   onDeleteHandler,
 }) {
-  const navigate = useNavigate();
+  const location = useLocation();
+  let locationFrom = location.state?.from?.pathname;
+  if (locationFrom && locationFrom.includes("update" || "detail")) {
+    locationFrom = "/articles";
+  }
   return (
     <section className={sectionClassname}>
       <div className="row">
         <div className="col-lg-auto mx-2 mb-4 mt-1">
-          <Link onClick={() => navigate(-1)}>
+          <Link to={locationFrom}>
             <img src="/icons/arrow-left-circle-fill.svg" alt="arrow-left" />
           </Link>
         </div>

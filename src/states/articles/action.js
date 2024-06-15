@@ -2,13 +2,14 @@ import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { deleteArticle, getAllArticles, insertArticle } from "../../utils/api";
 import {
   setNotificationDangerActionCreator,
-  setNotificationSuccessActionCreator,
+  setNotificationSuccess,
 } from "../notification/action";
 
 const ActionType = {
   CREATE_ARTICLE: "CREATE_ARTICLE",
   DELETE_ARTICLE: "DELETE_ARTICLE",
   RECEIVE_ARTICLES: "RECEIVE_ARTICLES",
+  FILTER_ARTICLES: "FILTER_ARTICLES",
 };
 
 function createArticleActionCreator(article) {
@@ -38,6 +39,15 @@ function receiveArticlesActionCreator(articles) {
   };
 }
 
+function filterArticlesActionCreator(articles) {
+  return {
+    type: ActionType.FILTER_ARTICLES,
+    payload: {
+      articles,
+    },
+  };
+}
+
 function asyncCreateArticle({ title, content, image }) {
   return async (dispatch) => {
     dispatch(showLoading());
@@ -48,11 +58,7 @@ function asyncCreateArticle({ title, content, image }) {
         image,
       });
       dispatch(createArticleActionCreator(article));
-      dispatch(
-        setNotificationSuccessActionCreator({
-          message: "Artikel berhasil dibuat",
-        })
-      );
+      dispatch(setNotificationSuccess("Artikel berhasil dibuat"));
       return true;
     } catch (error) {
       dispatch(setNotificationDangerActionCreator({ message: error.message }));
@@ -69,11 +75,7 @@ function asyncDeleteArticle(id) {
     try {
       await deleteArticle(id);
       dispatch(deleteArticleActionCreator(id));
-      dispatch(
-        setNotificationSuccessActionCreator({
-          message: "Artikel berhasil dihapus",
-        })
-      );
+      dispatch(setNotificationSuccess("Artikel berhasil dihapus"));
       return true;
     } catch (error) {
       dispatch(setNotificationDangerActionCreator({ message: error.message }));
@@ -97,10 +99,27 @@ function asyncReceiveArticles() {
   };
 }
 
+function asyncFilterArticles(keyword) {
+  return async (dispatch, getStates) => {
+    let {
+      articles: { originalArticles },
+    } = getStates();
+    try {
+      const filteredArticles = originalArticles.filter((article) =>
+        article.title.toLowerCase().includes(keyword.toLowerCase())
+      );
+      dispatch(filterArticlesActionCreator(filteredArticles));
+    } catch (error) {
+      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+    }
+  };
+}
+
 export {
   ActionType,
   createArticleActionCreator,
   asyncCreateArticle,
   asyncDeleteArticle,
   asyncReceiveArticles,
+  asyncFilterArticles,
 };

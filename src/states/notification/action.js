@@ -36,9 +36,32 @@ function unsetNotificationActionCreator() {
   };
 }
 
+function setNotificationSuccess(message) {
+  return async (dispatch) => {
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("3 seconds have passed!");
+        resolve();
+      }, 1000);
+    });
+
+    dispatch(setNotificationSuccessActionCreator({ message: message }));
+
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("3 seconds have passed!");
+        resolve();
+      }, 3500);
+    });
+
+    dispatch(unsetNotificationActionCreator());
+  };
+}
+
 export {
   ActionType,
   setNotificationSuccessActionCreator,
   setNotificationDangerActionCreator,
   unsetNotificationActionCreator,
+  setNotificationSuccess,
 };

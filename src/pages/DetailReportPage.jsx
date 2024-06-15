@@ -13,7 +13,9 @@ import GeneralCardDetailReport from "../components/shared/GeneralCardDetailRepor
 function DetailReportPage() {
   const navigate = useNavigate();
   const { id: reportId } = useParams();
-  const { reportDetail, authUser } = useSelector((states) => states);
+  const { reportDetail, authUser, loadingBar } = useSelector(
+    (states) => states
+  );
   const [showReasonInput, setShowReasonInput] = useState(false);
 
   const dispatch = useDispatch();
@@ -23,6 +25,18 @@ function DetailReportPage() {
       dispatch(asyncReceiveReportDetail(reportId));
     }
   }, [reportId, dispatch]);
+
+  useEffect(() => {
+    if (reportDetail && reportDetail.status === 3) {
+      setShowReasonInput(true);
+    } else {
+      setShowReasonInput(false);
+    }
+  }, [reportDetail]);
+
+  if (!reportDetail) {
+    return null;
+  }
 
   const handleEditClick = () => {
     navigate(`/reports/${reportId}/update`);
@@ -50,15 +64,7 @@ function DetailReportPage() {
     setShowReasonInput(true);
   };
 
-  useEffect(() => {
-    if (reportDetail && reportDetail.status === 3) {
-      setShowReasonInput(true);
-    } else {
-      setShowReasonInput(false);
-    }
-  }, [reportDetail]);
-
-  if (!reportDetail) {
+  if (loadingBar.default) {
     return null;
   }
 

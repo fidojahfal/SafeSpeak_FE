@@ -7,22 +7,29 @@ import "../styles/home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { asyncReceiveArticles } from "../states/articles/action";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function HomePage({ role }) {
-  const { articles = [] } = useSelector((states) => states);
+  const { articles = null } = useSelector((states) => states);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(asyncReceiveArticles());
   }, [dispatch]);
 
   function onDetailArticleHandler(article_id) {
-    navigate(`/articles/${article_id}/detail`);
+    navigate(`/articles/${article_id}/detail`, {
+      state: { from: location },
+      replace: true,
+    });
   }
 
-  const sortedArticles = [...articles].sort(
+  if (!articles) {
+    return null;
+  }
+  const sortedArticles = [...articles.originalArticles].sort(
     (a, b) => new Date(b.created_at) - new Date(a.created_at)
   );
 
