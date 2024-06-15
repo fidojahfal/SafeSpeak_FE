@@ -1,8 +1,8 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { getArticleById, updateArticle } from "../../utils/api";
 import {
-  setNotificationSuccessActionCreator,
   setNotificationDangerActionCreator,
+  setNotificationSuccess,
 } from "../notification/action";
 
 const ActionType = {
@@ -48,11 +48,7 @@ function asyncUpdateArticleDetail({ title, content, image, id }) {
       await updateArticle({ title, content, image, id });
       const updatedArticleDetail = await getArticleById(id);
       dispatch(updateArticleDetailActionCreator(updatedArticleDetail));
-      dispatch(
-        setNotificationSuccessActionCreator({
-          message: "Artikel berhasil diperbarui",
-        })
-      );
+      dispatch(setNotificationSuccess("Artikel berhasil diperbarui"));
       return true;
     } catch (error) {
       dispatch(setNotificationDangerActionCreator({ message: error.message }));

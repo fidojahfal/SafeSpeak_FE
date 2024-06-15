@@ -1,15 +1,15 @@
-import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { deleteArticle, getAllArticles, insertArticle } from '../../utils/api';
+import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { deleteArticle, getAllArticles, insertArticle } from "../../utils/api";
 import {
   setNotificationDangerActionCreator,
-  setNotificationSuccessActionCreator,
-} from '../notification/action';
+  setNotificationSuccess,
+} from "../notification/action";
 
 const ActionType = {
-  CREATE_ARTICLE: 'CREATE_ARTICLE',
-  DELETE_ARTICLE: 'DELETE_ARTICLE',
-  RECEIVE_ARTICLES: 'RECEIVE_ARTICLES',
-  FILTER_ARTICLES: 'FILTER_ARTICLES',
+  CREATE_ARTICLE: "CREATE_ARTICLE",
+  DELETE_ARTICLE: "DELETE_ARTICLE",
+  RECEIVE_ARTICLES: "RECEIVE_ARTICLES",
+  FILTER_ARTICLES: "FILTER_ARTICLES",
 };
 
 function createArticleActionCreator(article) {
@@ -58,11 +58,7 @@ function asyncCreateArticle({ title, content, image }) {
         image,
       });
       dispatch(createArticleActionCreator(article));
-      dispatch(
-        setNotificationSuccessActionCreator({
-          message: 'Artikel berhasil dibuat',
-        })
-      );
+      dispatch(setNotificationSuccess("Artikel berhasil dibuat"));
       return true;
     } catch (error) {
       dispatch(setNotificationDangerActionCreator({ message: error.message }));
@@ -79,11 +75,7 @@ function asyncDeleteArticle(id) {
     try {
       await deleteArticle(id);
       dispatch(deleteArticleActionCreator(id));
-      dispatch(
-        setNotificationSuccessActionCreator({
-          message: 'Artikel berhasil dihapus',
-        })
-      );
+      dispatch(setNotificationSuccess("Artikel berhasil dihapus"));
       return true;
     } catch (error) {
       dispatch(setNotificationDangerActionCreator({ message: error.message }));

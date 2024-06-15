@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoWarning } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -19,7 +19,7 @@ function Alert() {
 
   return (
     <div
-      className={`alert alert-${notification.type} d-flex align-items-center`}
+      className={`alert alert-${notification.type} d-flex align-items-center fade show`}
       role="alert"
     >
       {notification.type === "danger" && (
@@ -41,6 +41,7 @@ function Alert() {
         type="button"
         className="btn-close ms-auto"
         aria-label="Close"
+        data-dismiss="alert"
         onClick={onClose}
       ></button>
     </div>

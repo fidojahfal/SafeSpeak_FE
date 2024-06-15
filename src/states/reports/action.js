@@ -8,7 +8,7 @@ import {
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import {
   setNotificationDangerActionCreator,
-  setNotificationSuccessActionCreator,
+  setNotificationSuccess,
 } from "../notification/action";
 
 const ActionType = {
@@ -90,11 +90,7 @@ function asyncCreateReport({
       if (report) {
         dispatch(createReportActionCreator(report));
       }
-      dispatch(
-        setNotificationSuccessActionCreator({
-          message: "Berhasil membuat laporan",
-        })
-      );
+      dispatch(setNotificationSuccess("Berhasil membuat laporan"));
       return true;
     } catch (error) {
       console.log("Error", error.message);
@@ -112,11 +108,7 @@ function asyncDeleteReport(id) {
     try {
       await deleteReport(id);
       dispatch(deleteReportActionCreator(id));
-      dispatch(
-        setNotificationSuccessActionCreator({
-          message: "Berhasil menghapus laporan",
-        })
-      );
+      dispatch(setNotificationSuccess("Berhasil menghapus laporan"));
     } catch (error) {
       dispatch(setNotificationDangerActionCreator({ message: error.message }));
     }
