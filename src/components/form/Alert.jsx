@@ -2,7 +2,6 @@ import React from "react";
 import { IoWarning } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import { PropTypes } from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { unsetNotificationActionCreator } from "../../states/notification/action";
 
@@ -47,10 +46,5 @@ function Alert() {
     </div>
   );
 }
-
-Alert.propTypes = {
-  message: PropTypes.string.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
 
 export default Alert;

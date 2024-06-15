@@ -112,7 +112,7 @@ ProfileInput.propTypes = {
   user_id: PropTypes.object.isRequired,
   telepon: PropTypes.string.isRequired,
   updateHandler: PropTypes.func.isRequired,
-  toView: PropTypes.func.isRequired,
+  toView: PropTypes.func,
 };
 
 export default ProfileInput;

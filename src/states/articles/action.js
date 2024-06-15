@@ -1,6 +1,9 @@
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import { deleteArticle, getAllArticles, insertArticle } from '../../utils/api';
-import { setNotificationDangerActionCreator } from '../notification/action';
+import {
+  setNotificationDangerActionCreator,
+  setNotificationSuccessActionCreator,
+} from '../notification/action';
 
 const ActionType = {
   CREATE_ARTICLE: 'CREATE_ARTICLE',
@@ -55,6 +58,11 @@ function asyncCreateArticle({ title, content, image }) {
         image,
       });
       dispatch(createArticleActionCreator(article));
+      dispatch(
+        setNotificationSuccessActionCreator({
+          message: 'Artikel berhasil dibuat',
+        })
+      );
       return true;
     } catch (error) {
       dispatch(setNotificationDangerActionCreator({ message: error.message }));
@@ -71,6 +79,11 @@ function asyncDeleteArticle(id) {
     try {
       await deleteArticle(id);
       dispatch(deleteArticleActionCreator(id));
+      dispatch(
+        setNotificationSuccessActionCreator({
+          message: 'Artikel berhasil dihapus',
+        })
+      );
       return true;
     } catch (error) {
       dispatch(setNotificationDangerActionCreator({ message: error.message }));

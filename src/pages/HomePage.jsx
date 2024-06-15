@@ -25,6 +25,9 @@ function HomePage({ role }) {
   if (!articles) {
     return null;
   }
+  const sortedArticles = [...articles.originalArticles].sort(
+    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+  );
 
   return (
     <>
@@ -32,7 +35,7 @@ function HomePage({ role }) {
       <SumLaporanSection />
       <ArticleSection
         role={role}
-        articles={articles.originalArticles}
+        articles={sortedArticles}
         onDetail={onDetailArticleHandler}
         navigate={navigate}
       />
