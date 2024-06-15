@@ -8,7 +8,7 @@ import {
 import DetailReport from "../components/reports/DetailReport";
 import "../styles/report.css";
 import { asyncDeleteReport } from "../states/reports/action";
-import GeneralCardDetailReport from "../components/shared/GeneralCardDetail";
+import GeneralCardDetailReport from "../components/shared/GeneralCardDetailReport";
 
 function DetailReportPage() {
   const navigate = useNavigate();
