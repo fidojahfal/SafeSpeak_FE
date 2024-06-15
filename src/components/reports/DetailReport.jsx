@@ -32,10 +32,10 @@ function DetailReport({
   return (
     <>
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
-        <h5 className="mb-2 mb-md-0">
+        <h5 className="mb-2 mb-md-0 me-2">
           {title} - <span>{formattedDate}</span>
         </h5>
-        <div className="d-flex flex-column flex-md-row align-items-center gap-2 gap-md-3">
+        <div className="d-flex flex-column flex-md-row align-items-center gap-2">
           {isDosen && (
             <p
               className={`badge rounded-pill fs-6 ${
@@ -58,33 +58,37 @@ function DetailReport({
             </p>
           )}
           {!isDosen && (
-            <div className="d-flex gap-2 flex-wrap">
-              <Button
-                marginClass="btn btn-secondary d-flex align-items-center"
-                onClickHandler={handleEditClick}
-                disabled={status !== 0}
-              >
-                <IconContext.Provider value={{ size: "25px" }}>
-                  <div>
-                    <MdEdit />
-                  </div>
-                </IconContext.Provider>
-                <p className="m-0 ms-2">Update</p>
-              </Button>
-              <Button
-                marginClass="btn btn-danger d-flex align-items-center"
-                target="#deleteModal"
-                data-bs-toggle="modal"
-                data-bs-target="#deleteModal"
-                disabled={status !== 0}
-              >
-                <IconContext.Provider value={{ size: "25px" }}>
-                  <div>
-                    <MdDeleteForever />
-                  </div>
-                </IconContext.Provider>
-                <p className="m-0 ms-2">Delete</p>
-              </Button>
+            <div className="d-flex gap-2">
+              <div className="d-flex">
+                <Button
+                  marginClass="btn btn-secondary d-flex align-items-center"
+                  onClickHandler={handleEditClick}
+                  disabled={status !== 0}
+                >
+                  <IconContext.Provider value={{ size: "25px" }}>
+                    <div>
+                      <MdEdit />
+                    </div>
+                  </IconContext.Provider>
+                  <p className="m-0 ms-2">Update</p>
+                </Button>
+              </div>
+              <div className="d-flex">
+                <Button
+                  marginClass="btn btn-danger d-flex align-items-center"
+                  target="#deleteModal"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteModal"
+                  disabled={status !== 0}
+                >
+                  <IconContext.Provider value={{ size: "25px" }}>
+                    <div>
+                      <MdDeleteForever />
+                    </div>
+                  </IconContext.Provider>
+                  <p className="m-0 ms-2">Delete</p>
+                </Button>
+              </div>
             </div>
           )}
         </div>

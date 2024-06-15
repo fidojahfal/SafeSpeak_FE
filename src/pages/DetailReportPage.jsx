@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   asyncReceiveReportDetail,
   asyncUpdateReportStatus,
-} from '../states/reportDetail/action';
-import DetailReport from '../components/reports/DetailReport';
-import '../styles/report.css';
-import { asyncDeleteReport } from '../states/reports/action';
-import GeneralCardDetailReport from '../components/shared/GeneralCardDetail';
+} from "../states/reportDetail/action";
+import DetailReport from "../components/reports/DetailReport";
+import "../styles/report.css";
+import { asyncDeleteReport } from "../states/reports/action";
+import GeneralCardDetailReport from "../components/shared/GeneralCardDetailReport";
 
 function DetailReportPage() {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ function DetailReportPage() {
 
   const onDeleteHandler = () => {
     dispatch(asyncDeleteReport(reportId));
-    navigate('/reports');
+    navigate("/reports");
   };
 
   const onChangeStatusHandler = ({ status, reason }) => {
