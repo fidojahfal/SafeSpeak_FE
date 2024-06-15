@@ -22,7 +22,7 @@ function DetailReport({
   description,
   evidence,
   is_anonim,
-  user_id,
+  user_id = null,
   isDosen,
   handleEditClick,
   status,
@@ -124,10 +124,6 @@ DetailReport.propTypes = {
   isDosen: PropTypes.bool.isRequired,
   handleEditClick: PropTypes.func.isRequired,
   status: PropTypes.number.isRequired,
-};
-
-DetailReport.defaultProps = {
-  user_id: null,
 };
 
 export default DetailReport;

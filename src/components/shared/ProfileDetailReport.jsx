@@ -8,7 +8,7 @@ function ProfileDetailReport({
   description,
   evidence,
   is_anonim,
-  user_id,
+  user_id = null,
   fileName,
 }) {
   return (
@@ -131,7 +131,7 @@ function ProfileDetailReport({
 ProfileDetailReport.propTypes = {
   type: PropTypes.number.isRequired,
   place_report: PropTypes.string.isRequired,
-  date_report: PropTypes.string.isRequired,
+  formattedDate: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   evidence: PropTypes.string.isRequired,
   is_anonim: PropTypes.bool.isRequired,
@@ -140,10 +140,6 @@ ProfileDetailReport.propTypes = {
     nim: PropTypes.number.isRequired,
   }),
   fileName: PropTypes.string.isRequired,
-};
-
-ProfileDetailReport.defaultProps = {
-  user_id: null,
 };
 
 export default ProfileDetailReport;
