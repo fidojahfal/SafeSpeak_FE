@@ -16,8 +16,6 @@ function UpdateReportPage() {
   const navigate = useNavigate();
   const reportDetail = useSelector((state) => state.updateReport);
 
-  console.log("Prop Received:", { reportDetail });
-
   useEffect(() => {
     dispatch(asyncReceiveUpdateReportDetail(reportId));
   }, [dispatch, reportId]);
@@ -41,7 +39,6 @@ function UpdateReportPage() {
       evidence,
       is_anonim,
     };
-    console.log("report:", { report });
     dispatch(asyncUpdateReport(report));
     navigate(`/reports/${reportId}/detail`);
   };
@@ -51,7 +48,6 @@ function UpdateReportPage() {
   }
 
   const formattedDate = moment(reportDetail.date_report).format("YYYY-MM-DD");
-  console.log("Date:", { formattedDate });
   return (
     <GeneralCard>
       <ReportInput

@@ -31,15 +31,6 @@ function ReportInput({
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log({
-      title: titleInput,
-      type: Number(typeInput),
-      place_report: placeInput,
-      date_report: dateInput,
-      description: descriptionInput,
-      evidence: evidenceInput,
-      is_anonim: anonimInput,
-    });
     submitHandler({
       title: titleInput,
       type: Number(typeInput),

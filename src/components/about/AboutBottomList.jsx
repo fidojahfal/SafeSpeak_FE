@@ -35,6 +35,7 @@ function AboutBottomList() {
             <AboutBottomItem
               name="Fido Jahfal Prayoga"
               jobdesk="Frontend & Backend Developer"
+              src="Fido Jahfal.png"
               linkedin={{
                 link: 'https://www.linkedin.com/in/fidojahfal/',
                 name: 'Fido Jahfal Prayoga',

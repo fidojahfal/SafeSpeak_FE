@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import ReportInput from '../components/reports/ReportInput';
-import { asyncCreateReport } from '../states/reports/action';
-import GeneralCard from '../components/shared/GeneralCard';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import ReportInput from "../components/reports/ReportInput";
+import { asyncCreateReport } from "../states/reports/action";
+import GeneralCard from "../components/shared/GeneralCard";
 
 // Report Styling
-import '../styles/report.css';
+import "../styles/report.css";
 
 function CreateReportPage() {
   const dispatch = useDispatch();
@@ -32,9 +32,8 @@ function CreateReportPage() {
         is_anonim,
       })
     );
-    console.log(success);
     if (success) {
-      navigate('/reports');
+      navigate("/reports");
     }
   };
 

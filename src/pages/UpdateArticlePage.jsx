@@ -18,7 +18,6 @@ function UpdateArticlePage() {
 
   useEffect(() => {
     if (articleId) {
-      console.log(`Fetching report details for ID: ${articleId}`);
       dispatch(asyncReceiveArticleDetail(articleId));
     }
   }, [articleId, dispatch]);
