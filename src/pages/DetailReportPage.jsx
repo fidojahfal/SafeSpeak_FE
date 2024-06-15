@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   asyncReceiveReportDetail,
   asyncUpdateReportStatus,
-} from "../states/reportDetail/action";
-import DetailReport from "../components/reports/DetailReport";
-import "../styles/report.css";
-import { asyncDeleteReport } from "../states/reports/action";
-import GeneralCardDetailReport from "../components/shared/GeneralCardDetail";
+} from '../states/reportDetail/action';
+import DetailReport from '../components/reports/DetailReport';
+import '../styles/report.css';
+import { asyncDeleteReport } from '../states/reports/action';
+import GeneralCardDetailReport from '../components/shared/GeneralCardDetail';
 
 function DetailReportPage() {
   const navigate = useNavigate();
   const { id: reportId } = useParams();
-  const { reportDetail, authUser } = useSelector((states) => states);
+  const { reportDetail, authUser, loadingBar } = useSelector(
+    (states) => states
+  );
   const [showReasonInput, setShowReasonInput] = useState(false);
 
   const dispatch = useDispatch();
@@ -24,13 +26,25 @@ function DetailReportPage() {
     }
   }, [reportId, dispatch]);
 
+  useEffect(() => {
+    if (reportDetail && reportDetail.status === 3) {
+      setShowReasonInput(true);
+    } else {
+      setShowReasonInput(false);
+    }
+  }, [reportDetail]);
+
+  if (!reportDetail) {
+    return null;
+  }
+
   const handleEditClick = () => {
     navigate(`/reports/${reportId}/update`);
   };
 
   const onDeleteHandler = () => {
     dispatch(asyncDeleteReport(reportId));
-    navigate("/reports");
+    navigate('/reports');
   };
 
   const onChangeStatusHandler = ({ status, reason }) => {
@@ -50,15 +64,7 @@ function DetailReportPage() {
     setShowReasonInput(true);
   };
 
-  useEffect(() => {
-    if (reportDetail && reportDetail.status === 3) {
-      setShowReasonInput(true);
-    } else {
-      setShowReasonInput(false);
-    }
-  }, [reportDetail]);
-
-  if (!reportDetail) {
+  if (loadingBar.default) {
     return null;
   }
 

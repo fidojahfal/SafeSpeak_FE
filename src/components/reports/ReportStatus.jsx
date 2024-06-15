@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ReportStatus({ status }) {
   switch (status) {
@@ -28,5 +29,7 @@ function ReportStatus({ status }) {
       return <p className="badge rounded-pill text-bg-danger fs-6">Ditolak</p>;
   }
 }
+
+ReportStatus.propTypes = { status: PropTypes.number.isRequired };
 
 export default ReportStatus;

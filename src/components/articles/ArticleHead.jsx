@@ -1,6 +1,7 @@
 import React from 'react';
 import { SlMagnifier } from 'react-icons/sl';
 import Button from '../form/Button';
+import PropTypes from 'prop-types';
 
 function ArticleHead({ role, onCreate, onFilter }) {
   function onChangeHandler(event) {
@@ -62,5 +63,11 @@ function ArticleHead({ role, onCreate, onFilter }) {
     </div>
   );
 }
+
+ArticleHead.propTypes = {
+  role: PropTypes.number.isRequired,
+  onCreate: PropTypes.func.isRequired,
+  onFilter: PropTypes.func.isRequired,
+};
 
 export default ArticleHead;
