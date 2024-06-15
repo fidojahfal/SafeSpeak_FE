@@ -63,7 +63,6 @@ function asyncReceiveUser(id) {
     try {
       const user = await getUser(id);
       dispatch(receiveUserActionCreator(user));
-      console.log(user);
     } catch (error) {
       alert(error);
     }

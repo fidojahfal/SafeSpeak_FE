@@ -12,11 +12,6 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log({
-      title: titleInput,
-      content: contentInput,
-      image: imageInput,
-    });
     submitHandler({
       title: titleInput,
       content: contentInput,

@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { asyncReceiveArticleDetail } from '../states/articleDetail/action';
-import DetailArticle from '../components/articles/DetailArticle';
-import '../styles/article.css';
-import { asyncDeleteArticle } from '../states/articles/action';
-import GeneralCardDetail from '../components/shared/GeneralCardDetail';
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncReceiveArticleDetail } from "../states/articleDetail/action";
+import DetailArticle from "../components/articles/DetailArticle";
+import "../styles/article.css";
+import { asyncDeleteArticle } from "../states/articles/action";
+import GeneralCardDetail from "../components/shared/GeneralCardDetail";
 
 function DetailArticlePage() {
   const navigate = useNavigate();
@@ -18,20 +18,18 @@ function DetailArticlePage() {
 
   useEffect(() => {
     if (articleId) {
-      console.log(`Fetching article details for ID: ${articleId}`);
       dispatch(asyncReceiveArticleDetail(articleId));
     }
   }, [articleId, dispatch]);
 
   const handleEditClick = () => {
     navigate(`/articles/${articleId}/update`); // Path ke halaman UpdateReport dengan ID laporan
-    console.log(`Navigating to update page for article ID: ${articleId}`);
   };
 
   const onDeleteHandler = async () => {
     const success = await dispatch(asyncDeleteArticle(articleId));
     if (success) {
-      navigate('/articles');
+      navigate("/articles");
     }
   };
 

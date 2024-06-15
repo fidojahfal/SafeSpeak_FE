@@ -6,14 +6,9 @@ import Modal from "../form/Modal";
 
 function ReasonInput({ submitHandler, reasonValue }) {
   const [reasonInput, onReasonInputChange] = useInput(reasonValue || "");
-  console.log(reasonValue ? true : false);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log({
-      status: 3,
-      reason: reasonInput,
-    });
     submitHandler({
       status: 3,
       reason: reasonInput,

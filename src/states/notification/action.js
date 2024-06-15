@@ -40,7 +40,6 @@ function setNotificationSuccess(message) {
   return async (dispatch) => {
     await new Promise((resolve) => {
       setTimeout(() => {
-        console.log("3 seconds have passed!");
         resolve();
       }, 1000);
     });
@@ -49,7 +48,6 @@ function setNotificationSuccess(message) {
 
     await new Promise((resolve) => {
       setTimeout(() => {
-        console.log("3 seconds have passed!");
         resolve();
       }, 3500);
     });
