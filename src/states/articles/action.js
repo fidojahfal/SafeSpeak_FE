@@ -96,12 +96,11 @@ function asyncReceiveArticles() {
 
 function asyncFilterArticles(keyword) {
   return async (dispatch, getStates) => {
-    let { articles } = getStates();
+    let {
+      articles: { originalArticles },
+    } = getStates();
     try {
-      if (!keyword) {
-        articles = await getAllArticles();
-      }
-      const filteredArticles = articles.filter((article) =>
+      const filteredArticles = originalArticles.filter((article) =>
         article.title.toLowerCase().includes(keyword.toLowerCase())
       );
       dispatch(filterArticlesActionCreator(filteredArticles));

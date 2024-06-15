@@ -10,7 +10,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 function ArticlePage() {
-  const { articles = [], authUser } = useSelector((states) => states);
+  const { articles = null, authUser } = useSelector((states) => states);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,6 +29,10 @@ function ArticlePage() {
     dispatch(asyncFilterArticles(keyword));
   }
 
+  if (!articles) {
+    return null;
+  }
+
   return (
     <section className="bg-articles" style={{ '--bs-gutter-x': '0' }}>
       <ArticleHead
@@ -36,7 +40,10 @@ function ArticlePage() {
         onCreate={onCreateHandler}
         onFilter={onFilterArticlesHandler}
       />
-      <ArticleBody articles={articles} onDetail={onDetailArticleHandler} />
+      <ArticleBody
+        articles={articles.filteredArticles}
+        onDetail={onDetailArticleHandler}
+      />
     </section>
   );
 }
