@@ -24,7 +24,7 @@ function GeneralCardDetail({
         </div>
       </div>
       <Modal
-        id="deleteArticleModal"
+        id="deleteModal"
         body="Apakah anda yakin ingin menghapus artikel ini? Anda tidak dapat memulihkan artikel."
         title="Konfirmasi Hapus Artikel"
         cancel="Batal"
