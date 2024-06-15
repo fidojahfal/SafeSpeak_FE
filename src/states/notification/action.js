@@ -56,10 +56,31 @@ function setNotificationSuccess(message) {
   };
 }
 
+function setNotificationDanger(message) {
+  return async (dispatch) => {
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
+
+    dispatch(setNotificationDangerActionCreator({ message: message }));
+
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 3500);
+    });
+
+    dispatch(unsetNotificationActionCreator());
+  };
+}
+
 export {
   ActionType,
   setNotificationSuccessActionCreator,
   setNotificationDangerActionCreator,
   unsetNotificationActionCreator,
   setNotificationSuccess,
+  setNotificationDanger,
 };

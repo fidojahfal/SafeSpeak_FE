@@ -1,7 +1,7 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { getReportById, updateStatus } from "../../utils/api";
 import {
-  setNotificationDangerActionCreator,
+  setNotificationDanger,
   setNotificationSuccess,
 } from "../notification/action";
 
@@ -50,7 +50,7 @@ function asyncUpdateReportStatus({ id, status, reason }) {
       dispatch(updateStatusReportActionCreator({ status, reason }));
       dispatch(setNotificationSuccess("Status laporan berhasil diubah"));
     } catch (error) {
-      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+      dispatch(setNotificationDanger(error.message));
     }
     dispatch(hideLoading());
   };

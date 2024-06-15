@@ -7,7 +7,7 @@ import {
 } from "../../utils/api";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import {
-  setNotificationDangerActionCreator,
+  setNotificationDanger,
   setNotificationSuccess,
 } from "../notification/action";
 
@@ -57,7 +57,7 @@ function asyncReceiveReports() {
       reports = await getReportsByUserId(authUser._id);
       dispatch(receiveReportsActionCreator(reports));
     } catch (error) {
-      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+      dispatch(setNotificationDanger(error.message));
     } finally {
       dispatch(hideLoading());
     }
@@ -92,7 +92,13 @@ function asyncCreateReport({
       dispatch(setNotificationSuccess("Berhasil membuat laporan"));
       return true;
     } catch (error) {
-      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+      console.log(error.message);
+      console.log(error.message.includes("Unexpected token"));
+      if (error.message.includes("Unexpected token")) {
+        dispatch(setNotificationDanger("Ukuran file maksimum 15MB"));
+      } else {
+        dispatch(setNotificationDanger(error.message));
+      }
       return false;
     } finally {
       dispatch(hideLoading());
@@ -108,7 +114,7 @@ function asyncDeleteReport(id) {
       dispatch(deleteReportActionCreator(id));
       dispatch(setNotificationSuccess("Berhasil menghapus laporan"));
     } catch (error) {
-      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+      dispatch(setNotificationDanger(error.message));
     }
     dispatch(hideLoading());
   };
