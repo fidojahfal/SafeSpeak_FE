@@ -76,7 +76,7 @@ function asyncUpdateUser({ name, email, telepon, jurusan, id }) {
     try {
       await updateUser({ name, email, telepon, jurusan, id });
       dispatch(updateUserActionCreator({ name, email, telepon, jurusan, id }));
-      dispatch(setNotificationSuccess("Berhasil memperbarui data profil."));
+      dispatch(setNotificationSuccess("Profile successfully updated."));
     } catch (error) {
       dispatch(setNotificationDanger(error.message));
     }

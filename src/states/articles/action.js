@@ -58,7 +58,7 @@ function asyncCreateArticle({ title, content, image }) {
         image,
       });
       dispatch(createArticleActionCreator(article));
-      dispatch(setNotificationSuccess("Artikel berhasil dibuat"));
+      dispatch(setNotificationSuccess("Article successfully created"));
       return true;
     } catch (error) {
       dispatch(setNotificationDanger(error.message));
@@ -75,7 +75,7 @@ function asyncDeleteArticle(id) {
     try {
       await deleteArticle(id);
       dispatch(deleteArticleActionCreator(id));
-      dispatch(setNotificationSuccess("Artikel berhasil dihapus"));
+      dispatch(setNotificationSuccess("Article successfully deleted"));
       return true;
     } catch (error) {
       dispatch(setNotificationDanger(error.message));

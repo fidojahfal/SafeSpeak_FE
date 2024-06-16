@@ -48,7 +48,7 @@ function asyncUpdateReportStatus({ id, status, reason }) {
     try {
       await updateStatus({ id, status, reason });
       dispatch(updateStatusReportActionCreator({ status, reason }));
-      dispatch(setNotificationSuccess("Status laporan berhasil diubah"));
+      dispatch(setNotificationSuccess("Report status successfully updated."));
     } catch (error) {
       dispatch(setNotificationDanger(error.message));
     }

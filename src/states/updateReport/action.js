@@ -49,7 +49,7 @@ function asyncUpdateReport(report) {
       await updateReport(report);
       const updatedReportDetail = await getReportById(report.id);
       dispatch(updateReportActionCreator(updatedReportDetail));
-      dispatch(setNotificationSuccess("Report berhasil diperbarui"));
+      dispatch(setNotificationSuccess("Report successfully updated"));
       return true;
     } catch (error) {
       dispatch(setNotificationDanger(error.message));

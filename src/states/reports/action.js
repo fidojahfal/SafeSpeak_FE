@@ -89,7 +89,7 @@ function asyncCreateReport({
       if (report) {
         await dispatch(createReportActionCreator(report));
       }
-      dispatch(setNotificationSuccess("Berhasil membuat laporan"));
+      dispatch(setNotificationSuccess("Report successfully created"));
       return true;
     } catch (error) {
       dispatch(setNotificationDanger(error.message));
@@ -106,7 +106,7 @@ function asyncDeleteReport(id) {
     try {
       await deleteReport(id);
       dispatch(deleteReportActionCreator(id));
-      dispatch(setNotificationSuccess("Berhasil menghapus laporan"));
+      dispatch(setNotificationSuccess("Report successfully deleted"));
     } catch (error) {
       dispatch(setNotificationDanger(error.message));
     }
