@@ -2,8 +2,8 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { getReportById, updateReport } from "../../utils/api";
 import {
-  setNotificationSuccessActionCreator,
-  setNotificationDangerActionCreator,
+  setNotificationSuccess,
+  setNotificationDanger,
 } from "../notification/action";
 
 const ActionType = {
@@ -49,14 +49,10 @@ function asyncUpdateReport(report) {
       await updateReport(report);
       const updatedReportDetail = await getReportById(report.id);
       dispatch(updateReportActionCreator(updatedReportDetail));
-      dispatch(
-        setNotificationSuccessActionCreator({
-          message: "Report berhasil diperbarui",
-        })
-      );
+      dispatch(setNotificationSuccess("Report berhasil diperbarui"));
       return true;
     } catch (error) {
-      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+      dispatch(setNotificationDanger(error.message));
       return false;
     } finally {
       dispatch(hideLoading());

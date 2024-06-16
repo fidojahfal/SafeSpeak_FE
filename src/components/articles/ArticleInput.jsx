@@ -4,6 +4,7 @@ import Input from "../form/Input";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useInput } from "../../hooks/useInput";
 import { getFileNameFromUrl } from "../../utils/helper";
+import PropTypes from "prop-types";
 
 function ArticleInput({ title, content, image, isEdit, submitHandler }) {
   const [titleInput, onTitleInputChange] = useInput(title);
@@ -73,5 +74,13 @@ function ArticleInput({ title, content, image, isEdit, submitHandler }) {
     </form>
   );
 }
+
+ArticleInput.propTypes = {
+  title: PropTypes.string,
+  content: PropTypes.string,
+  image: PropTypes.string,
+  isEdit: PropTypes.bool,
+  submitHandler: PropTypes.func,
+};
 
 export default ArticleInput;

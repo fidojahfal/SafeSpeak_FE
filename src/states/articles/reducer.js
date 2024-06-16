@@ -1,4 +1,4 @@
-import { ActionType } from './action';
+import { ActionType } from "./action";
 
 export default function articlesReducer(articles = null, action = {}) {
   switch (action.type) {

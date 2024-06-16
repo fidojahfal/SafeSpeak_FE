@@ -1,8 +1,8 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { getUser, register, updateUser } from "../../utils/api";
 import {
-  setNotificationDangerActionCreator,
-  setNotificationSuccessActionCreator,
+  setNotificationDanger,
+  setNotificationSuccess,
 } from "../notification/action";
 
 const ActionType = {
@@ -76,13 +76,9 @@ function asyncUpdateUser({ name, email, telepon, jurusan, id }) {
     try {
       await updateUser({ name, email, telepon, jurusan, id });
       dispatch(updateUserActionCreator({ name, email, telepon, jurusan, id }));
-      dispatch(
-        setNotificationSuccessActionCreator({
-          message: "Berhasil memperbarui data profil.",
-        })
-      );
+      dispatch(setNotificationSuccess("Berhasil memperbarui data profil."));
     } catch (error) {
-      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+      dispatch(setNotificationDanger(error.message));
     }
     dispatch(hideLoading());
   };

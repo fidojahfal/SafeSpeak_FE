@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncReceiveUser, asyncUpdateUser } from "../states/user/action";
 
 function ProfilePage() {
-  const { user = null } = useSelector((states) => states);
+  const { user = null, loadingBar } = useSelector((states) => states);
   const dispatch = useDispatch();
 
   // get path param
@@ -40,7 +40,7 @@ function ProfilePage() {
     navigate(`/profile/${id}`);
   }
 
-  if (!user) {
+  if (!user || loadingBar.default) {
     return null;
   }
 

@@ -1,7 +1,7 @@
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { deleteArticle, getAllArticles, insertArticle } from "../../utils/api";
 import {
-  setNotificationDangerActionCreator,
+  setNotificationDanger,
   setNotificationSuccess,
 } from "../notification/action";
 
@@ -61,7 +61,7 @@ function asyncCreateArticle({ title, content, image }) {
       dispatch(setNotificationSuccess("Artikel berhasil dibuat"));
       return true;
     } catch (error) {
-      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+      dispatch(setNotificationDanger(error.message));
       return false;
     } finally {
       dispatch(hideLoading());
@@ -78,7 +78,7 @@ function asyncDeleteArticle(id) {
       dispatch(setNotificationSuccess("Artikel berhasil dihapus"));
       return true;
     } catch (error) {
-      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+      dispatch(setNotificationDanger(error.message));
       return false;
     } finally {
       dispatch(hideLoading());
@@ -93,7 +93,7 @@ function asyncReceiveArticles() {
       const articles = await getAllArticles();
       dispatch(receiveArticlesActionCreator(articles));
     } catch (error) {
-      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+      dispatch(setNotificationDanger(error.message));
     }
     dispatch(hideLoading());
   };
@@ -110,7 +110,7 @@ function asyncFilterArticles(keyword) {
       );
       dispatch(filterArticlesActionCreator(filteredArticles));
     } catch (error) {
-      dispatch(setNotificationDangerActionCreator({ message: error.message }));
+      dispatch(setNotificationDanger(error.message));
     }
   };
 }
