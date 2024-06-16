@@ -23,7 +23,7 @@ function UpdateArticlePage() {
   }, [articleId, dispatch]);
 
   const onUpdateArticleHandler = async ({ title, content, image }) => {
-    const success = await dispatch(
+    const success = dispatch(
       asyncUpdateArticleDetail({ id: articleId, title, content, image })
     );
     if (success) {

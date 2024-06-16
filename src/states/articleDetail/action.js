@@ -46,9 +46,14 @@ function asyncUpdateArticleDetail({ title, content, image, id }) {
     dispatch(showLoading());
     try {
       await updateArticle({ title, content, image, id });
-      const updatedArticleDetail = await getArticleById(id);
+      let updatedArticleDetail = await getArticleById(id);
+      const randomNumber = Math.random();
+      updatedArticleDetail = {
+        ...updatedArticleDetail,
+        image: updatedArticleDetail.image + "?n=" + randomNumber,
+      };
       dispatch(updateArticleDetailActionCreator(updatedArticleDetail));
-      dispatch(setNotificationSuccess("Artikel berhasil diperbarui"));
+      dispatch(setNotificationSuccess("Article successfully updated"));
       return true;
     } catch (error) {
       dispatch(setNotificationDanger(error.message));

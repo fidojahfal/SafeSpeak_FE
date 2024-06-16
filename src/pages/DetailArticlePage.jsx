@@ -10,9 +10,11 @@ import GeneralCardDetail from "../components/shared/GeneralCardDetail";
 function DetailArticlePage() {
   const navigate = useNavigate();
   const { id: articleId } = useParams();
-  const { articleDetail, authUser, loadingBar } = useSelector(
-    (states) => states
-  );
+  const {
+    articleDetail = null,
+    authUser,
+    loadingBar,
+  } = useSelector((states) => states);
 
   const dispatch = useDispatch();
 
