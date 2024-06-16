@@ -12,26 +12,26 @@ async function fetchWithToken(url, options = {}) {
 }
 
 export function putAccessToken(token) {
-  localStorage.setItem('accessToken', token);
+  localStorage.setItem("accessToken", token);
 }
 
 export function getAccessToken() {
-  return localStorage.getItem('accessToken');
+  return localStorage.getItem("accessToken");
 }
 
 export async function login({ username, password }) {
   const response = await fetch(`${BASE_URL}/login`, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({ username, password }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   const responseJson = await response.json();
 
   const { message } = responseJson;
 
-  if (message !== 'Success') {
+  if (message !== "Success") {
     throw new Error(message);
   }
 
@@ -52,7 +52,7 @@ export async function register({
   telepon,
 }) {
   const response = await fetch(`${BASE_URL}/register`, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({
       username,
       password,
@@ -63,18 +63,18 @@ export async function register({
       telepon,
     }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   const responseJson = await response.json();
 
   const { message } = responseJson;
 
-  if (message !== 'Success') {
+  if (message !== "Success") {
     throw new Error(message);
   }
 
-  return 'Your account successfully registered';
+  return "Your account successfully registered";
 }
 
 // get user by id
@@ -84,7 +84,7 @@ export async function getUser(id) {
 
   const { message } = responseJson;
 
-  if (message !== 'Success') {
+  if (message !== "Success") {
     throw new Error(message);
   }
 
@@ -101,7 +101,7 @@ export async function getOwnProfile() {
 
   const { message } = responseJson;
 
-  if (message !== 'Success') {
+  if (message !== "Success") {
     throw new Error(message);
   }
 
@@ -114,17 +114,17 @@ export async function getOwnProfile() {
 
 export async function updateUser({ name, jurusan, telepon, email, id }) {
   const response = await fetchWithToken(`${BASE_URL}/users/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify({ name, jurusan, telepon, email }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   const responseJson = await response.json();
 
   const { message } = responseJson;
 
-  if (message !== 'Success') {
+  if (message !== "Success") {
     throw new Error(message);
   }
 
@@ -141,7 +141,7 @@ export async function getAllreports() {
     data: { reports },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return reports;
 }
@@ -156,16 +156,16 @@ export async function insertReport({
   is_anonim,
 }) {
   const formData = new FormData();
-  formData.append('title', title);
-  formData.append('type', type);
-  formData.append('place_report', place_report);
-  formData.append('date_report', date_report);
-  formData.append('description', description);
-  formData.append('evidence', evidence);
-  formData.append('is_anonim', is_anonim);
+  formData.append("title", title);
+  formData.append("type", type);
+  formData.append("place_report", place_report);
+  formData.append("date_report", date_report);
+  formData.append("description", description);
+  formData.append("evidence", evidence);
+  formData.append("is_anonim", is_anonim);
 
   const response = await fetchWithToken(`${BASE_URL}/reports`, {
-    method: 'POST',
+    method: "POST",
     body: formData,
   });
 
@@ -173,14 +173,14 @@ export async function insertReport({
 
   const { message, data } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   if (data) {
     const report = data.report;
     return report;
   }
 
-  throw new Error('Missing report data in response');
+  throw new Error("Missing report data in response");
 }
 
 export async function getReportById(id) {
@@ -191,7 +191,7 @@ export async function getReportById(id) {
     data: { report },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return report;
 }
@@ -204,70 +204,62 @@ export async function getReportsByUserId(id) {
     data: { reports },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return reports;
 }
 
-export async function updateReport({
-  title,
-  type,
-  place_report,
-  date_report,
-  description,
-  evidence,
-  is_anonim,
-  id,
-}) {
-  const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      title,
-      type,
-      place_report,
-      date_report,
-      description,
-      evidence,
-      is_anonim,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
+export async function updateReport(report) {
+  const formData = new FormData();
+  formData.append("title", report.title);
+  formData.append("type", report.type);
+  formData.append("place_report", report.place_report);
+  formData.append("date_report", report.date_report);
+  formData.append("description", report.description);
+  formData.append("is_anonim", report.is_anonim);
+
+  if (report.evidence instanceof File) {
+    formData.append("evidence", report.evidence);
+  }
+
+  const response = await fetchWithToken(`${BASE_URL}/reports/${report.id}`, {
+    method: "PUT",
+    body: formData,
   });
+
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
 }
 
-export async function updateStatus({ id, status, reason = '' }) {
+export async function updateStatus({ id, status, reason = "" }) {
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}/status`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify({ status, reason }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
   const responseJson = await response.json();
   const { message } = responseJson;
-  console.log(message);
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
 }
 
 export async function deleteReport(id) {
   const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
   });
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
 }
@@ -280,7 +272,7 @@ export async function getCountReports() {
     data: { total, status_0, status_1, status_2 },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return { total, status_0, status_1, status_2 };
 }
@@ -293,7 +285,7 @@ export async function getAllArticles() {
     data: { articles },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return articles;
 }
@@ -306,19 +298,19 @@ export async function getArticleById(id) {
     data: { article },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return article;
 }
 
 export async function insertArticle({ title, content, image }) {
   const formData = new FormData();
-  formData.append('title', title);
-  formData.append('content', content);
-  formData.append('image', image);
+  formData.append("title", title);
+  formData.append("content", content);
+  formData.append("image", image);
 
   const response = await fetchWithToken(`${BASE_URL}/articles`, {
-    method: 'POST',
+    method: "POST",
     body: formData,
   });
 
@@ -328,41 +320,38 @@ export async function insertArticle({ title, content, image }) {
     data: { article },
   } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return article;
 }
 
 export async function updateArticle({ title, content, image, id }) {
   const formData = new FormData();
-  formData.append('title', title);
-  formData.append('content', content);
-  formData.append('image', image);
-
-  console.log('in updateArticle API', { image, title, id, content });
+  formData.append("title", title);
+  formData.append("content", content);
+  formData.append("image", image);
 
   const response = await fetchWithToken(`${BASE_URL}/articles/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     body: formData,
   });
 
   const responseJson = await response.json();
   const { message } = responseJson;
-  console.log('in updateArticle API', message);
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
 }
 
 export async function deleteArticle(id) {
   const response = await fetchWithToken(`${BASE_URL}/articles/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
   });
   const responseJson = await response.json();
   const { message } = responseJson;
 
-  if (message !== 'Success') throw new Error(message);
+  if (message !== "Success") throw new Error(message);
 
   return message;
 }

@@ -101,22 +101,17 @@
 
 .deskripsi {
   word-wrap: break-word;
+  height: 200px;
 }
 
-/* Responsive Styles */
-@media (max-width: 767.98px) {
-  .detail-article-title {
-    text-align: center;
-  }
+.bg-yellow-100-report {
+  background-color: var(--yellow-100);
+  min-height: 68vh;
+}
 
-  .detail-article-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .detail-article-buttons button {
-    width: 100%;
-  }
+table.table tr.table-primary th {
+  background-color: #106ee8;
+  color: white;
 }
 
 @keyframes fadeIn {
@@ -130,6 +125,12 @@
 
 .alert {
   margin-top: 20px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.alert-hidden {
+  opacity: 0;
 }
 
 @media (max-width: 768px) {

@@ -1,11 +1,15 @@
-import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { deleteArticle, getAllArticles, insertArticle } from '../../utils/api';
-import { setNotificationActionCreator } from '../notification/action';
+import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { deleteArticle, getAllArticles, insertArticle } from "../../utils/api";
+import {
+  setNotificationDanger,
+  setNotificationSuccess,
+} from "../notification/action";
 
 const ActionType = {
-  CREATE_ARTICLE: 'CREATE_ARTICLE',
-  DELETE_ARTICLE: 'DELETE_ARTICLE',
-  RECEIVE_ARTICLES: 'RECEIVE_ARTICLES',
+  CREATE_ARTICLE: "CREATE_ARTICLE",
+  DELETE_ARTICLE: "DELETE_ARTICLE",
+  RECEIVE_ARTICLES: "RECEIVE_ARTICLES",
+  FILTER_ARTICLES: "FILTER_ARTICLES",
 };
 
 function createArticleActionCreator(article) {
@@ -35,6 +39,15 @@ function receiveArticlesActionCreator(articles) {
   };
 }
 
+function filterArticlesActionCreator(articles) {
+  return {
+    type: ActionType.FILTER_ARTICLES,
+    payload: {
+      articles,
+    },
+  };
+}
+
 function asyncCreateArticle({ title, content, image }) {
   return async (dispatch) => {
     dispatch(showLoading());
@@ -45,9 +58,10 @@ function asyncCreateArticle({ title, content, image }) {
         image,
       });
       dispatch(createArticleActionCreator(article));
+      dispatch(setNotificationSuccess("Article successfully created"));
       return true;
     } catch (error) {
-      dispatch(setNotificationActionCreator(error.message));
+      dispatch(setNotificationDanger(error.message));
       return false;
     } finally {
       dispatch(hideLoading());
@@ -61,9 +75,10 @@ function asyncDeleteArticle(id) {
     try {
       await deleteArticle(id);
       dispatch(deleteArticleActionCreator(id));
+      dispatch(setNotificationSuccess("Article successfully deleted"));
       return true;
     } catch (error) {
-      dispatch(setNotificationActionCreator(id));
+      dispatch(setNotificationDanger(error.message));
       return false;
     } finally {
       dispatch(hideLoading());
@@ -78,9 +93,25 @@ function asyncReceiveArticles() {
       const articles = await getAllArticles();
       dispatch(receiveArticlesActionCreator(articles));
     } catch (error) {
-      dispatch(setNotificationActionCreator(error.message));
+      dispatch(setNotificationDanger(error.message));
     }
     dispatch(hideLoading());
+  };
+}
+
+function asyncFilterArticles(keyword) {
+  return async (dispatch, getStates) => {
+    let {
+      articles: { originalArticles },
+    } = getStates();
+    try {
+      const filteredArticles = originalArticles.filter((article) =>
+        article.title.toLowerCase().includes(keyword.toLowerCase())
+      );
+      dispatch(filterArticlesActionCreator(filteredArticles));
+    } catch (error) {
+      dispatch(setNotificationDanger(error.message));
+    }
   };
 }
 
@@ -90,4 +121,5 @@ export {
   asyncCreateArticle,
   asyncDeleteArticle,
   asyncReceiveArticles,
+  asyncFilterArticles,
 };

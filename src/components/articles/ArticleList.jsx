@@ -1,8 +1,8 @@
 import React from 'react';
-import ArticleItem from './ArticleItem';
 import ArticleMiniCard from '../home/ArticleMiniCard';
+import PropTypes from 'prop-types';
 
-function ArticleList({ articles = [], onDetail }) {
+function ArticleList({ articles, onDetail }) {
   return (
     <div className={`${articles.length !== 0 && 'article-list'}`}>
       {articles.length !== 0 ? (
@@ -20,5 +20,10 @@ function ArticleList({ articles = [], onDetail }) {
     </div>
   );
 }
+
+ArticleList.propTypes = {
+  articles: PropTypes.array.isRequired,
+  onDetail: PropTypes.func.isRequired,
+};
 
 export default ArticleList;

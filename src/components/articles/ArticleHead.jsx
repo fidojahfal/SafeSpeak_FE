@@ -1,8 +1,12 @@
 import React from 'react';
 import { SlMagnifier } from 'react-icons/sl';
 import Button from '../form/Button';
+import PropTypes from 'prop-types';
 
-function ArticleHead({ role, onCreate }) {
+function ArticleHead({ role, onCreate, onFilter }) {
+  function onChangeHandler(event) {
+    onFilter(event.target.value);
+  }
   return (
     <div
       className="row d-flex flex-column-reverse flex-sm-column-reverse flex-xl-row flex-md-column-reverse "
@@ -35,6 +39,7 @@ function ArticleHead({ role, onCreate }) {
             className="form-control input-search-article"
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
+            onChange={onChangeHandler}
           />
         </div>
       </div>
@@ -44,7 +49,7 @@ function ArticleHead({ role, onCreate }) {
             alt="Image illustration of dosen"
             src="/img/Beranda-Dosen-2-flip.png"
             width="50%"
-            height="90%"
+            height="70%"
           />
         ) : (
           <img
@@ -58,5 +63,11 @@ function ArticleHead({ role, onCreate }) {
     </div>
   );
 }
+
+ArticleHead.propTypes = {
+  role: PropTypes.number.isRequired,
+  onCreate: PropTypes.func.isRequired,
+  onFilter: PropTypes.func.isRequired,
+};
 
 export default ArticleHead;

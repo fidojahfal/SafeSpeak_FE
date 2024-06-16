@@ -92,10 +92,7 @@ function App() {
             path="/articles/:id/update"
             element={<ProtectedRoute element={<UpdateArticlePage />} />}
           />
-          <Route
-            path="/articles/:id/detail"
-            element={<ProtectedRoute element={<DetailArticlePage />} />}
-          />
+          <Route path="/articles/:id/detail" element={<DetailArticlePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>

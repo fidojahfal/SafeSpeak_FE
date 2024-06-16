@@ -1,10 +1,13 @@
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import { getArticleById, updateArticle, updateReport } from '../../utils/api';
-import { setNotificationActionCreator } from '../notification/action';
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { getArticleById, updateArticle } from "../../utils/api";
+import {
+  setNotificationDanger,
+  setNotificationSuccess,
+} from "../notification/action";
 
 const ActionType = {
-  RECEIVE_ARTICLE_DETAIL: 'RECEIVE_ARTICLE_DETAIL',
-  UPDATE_ARTICLE_DETAIL: 'UPDATE_ARTICLE_DETAIL',
+  RECEIVE_ARTICLE_DETAIL: "RECEIVE_ARTICLE_DETAIL",
+  UPDATE_ARTICLE_DETAIL: "UPDATE_ARTICLE_DETAIL",
 };
 
 function receiveArticleDetailActionCreator(articleDetail) {
@@ -43,11 +46,17 @@ function asyncUpdateArticleDetail({ title, content, image, id }) {
     dispatch(showLoading());
     try {
       await updateArticle({ title, content, image, id });
-      const updatedArticleDetail = await getArticleById(id);
+      let updatedArticleDetail = await getArticleById(id);
+      const randomNumber = Math.random();
+      updatedArticleDetail = {
+        ...updatedArticleDetail,
+        image: updatedArticleDetail.image + "?n=" + randomNumber,
+      };
       dispatch(updateArticleDetailActionCreator(updatedArticleDetail));
+      dispatch(setNotificationSuccess("Article successfully updated"));
       return true;
     } catch (error) {
-      dispatch(setNotificationActionCreator(error.message));
+      dispatch(setNotificationDanger(error.message));
       return false;
     } finally {
       dispatch(hideLoading());

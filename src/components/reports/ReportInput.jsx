@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '../form/Button';
-import { MdOutlineFileUpload } from 'react-icons/md';
-import { IconContext } from 'react-icons';
-import { useInput } from '../../hooks/useInput';
-import Input from '../form/Input';
-import moment from 'moment';
+import React from "react";
+import PropTypes from "prop-types";
+import Button from "../form/Button";
+import { MdOutlineFileUpload } from "react-icons/md";
+import { IconContext } from "react-icons";
+import { useInput } from "../../hooks/useInput";
+import Input from "../form/Input";
+import moment from "moment";
+import { getFileNameFromUrl } from "../../utils/helper";
 
 function ReportInput({
   title,
@@ -20,7 +21,7 @@ function ReportInput({
 }) {
   const [titleInput, onTitleInputChange] = useInput(title);
   const [typeInput, onTypeInputChange] = useInput(
-    type !== undefined ? type.toString() : ''
+    type !== undefined ? type.toString() : ""
   );
   const [placeInput, onPlaceInputChange] = useInput(place_report);
   const [dateInput, onDateInputChange] = useInput(date_report);
@@ -30,15 +31,6 @@ function ReportInput({
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log({
-      title: titleInput,
-      type: Number(typeInput),
-      place_report: placeInput,
-      date_report: dateInput,
-      description: descriptionInput,
-      evidence: evidenceInput,
-      is_anonim: anonimInput,
-    });
     submitHandler({
       title: titleInput,
       type: Number(typeInput),
@@ -52,7 +44,7 @@ function ReportInput({
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <h5 className="mb-3">{isEdit ? 'Ubah Laporan' : 'Buat Laporan'}</h5>
+      <h5 className="mb-3">{isEdit ? "Ubah Laporan" : "Buat Laporan"}</h5>
       <div className="row gy-3 gx-4">
         <div className="col-md-4">
           <p className="mb-2 form-blue-label-semibold">Jenis Kejadian</p>
@@ -66,7 +58,7 @@ function ReportInput({
               name="type"
               required
               value="0"
-              checked={typeInput === '0'}
+              checked={typeInput === "0"}
               onChangeHandler={onTypeInputChange}
             >
               Kekerasan Seksual
@@ -79,7 +71,7 @@ function ReportInput({
               inputClassName="form-check-input"
               name="type"
               value="1"
-              checked={typeInput === '1'}
+              checked={typeInput === "1"}
               onChangeHandler={onTypeInputChange}
             >
               Bullying
@@ -126,7 +118,7 @@ function ReportInput({
           type="date"
           value={dateInput}
           onChangeHandler={onDateInputChange}
-          max={moment(new Date()).format('YYYY-MM-DD')}
+          max={moment(new Date()).format("YYYY-MM-DD")}
           required
         >
           Tanggal Kejadian
@@ -148,7 +140,7 @@ function ReportInput({
               <p className="mb-2 form-blue-label-semibold inline">
                 Bukti Sebelumnya
               </p>
-              <a href={evidence}>{evidence}</a>
+              <a href={evidence}>{getFileNameFromUrl(evidence)}</a>
             </div>
           )}
           <p className="mb-2 form-blue-label-semibold">Bukti PDF</p>

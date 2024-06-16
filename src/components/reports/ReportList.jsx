@@ -1,10 +1,13 @@
 import React from 'react';
 import ReportItem from './ReportItem';
 import Button from '../form/Button';
+import Alert from '../form/Alert';
+import PropTypes from 'prop-types';
 
 function ReportList({ reports, user, onCreate, onDetail }) {
   return (
     <div className="px-xl-5">
+      <Alert />
       <h3 className="text-primary fw-bold text-center mb-5 mt-3">
         {user.role ? 'Daftar Laporan' : 'Laporan Saya'}
       </h3>
@@ -32,7 +35,7 @@ function ReportList({ reports, user, onCreate, onDetail }) {
         <tbody>
           {reports.length !== 0 ? (
             reports.map((report) => (
-              <ReportItem key={1} onDetail={onDetail} {...report} />
+              <ReportItem key={report._id} onDetail={onDetail} {...report} />
             ))
           ) : (
             <tr>
@@ -46,5 +49,12 @@ function ReportList({ reports, user, onCreate, onDetail }) {
     </div>
   );
 }
+
+ReportList.propTypes = {
+  reports: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  onCreate: PropTypes.func.isRequired,
+  onDetail: PropTypes.func.isRequired,
+};
 
 export default ReportList;

@@ -1,5 +1,6 @@
+// UpdateReportPage.jsx
 import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ReportInput from "../components/reports/ReportInput";
 import {
@@ -8,6 +9,7 @@ import {
 } from "../states/updateReport/action";
 import "../styles/report.css";
 import moment from "moment";
+import GeneralCard from "../components/shared/GeneralCard";
 
 function UpdateReportPage() {
   const { id: reportId } = useParams();
@@ -15,69 +17,35 @@ function UpdateReportPage() {
   const navigate = useNavigate();
   const reportDetail = useSelector((state) => state.updateReport);
 
-  console.log("Prop Received:", { reportDetail });
-
   useEffect(() => {
     dispatch(asyncReceiveUpdateReportDetail(reportId));
   }, [dispatch, reportId]);
 
-  const onUpdateReport = ({
-    title,
-    type,
-    place_report,
-    date_report,
-    description,
-    evidence,
-    is_anonim,
-  }) => {
-    const report = {
-      id: reportId,
-      title,
-      type,
-      place_report,
-      date_report,
-      description,
-      evidence,
-      is_anonim,
-    };
-    console.log("report:", { report });
-    dispatch(asyncUpdateReport(report));
+  const onUpdateReport = (formData) => {
+    const reportDetail = { id: reportId, ...formData };
+    dispatch(asyncUpdateReport(reportDetail));
     navigate(`/reports/${reportId}/detail`);
   };
 
   if (!reportDetail) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   const formattedDate = moment(reportDetail.date_report).format("YYYY-MM-DD");
-  console.log("Date:", { formattedDate });
   return (
-    <section className="bg-yellow-100 p-4 position-relative">
-      <div className="row">
-        <div className="col-lg-auto mx-2 mb-4 mt-1">
-          <Link onClick={() => navigate(-1)}>
-            <img src="/icons/arrow-left-circle-fill.svg" alt="arrow-left" />
-          </Link>
-        </div>
-        <div className="col-lg-11 card p-3">
-          <div className="col-md-13">
-            <div className="card-body">
-              <ReportInput
-                submitHandler={onUpdateReport}
-                isEdit={true}
-                title={reportDetail.title}
-                type={reportDetail.type}
-                place_report={reportDetail.place_report}
-                date_report={formattedDate}
-                description={reportDetail.description}
-                evidence={reportDetail.evidence}
-                is_anonim={reportDetail.is_anonim}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <GeneralCard>
+      <ReportInput
+        submitHandler={onUpdateReport}
+        isEdit={true}
+        title={reportDetail.title}
+        type={reportDetail.type}
+        place_report={reportDetail.place_report}
+        date_report={formattedDate}
+        description={reportDetail.description}
+        evidence={reportDetail.evidence}
+        is_anonim={reportDetail.is_anonim}
+      />
+    </GeneralCard>
   );
 }
 

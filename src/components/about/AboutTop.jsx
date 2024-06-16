@@ -19,13 +19,13 @@ function AboutTop() {
           tidak dilaporkan [1]. Di sisi lain, 36,31% siswa berpotensi mengalami
           bullying dan hanya sekitar 13,54% siswa yang berani melapor [2].
         </p>
-        <p className="fs-5">
+        <p className="fs-5 mb-0">
           Siswa enggan melapor karena: malu, laporan tidak ditindaklanjuti, dan
           kurangnya edukasi.
-          <h5>
-            SafeSpeak hadir sebagai portal laporan dan informasi untuk
-            memudahkan siswa.
-          </h5>
+        </p>
+        <p className="fs-5 text-primary fw-bold">
+          SafeSpeak hadir sebagai portal laporan dan informasi untuk memudahkan
+          siswa.
         </p>
         <p>
           [1]{" "}

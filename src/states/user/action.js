@@ -1,5 +1,9 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { getUser, register, updateUser } from "../../utils/api";
+import {
+  setNotificationDanger,
+  setNotificationSuccess,
+} from "../notification/action";
 
 const ActionType = {
   RECEIVE_USER: "RECEIVE_USER",
@@ -59,7 +63,6 @@ function asyncReceiveUser(id) {
     try {
       const user = await getUser(id);
       dispatch(receiveUserActionCreator(user));
-      console.log(user);
     } catch (error) {
       alert(error);
     }
@@ -73,8 +76,9 @@ function asyncUpdateUser({ name, email, telepon, jurusan, id }) {
     try {
       await updateUser({ name, email, telepon, jurusan, id });
       dispatch(updateUserActionCreator({ name, email, telepon, jurusan, id }));
+      dispatch(setNotificationSuccess("Profile successfully updated."));
     } catch (error) {
-      alert(error);
+      dispatch(setNotificationDanger(error.message));
     }
     dispatch(hideLoading());
   };
