@@ -209,31 +209,24 @@ export async function getReportsByUserId(id) {
   return reports;
 }
 
-export async function updateReport({
-  title,
-  type,
-  place_report,
-  date_report,
-  description,
-  evidence,
-  is_anonim,
-  id,
-}) {
-  const response = await fetchWithToken(`${BASE_URL}/reports/${id}`, {
+export async function updateReport(report) {
+  const formData = new FormData();
+  formData.append("title", report.title);
+  formData.append("type", report.type);
+  formData.append("place_report", report.place_report);
+  formData.append("date_report", report.date_report);
+  formData.append("description", report.description);
+  formData.append("is_anonim", report.is_anonim);
+
+  if (report.evidence instanceof File) {
+    formData.append("evidence", report.evidence);
+  }
+
+  const response = await fetchWithToken(`${BASE_URL}/reports/${report.id}`, {
     method: "PUT",
-    body: JSON.stringify({
-      title,
-      type,
-      place_report,
-      date_report,
-      description,
-      evidence,
-      is_anonim,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
+    body: formData,
   });
+
   const responseJson = await response.json();
   const { message } = responseJson;
 

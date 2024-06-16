@@ -1,3 +1,4 @@
+// UpdateReportPage.jsx
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,26 +21,9 @@ function UpdateReportPage() {
     dispatch(asyncReceiveUpdateReportDetail(reportId));
   }, [dispatch, reportId]);
 
-  const onUpdateReport = ({
-    title,
-    type,
-    place_report,
-    date_report,
-    description,
-    evidence,
-    is_anonim,
-  }) => {
-    const report = {
-      id: reportId,
-      title,
-      type,
-      place_report,
-      date_report,
-      description,
-      evidence,
-      is_anonim,
-    };
-    dispatch(asyncUpdateReport(report));
+  const onUpdateReport = (formData) => {
+    const reportDetail = { id: reportId, ...formData };
+    dispatch(asyncUpdateReport(reportDetail));
     navigate(`/reports/${reportId}/detail`);
   };
 
