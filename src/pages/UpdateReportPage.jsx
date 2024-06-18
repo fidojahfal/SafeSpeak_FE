@@ -1,5 +1,5 @@
 // UpdateReportPage.jsx
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ReportInput from "../components/reports/ReportInput";
@@ -17,14 +17,20 @@ function UpdateReportPage() {
   const navigate = useNavigate();
   const reportDetail = useSelector((state) => state.updateReport);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     dispatch(asyncReceiveUpdateReportDetail(reportId));
   }, [dispatch, reportId]);
 
-  const onUpdateReport = (formData) => {
+  const onUpdateReport = async (formData) => {
+    setLoading(true); // set loading state to true
     const reportDetail = { id: reportId, ...formData };
-    dispatch(asyncUpdateReport(reportDetail));
-    navigate(`/reports/${reportId}/detail`);
+    const updateSuccess = await dispatch(asyncUpdateReport(reportDetail));
+    setLoading(false); // set loading state to false
+    if (updateSuccess) {
+      navigate(`/reports/${reportId}/detail`);
+    }
   };
 
   if (!reportDetail) {
@@ -45,6 +51,7 @@ function UpdateReportPage() {
         evidence={reportDetail.evidence}
         is_anonim={reportDetail.is_anonim}
       />
+      {loading} {/* Display loading indicator */}
     </GeneralCard>
   );
 }
