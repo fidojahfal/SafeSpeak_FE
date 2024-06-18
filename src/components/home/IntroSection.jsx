@@ -5,7 +5,7 @@ function IntroSection({ role }) {
   const navigate = useNavigate();
 
   const onClick = () => {
-    role ? navigate("/") : navigate("/reports/create");
+    role ? navigate("/reports") : navigate("/reports/create");
   };
 
   return (
