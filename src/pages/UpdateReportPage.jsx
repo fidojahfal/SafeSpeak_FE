@@ -21,10 +21,12 @@ function UpdateReportPage() {
     dispatch(asyncReceiveUpdateReportDetail(reportId));
   }, [dispatch, reportId]);
 
-  const onUpdateReport = (formData) => {
+  const onUpdateReport = async (formData) => {
     const reportDetail = { id: reportId, ...formData };
-    dispatch(asyncUpdateReport(reportDetail));
-    navigate(`/reports/${reportId}/detail`);
+    const updateSuccess = await dispatch(asyncUpdateReport(reportDetail));
+    if (updateSuccess) {
+      navigate(`/reports/${reportId}/detail`);
+    }
   };
 
   if (!reportDetail) {
