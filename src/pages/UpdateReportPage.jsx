@@ -17,17 +17,13 @@ function UpdateReportPage() {
   const navigate = useNavigate();
   const reportDetail = useSelector((state) => state.updateReport);
 
-  const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     dispatch(asyncReceiveUpdateReportDetail(reportId));
   }, [dispatch, reportId]);
 
   const onUpdateReport = async (formData) => {
-    setLoading(true); // set loading state to true
     const reportDetail = { id: reportId, ...formData };
     const updateSuccess = await dispatch(asyncUpdateReport(reportDetail));
-    setLoading(false); // set loading state to false
     if (updateSuccess) {
       navigate(`/reports/${reportId}/detail`);
     }
@@ -51,7 +47,6 @@ function UpdateReportPage() {
         evidence={reportDetail.evidence}
         is_anonim={reportDetail.is_anonim}
       />
-      {loading} {/* Display loading indicator */}
     </GeneralCard>
   );
 }
