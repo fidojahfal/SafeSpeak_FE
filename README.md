@@ -1,9 +1,29 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# SafeSpeak
 
-Currently, two official plugins are available:
+Website Portal Laporan & Informasi Mahasiswa seputar Kekerasan Seksual dan Bullying bagian Front End.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# SafeSpeak_FE
+
+## Installation
+
+Clone project from github
+
+```bash
+  git clone https://github.com/fidojahfal/SafeSpeak_FE.git
+  cd SafeSpeak_FE
+```
+Install SafeSpeak_FE with npm
+
+```bash
+  npm install
+```    
+Run project SafeSpeak_FE with npm run
+
+```bash
+  npm run dev
+```
+or
+
+```bash
+  npm run start
+```
