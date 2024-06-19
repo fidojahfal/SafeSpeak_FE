@@ -1,13 +1,14 @@
-import { hideLoading, showLoading } from "react-redux-loading-bar";
-import { getUser, register, updateUser } from "../../utils/api";
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
+import { getUser, register, updateUser } from '../../utils/api';
 import {
   setNotificationDanger,
   setNotificationSuccess,
-} from "../notification/action";
+} from '../notification/action';
 
 const ActionType = {
-  RECEIVE_USER: "RECEIVE_USER",
-  UPDATE_USER: "UPDATE_USER",
+  RECEIVE_USER: 'RECEIVE_USER',
+  UPDATE_USER: 'UPDATE_USER',
+  UNSET_USER: 'UNSET_USER',
 };
 
 function receiveUserActionCreator(user) {
@@ -28,6 +29,13 @@ function updateUserActionCreator({ name, email, telepon, jurusan }) {
       telepon,
       email,
     },
+  };
+}
+
+function unsetUserActionCreator() {
+  return {
+    type: ActionType.UNSET_USER,
+    payload: { user: null },
   };
 }
 
@@ -57,11 +65,12 @@ function asyncRegisterUser({
   };
 }
 
-function asyncReceiveUser(id) {
-  return async (dispatch) => {
+function asyncReceiveUser() {
+  return async (dispatch, getStates) => {
     dispatch(showLoading());
+    const { authUser } = getStates();
     try {
-      const user = await getUser(id);
+      const user = await getUser(authUser._id);
       dispatch(receiveUserActionCreator(user));
     } catch (error) {
       alert(error);
@@ -76,11 +85,17 @@ function asyncUpdateUser({ name, email, telepon, jurusan, id }) {
     try {
       await updateUser({ name, email, telepon, jurusan, id });
       dispatch(updateUserActionCreator({ name, email, telepon, jurusan, id }));
-      dispatch(setNotificationSuccess("Profile successfully updated."));
+      dispatch(setNotificationSuccess('Profile successfully updated.'));
     } catch (error) {
       dispatch(setNotificationDanger(error.message));
     }
     dispatch(hideLoading());
+  };
+}
+
+function asyncUnsetUser() {
+  return async (dispatch) => {
+    dispatch(unsetUserActionCreator());
   };
 }
 
@@ -91,4 +106,5 @@ export {
   asyncReceiveUser,
   asyncRegisterUser,
   asyncUpdateUser,
+  asyncUnsetUser,
 };

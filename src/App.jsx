@@ -21,6 +21,7 @@ import UpdateArticlePage from './pages/UpdateArticlePage';
 
 import DetailArticlePage from './pages/DetailArticlePage';
 import ArticlePage from './pages/ArticlePage';
+import { asyncUnsetUser } from './states/user/action';
 function App() {
   const { authUser, isPreload, loadingBar } = useSelector((states) => states);
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
 
   function onLogoutHandler() {
     dispatch(asyncUnsetAuthUser());
+    dispatch(asyncUnsetUser());
   }
 
   const location = useLocation();

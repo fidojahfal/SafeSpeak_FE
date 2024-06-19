@@ -1,16 +1,17 @@
-import React from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import Alert from "../components/form/Alert";
-import ProfileCard from "../components/profile/ProfileCard";
+import React from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import Alert from '../components/form/Alert';
+import ProfileCard from '../components/profile/ProfileCard';
 
 // Profile Styling
-import "../styles/profile-style.css";
-import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveUser, asyncUpdateUser } from "../states/user/action";
+import '../styles/profile-style.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncReceiveUser, asyncUpdateUser } from '../states/user/action';
 
 function ProfilePage() {
   const { user = null, loadingBar } = useSelector((states) => states);
   const dispatch = useDispatch();
+  console.log(user);
 
   // get path param
   const { id } = useParams();
@@ -21,8 +22,8 @@ function ProfilePage() {
 
   // get user by id
   React.useEffect(() => {
-    dispatch(asyncReceiveUser(id));
-  }, [dispatch, id]);
+    dispatch(asyncReceiveUser());
+  }, [dispatch]);
 
   // handle navigate to edit page
   function toEditHandler() {
@@ -45,7 +46,7 @@ function ProfilePage() {
   }
 
   // conditional to show ProfileView or ProfileInput based on URL path
-  const isEditing = location.pathname.includes("/edit");
+  const isEditing = location.pathname.includes('/edit');
 
   return (
     <section className="bg-yellow-100 p-3">
