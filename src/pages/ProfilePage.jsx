@@ -9,16 +9,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveUser, asyncUpdateUser } from '../states/user/action';
 
 function ProfilePage() {
-  const { user = null, loadingBar } = useSelector((states) => states);
+  const { user, loadingBar, authUser } = useSelector((states) => states);
   const dispatch = useDispatch();
   console.log(user);
 
   // get path param
-  const { id } = useParams();
+
   // get current url
   const location = useLocation();
   // to navigate programatically
   const navigate = useNavigate();
+  const id = authUser._id;
 
   // get user by id
   React.useEffect(() => {
